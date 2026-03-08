@@ -1,0 +1,54 @@
+---
+title: "Turboveg"
+format: html
+author: Milan Chytrý, Ilona Knollová
+---
+
+The Czech Vegetation Database is stored and managed in the [Turboveg 2](https://www.synbiosys.alterra.nl/turboveg/) program, which was developed specifically for managing vegetation-plot databases by Stephan Hennekens ([Hennekens & Schaminée 2001](http://onlinelibrary.wiley.com/doi/10.2307/3237010/pdf)). This program and the database format it supports have become widespread across Europe and beyond. We encourage all data contributors to the Czech Vegetation Database to use this program to digitize their vegetation-plot data.
+
+## 1 Installation
+
+To obtain the version of Turboveg optimized for Czech data, please contact Ilona Knollová ([ikuzel\@sci.muni.cz](mailto:ikuzel@sci.muni.cz)) or Milan Chytrý ([chytry\@sci.muni.cz](mailto:chytry@sci.muni.cz)). This version is not available for international users who work with data from other countries. If these users are interested in working with Turboveg, they should contact database coordinators in their countries or Stephan Hennnekens.
+
+## 2 Updates
+
+### 2.1 Program update
+
+After the Turboveg installation, the program should be updated to the current version from the [Turboveg website](https://www.synbiosys.alterra.nl/turboveg/) (select „International, single user version“).
+
+### 2.2 Installation and update of the Czech species list
+
+The standard Turboveg list of the Czech flora (common with the standard list of Slovak flora) should be downloaded here:
+
+-   [species.zip](files/species.zip) (version 28 November 2024)
+
+Extract this file. After extraction, you will receive a folder named Czechia_Slovakia_2015, which should be copied to the folder /TURBOWIN/species on your computer. In the Turboveg program, assign the species list to each specific database using *Database/Modify attributes*.
+
+### 2.3 Installation and update of the common database directories
+
+The standard directories for specific header-data variables should be downloaded from here:
+
+-   [popup.zip](files/popup.zip) (version 16 December 2024)
+
+Extract this file to the folder /TURBOWIN/popup (old files should be rewritten). If there are problems with the syntaxon list, follow the instructions [here](files/Prevod_Moravec_VegetaceCR.pdf).
+
+## 3 Instructions
+
+Before storing the vegetation-plot data entered into Turboveg in the Czech Vegetation Database, each plot must have a unique number. To guarantee that your plots have unique numbers, contact Ilona Knollová ([ikuzel\@sci.muni.cz](mailto:ikuzel@sci.muni.cz)), who may assign a range of plot numbers to you. The list of numbers assigned to individual collaborators is [here](files/rozsahy.pdf). Collaborators who have not been assigned to a range of plot numbers should code their plots starting from no. 1. Their plots will be renumbered by the coordinator once they are sent to the central database. If collaborators with assigned plot numbers enter plots from published sources, the bibliographic references should have numbers from the same numerical range.
+
+Turboveg manual for beginners (in Czech) is [here](files/Turboveg-manual.pdf). You can download an [empty database template](files/vzorova-databaze.zip) with standard header data fields used in the Czech Vegetation Database. Restore this template to the folder /TURBOWIN/data and rename it.
+
+## 4 Taxonomic and nomenclatural standards
+
+To ensure compatibility among different datasets, the Czech Vegetation Database uses standardized species lists included in the Czech version of Turboveg.
+
+The list of vascular plant species (including some other infraspecific and infrageneric taxa) was prepared by the late Professor Harald Niklfeld and Dr. Walter Gutermann (University of Vienna) in 1996 based on an updated version of Liste der Gefäßpflanzen Mitteleuropas (Ehrendorfer 1973). This species list contains plant species occurring in Czechia, Slovakia, and Austria. In 2015, Jiří Danihelka updated this species list to reflect additions to the Czech flora published in Danihelka et al. (2012), while keeping compatibility with the previous list. This species list is currently used by both the Czech Vegetation Database and the [Central Database of Phytosociological Relevés](https://cbrb.sav.sk/cdf/) in Slovakia.
+
+The lists of bryophytes and lichens follow Frahm et al. (1995) and Pišút et al. (1993), respectively.
+
+**References**
+
+-   Danihelka J., Chrtek J. Jr. & Kaplan Z. (2012) Checklist of vascular plants of the Czech Republic. *Preslia* 84: 647–811.
+-   Ehrendorfer F. (ed.) (1973) *Liste der Gefäßpflanzen Mitteleuropas*. Ed. 2. G. Fischer, Stuttgart.
+-   Frey W., Frahm J. P., Fischer E. & Lobin W. (1995) *Die Moos- und Farnpflanzen Europas*. G. Fischer, Stuttgart.
+-   Pišút I., Lackovicová A. & Lisická E. (1993) Súpis lišajníkov Slovenska. *Biológia*, 48, Suppl. 1: 53–98.

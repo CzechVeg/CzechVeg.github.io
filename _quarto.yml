@@ -1,0 +1,65 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Czech Vegetation Database"
+
+  page-footer:
+    right: "This page is built with [Quarto](https://quarto.org/)."
+
+  sidebar:
+    pinned: true
+    align: center
+    style: "docked"
+    search: true
+    logo: CVD_logo_EN_col_V.png
+    logo-height: 50px
+    logo-alt: "Botzool Logo"
+    collapse-level: 2
+    contents:
+
+      - section: "About"
+        href: index.qmd
+        contents:
+        - text: "History"
+          href: About/history.qmd
+        - text: 'Acknowledgements'
+          href: About/acknowledgements.qmd
+
+      - section: "Data"
+        href: Data/data_availability.qmd
+        contents:
+          - text: "Map viewer"
+            href: Data/map_viewer.qmd
+          - text: "CzechVeg-Open"
+            href: Data/czech_veg_open.qmd
+          - text: "CzechVeg-OpenStrat"
+            href: Data/czech_veg_openstrat.qmd
+          - text: "Data description"
+            href: Data/data_description.qmd
+          - text: "Turboveg"
+            href: Data/turboveg.qmd
+
+      - section: "Data processing tutorial"
+        href: DataProcessingTutorial/data_processing_tutorial.qmd
+        contents:
+          - text: "Turboveg to R"
+            href: DataProcessingTutorial/turboveg_r.qmd
+          - text: "Basic data analyses"
+            href: DataProcessingTutorial/basic_analyses.qmd
+          - text: "Export to other formats"
+            href: DataProcessingTutorial/export.qmd
+          - text: 'Data stratification'
+            href: DataProcessingTutorial/data_stratification.qmd
+          - text: 'Data resampling'
+            href: DataProcessingTutorial/data_resampling.qmd
+          - text: 'Export to GBIF'
+            href: DataProcessingTutorial/export_gbif.qmd
+
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+

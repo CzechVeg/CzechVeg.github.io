@@ -1,0 +1,29 @@
+---
+title: "Data"
+format: html
+---
+
+The Czech Vegetation Database adheres to the FAIR Guiding Principles for scientific data management and stewardship ([Wilkinson et al. 2016](https://doi.org/10.1038/sdata.2016.18)). It is an open resource available under the [CC-BY](https://creativecommons.org/licenses/by/4.0/) license, allowing data to be shared and adapted, provided the source is cited and any changes are indicated.
+
+Data can be obtained from this website, either as the full database ([CzechVeg-Open](https://czechvegetationdatabase.github.io/Data/czech_veg_open.html)) or as a spatially and environmentally stratified subset ([CzechVeg-Open-Strat](https://czechvegetationdatabase.github.io/Data/czech_veg_open_strat.html)), which is suitable for analyses at the national scale. The same datasets, with DOI and versioning, are available in the [Zenodo](https://zenodo.org/) repository.
+
+Data from the Czech Vegetation Database are also available in international vegetation-plot databases. For analyses at supranational scales, data should be requested through these databases:
+
+-   [EVA](http://euroveg.org/eva-database) **–** European Vegetation Archive, for analyses at the international scale within Europe
+-   [sPlot](https://www.idiv.de/en/splot.html) **–** Global Vegetation Database, for analyses across regions larger than Europe
+
+Species occurrence data from the Czech Vegetation Database are available in species occurrence record databases:
+
+-   [Pladias](https://www.pladias.cz/en) **–** Database of the Czech Flora and Vegetation ([Chytrý et al. 2021](https://www.preslia.cz/article/9))
+-   [NDOP](https://portal23.nature.cz/nd/) **–** Species Occurrence Database of the Nature Conservation Agency of the Czech Republic
+-   [GBIF](https://www.gbif.org/) **–** Global Biodiversity Information Facility
+
+**Recommended citation for the Czech Vegetation Database**
+
+-   Chytrý M., Axmanová I., Divíšek J., Friesová K., Řezníčková M., Večeřa M. & Knollová I. (In preparation): Czech Vegetation Database: an open resource of vegetation-plot data.
+
+-   The article above should be cited whenever data from the Czech Vegetation Database are used, together with a reference to the website [czechvegetationdatabase.github.io](https://czechvegetationdatabase.github.io/).
+
+-   Additionally, the version used and its DOI, as recorded in Zenodo, should be cited.
+
+-   If only a small part of the database was used, with vegetation plots originating from a few published sources, or if a few published sources make up a large proportion of the plots, the original sources should also be cited, or the original authors should be mentioned for unpublished sources.

@@ -1,0 +1,230 @@
+---
+title: "Acknowledgements"
+format: html
+---
+
+Since its foundation in 1996, more than 200 people have contributed to the development of the Czech Vegetation Database by providing original vegetation-plot data, digitizing data from the literature, standardizing, cleaning and correcting the data, georeferencing vegetation plots, preparing and updating the taxonomic backbone, offering conceptual advice, and providing IT support. Many thanks to all of them:
+
+:::::: {layout-ncol="3"}
+::: column
+-   Irena Axmanová (Veselá)
+-   Marcel Bartoš
+-   David Beleš
+-   Lucie Benediktová
+-   Eliška Blažejová (Horodyská)
+-   Denisa Blažková †
+-   Karel Boublík
+-   Pavel Brych
+-   Kateřina Bubíková
+-   Lucia Cachovanová
+-   Jindřich Chlapek
+-   Markéta Chudomelová
+-   Helena Chytrá (Prokešová)
+-   Kryštof Chytrý
+-   Milan Chytrý
+-   Jaroslava Cieslarová
+-   David Cigánek
+-   Šárka Cimalová
+-   Ondřej Cudlín
+-   Jaroslav Čáp
+-   Alžběta Čejková
+-   Barbora Čepelová
+-   Martin Černý
+-   Tomáš Černý
+-   Martin Dančák
+-   Pavel Daněk
+-   Jiří Danihelka
+-   Daniel Dítě
+-   Jan Divíšek
+-   Ctibor Dolejší
+-   Jan Doležal
+-   Jana Ďoubalová
+-   Jan Douda
+-   Julian Dring
+-   Pavel Dřevojan
+-   Lydie Dudová (Navrátilová)
+-   Martin Duchoslav
+-   Helena Dušková
+-   Jana Dvořáková
+-   Libor Ekrt
+-   Viktoria Eltsova
+-   Martina Fabšičová
+-   Karel Fajmon
+-   Zuzana Fajmonová (Rozbrojová)
+-   Petr Filippov
+-   Jarmila Filippovová
+-   Klára Friesová (Klinkovská)
+-   Zuzana Fronková
+-   Jiří Galda
+-   Michal Gerža
+-   Marek Gonda
+-   Tomáš Grulich
+-   Vít Grulich †
+-   Walter Gutermann †
+-   Michal Hájek
+-   Petra Hájková
+-   Jana Halúzová (Straková)
+-   Petra Hanáková
+-   Martin Harásek
+-   Handrij Härtel
+-   Kryštof Havelka
+-   Helena Havránková (Adámková)
+-   Radim Hédl
+-   Monika Hejdová
+-   Stephan M. Hennekens
+-   Aleš Hoffmann
+-   Dana Holubová (Michalcová)
+-   Viera Horáková (Demianová)
+-   Lucie Hradilová
+-   Richard Hrivnák
+-   Zdenka Hroudová
+:::
+
+::: column
+-   Jaroslav Hruban
+-   Monika Hrubanová (Dršková)
+-   Petr Hubatka
+-   Ivan Jarolímek
+-   Ivan Jindra
+-   Martin Jiroušek
+-   Jana Jiroušková (Božková)
+-   Blanka Jírů
+-   Tereza Juřenová (Koubková)
+-   Jan Juřica
+-   Michal Juříček
+-   Jiří Juřička
+-   Kamila Juřičková
+-   Daniel Kadaš
+-   Veronika Kalníková
+-   Veronika Kalusová
+-   Adam Kantor
+-   Zdeněk Kaplan
+-   Katrin Karimová
+-   Petr Karlík
+-   Alexandra Klaudisová
+-   Leoš Klimeš †
+-   Ilona Knollová (Kuželová)
+-   Jiří Kocián
+-   Martin Kočí
+-   Branislav Kopčan
+-   Jan Košnar
+-   Alica Košuthová (Dingová)
+-   František Krahulec
+-   Štěpánka Králová
+-   Lucie Kratochvílová
+-   Zdeněk Kropáč †
+-   Pavel Křížek
+-   Tomáš Kučera
+-   Anna Kučerová
+-   Anna Kučerová (Kulíková)
+-   Petr Kuneš
+-   Josef Kutlvašr
+-   Jitka Laburdová
+-   Flavia Landucci
+-   Deana Láníková (Simonová)
+-   Martin Lepší
+-   Jarmila Lorencová (Urbánková)
+-   Zdeňka Lososová
+-   Hana Lukšíková
+-   Pavel Lustyk
+-   Samuel Lvončík
+-   Martina Macků (Nejezchlebová)
+-   Štěpánka Marková (Čížková)
+-   Ivona Matějková
+-   Michal Mazák
+-   Ján Medal
+-   Kristina Merunková
+-   Jan Mládek †
+-   Zuzana Myšková
+-   Tereza Náhlíková
+-   Jana Navrátilová (Ernestová)
+-   Jiří Němec
+-   Zdenka Neuhäuslová †
+-   Harald Niklfeld †
+-   Jana Nová
+-   Jan Novák
+-   Pavel Novák
+-   Kateřina Nováková (Píšťková)
+-   Ivan Ostrý
+-   Jiří Ouřada
+-   Marcela Paloudová
+-   Petra Pavlíčková
+-   Sylvie Pecháčková
+-   Jan Pergl
+-   Tomáš Peterka
+:::
+
+::: column
+-   Michaela Petrová
+-   Petr Petřík
+-   Lenka Pivoňková
+-   Zuzana Plesková
+-   Marie Popelářová (Derková)
+-   Ondřej Popelka
+-   Jana Posslová (Kůrová)
+-   Jan Prančl
+-   Romana Prausová
+-   Zdenka Preislerová (Otýpková)
+-   Lenka Prokopová
+-   Petr Pyšek
+-   Marie Rafajová
+-   Frank Richter
+-   Ludmila Rivolová
+-   John S. Rodwell
+-   Jaroslav Rohel
+-   Jan Roleček
+-   Romana Roučková
+-   Jiří Rozehnal
+-   Eva Rozehnalová
+-   Vlastik Rybka
+-   Marcela Řezníčková (Havlová)
+-   Jiří Sádlo
+-   Vojtěch Sedláček
+-   Hana Sekerková
+-   Vojtěch Sobotka
+-   Martina Sojneková
+-   Zdeněk Soldán
+-   Zbyněk Sovík
+-   Lenka Sovíková
+-   Veronika Srnková
+-   Lenka Staňková (Salabová)
+-   Eliška Suntychová
+-   Tomáš Svačina
+-   Eva Šaldová
+-   Milan Šenkýř †
+-   Anna Šímová
+-   Petr Šmarda
+-   Eva Šmerdová (Hettenbergerová)
+-   Markéta Špelinová (Průchová)
+-   Petra Štěpánková
+-   Jitka Štěrbová (Effmertová)
+-   Kateřina Šumberová
+-   Markéta Táborská
+-   Přemysl Tájek
+-   Vojtěch Taraška
+-   Lubomír Tichý
+-   Jana Tkáčiková (Novosadová)
+-   Adam Trčka
+-   Milan Valachovič
+-   Martin Večeřa
+-   Kateřina Vejvodová
+-   Adam Veleba
+-   Jiří Velebil
+-   Jiří Vicherek †
+-   Ondřej Vild
+-   Karla Vincenecová
+-   Richard Višňák
+-   Michaela Vítková
+-   Pavla Vlčková
+-   Martin Vojík
+-   Jaroslav Vojta
+-   Alena Vydrová
+-   Tomáš Vymyslický
+-   Petr Vysloužil
+-   Tomáš Zedínek
+-   David Zelený
+-   Iva Zítková
+-   Dominik Zukal
+-   Kristýna Žáková
+:::
+::::::

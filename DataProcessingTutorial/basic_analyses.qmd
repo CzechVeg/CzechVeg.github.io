@@ -1,0 +1,282 @@
+---
+title: "Basic data analyses"
+format: html
+author: Irena Axmanová
+---
+
+In this tutorial, we will show you how to sort and filter the data. We will also train how to append traits, indicator values or information about the status of species and calculate proportions of selected plant groups, community weighted and unweighted means or other summary statistics. If you are interested in a more general overview of the functions, you are encouraged to check also our study materials [here](https://botzooldataanalysis.github.io/DataManipulationVisualisation/data_manipulation_visualisation.html).
+
+```{r}
+#| warning: false
+library(tidyverse)
+library(janitor)
+```
+
+## 2.1 Data import
+
+We will play a bit with measured variables from our plots and try few useful functions. For more see [study materials](https://botzooldataanalysis.github.io/DataManipulationVisualisation/2_data_manipulation.html) and links there. We will first read the data newly, to be sure we know what we are working with. At this point we can actually clean the environment, remove everything.
+
+### 2.1.1 env dataset
+
+First I want to add some more variables that were measured separately. In addition this file is already filtered to a subset I want to use.
+
+```{r}
+env_extra<- read_csv("data/axmanova_forest_env_extra.csv")%>%      
+  clean_names()
+```
+
+For the env dataset, I want to import the clean version saved in the previous script, but I will directly filter it to the same subset as in the dataset above. I can do it with semi_join. But I decided to merge both datasets at this point - to keep only the matching rows, but all the information I want. For more on joins, see here.
+
+```{r}
+env<- read_csv("data/env.csv") %>%       
+  inner_join(env_extra %>%                                 
+               select (releve_nr, forest_type, forest_type_name,                                                soil_ph=p_h_k_cl, biomass)%>%                           
+               unite(forest, forest_type, forest_type_name))
+```
+
+### 2.1.2 spe dataset
+
+I want to work with the **spe dataset**, and I want to keep information about layers, as I want to focus on the herb-layer.
+
+```{r}
+spe <- read_csv ("data/spe_merged_covers.csv")%>%    
+  semi_join(env)
+```
+
+### 2.1.3 traits
+
+I also want to add some information about traits. So I will check what is available in my folder.
+
+```{r}
+list.files("data")
+```
+
+I will import plant height data, Ellenberg-type indicator values and status (origin and Red List categories). All these data are available in the [PLADIAS](https://pladias.cz/) database of the Czech flora and vegetation. I used the datasets from the download section and adjusted the format for easier data handling.
+
+```{r}
+plant_height<- read_csv("data/plant_height.csv")
+```
+
+```{r}
+indicator_values <- read_csv("data/indicator_values.csv")
+```
+
+```{r}
+status <- read_csv("data/status.csv")
+```
+
+## 2.2 Basic data handling
+
+**`Select`** extracts columns/variables based on their names or position. Select can be also used in combination with stringr package to identify the pattern in the names: try several options: `starts_with`, `ends_with` or more general one `contains`. With the use of select in your script you can order the variables always in the same way e.g. ID, forest type, species number, productivity, even during import. And you can also rename the variables using select, to get exactly what you need.
+
+```{r}
+env_extra %>% 
+  select(ID=releve_nr, forest_type=forest_type_name, species_nr=herbs, productivity=biomass) 
+```
+
+**`Distinct`** is a function that takes your data and remove all the duplicate rows, keeping only the unique ones. There are many cases where you will really appreciate this elegant and easy way. For example, I want a list of unique PlotIDs= releve_nr, unique combinations of two categories etc. Here I want to prepare list of forest types codes and names.
+
+```{r}
+env_extra %>%
+  arrange(forest_type) %>%
+  distinct(forest_type,forest_type_name)
+```
+
+When we have a large dataset, we sometimes need to create a subset of the rows/cases by **`filter`**. First we have to define upon which variable we are going to filter the rows (e.g. Forest type, soil pH...) and which values are acceptable and which are not. Here I keep only plots from a type that exactly match.
+
+```{r}
+env_extra %>% 
+  filter(forest_type_name =="alluvial forest")
+```
+
+or those that are listed
+
+```{r}
+
+env_extra %>% 
+  filter(forest_type_name %in% c("alluvial forest", "ravine forest"))
+```
+
+Or I want to filter based on some values. If I have at the same time NAs in the variable, I should specify if I want to keep these rows or not. In the example below I will keep all rows/plots where biomass is higher than 80g/m2 but I will also keep all the NAs, i.e. plots where it was not measured.
+
+```{r}
+env_extra %>% 
+  filter(biomass>80 |is.na(biomass))
+```
+
+You can also filter plots in a specified range of some value.
+
+```{r}
+env_extra %>% 
+  filter((biomass >= 40 & biomass <= 80) | is.na(biomass))
+
+```
+
+Similarly, you can for example **filter plots based on their plot size**. The example below is not working on our dataset, but it comes useful in large EVA exports. Here I keep grassland plots in the range 10-100 m2, forest plots between 100-1000 m2 and I keep the plots without specified plot size.
+
+```{r}
+#| eval: false
+env %>% 
+  filter(
+    (habitat == "grassland" & plot_size >= 10 & plot_size <= 100) |
+    (habitat == "forest" & plot_size >= 100 & plot_size <= 1000) |
+    is.na(plot_size)
+  )
+```
+
+## 2.3 Summarise
+
+I will a bit explore the data and ask about which factors influence species richness. Here are just few examples, we will read together the scripts and you will adopt them later to other tasks. First I want to produce a table with **summary statistics** like min, mean, max for two variables plant height, and biomass per forest type. The first one is a trait, so we need to append it to species file and calculate community means, while the other is a variable measured in each plot.
+
+Combine and summarise different variables / explanation will be added
+
+```{r}
+spe %>% 
+  filter(layer == "6") %>%
+  left_join(plant_height %>% 
+              select(species, height = height_mean)) %>%
+  left_join(env) %>%
+  arrange(forest) %>%
+  summarise(across(c(height,cov_herbs, biomass, cov_trees,soil_ph ),
+      list(
+        min  = ~min(.x, na.rm = TRUE),
+        mean = ~mean(.x, na.rm = TRUE),
+        max  = ~max(.x, na.rm = TRUE))),.by = forest)
+```
+
+```{r}
+env %>%
+  arrange(forest) %>%
+  select(forest, cover_herbs=cov_herbs, biomass, cover_trees =cov_trees, soil_ph) %>%
+  tidyr::pivot_longer(
+    cols = c(cover_herbs, biomass, cover_trees, soil_ph),
+    names_to = "variable",
+    values_to = "value")%>% 
+  ggplot(aes(x = forest, y = value, fill=forest)) +
+  geom_boxplot() +
+  facet_wrap(~ variable, scales = "free_y") +
+  theme_bw() +
+  theme(legend.position = 'none')+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  labs(x = NULL) +
+  labs (y = NULL)
+```
+
+I might be interested in **species richness relationship** with several factors. Below is an example of herb-layer species richness and biomass. At first I need to calculate the species richness in the spe file. And as an output I want to plot this with different colours for different forest types but keep the regression line for the whole dataset.
+
+```{r}
+spe %>% 
+  filter(layer %in% c(6, 7)) %>% 
+  count(releve_nr, name = "herblayer_richness") %>% 
+  left_join(env %>% 
+              select(releve_nr, biomass, forest), by = "releve_nr") %>% 
+  ggplot(aes(x = sqrt(biomass), y = herblayer_richness)) +
+  geom_point(aes(colour = forest), size = 2, alpha = 0.8) +
+  geom_smooth(method = "lm", se = TRUE, colour = "black") +
+  theme_bw() +
+  labs(
+    x = "sqrt Biomass",
+    y = "Herb-layer species richness",
+    colour = "Forest type"
+  )
+
+```
+
+**Proportions of endangered or alien species** in forest type. I will first look at the numbers of these species, here on example of redlist i.e. endangered species. I just one to see average number of redlist species per forest type.
+
+```{r}
+spe%>% 
+  left_join(spe %>% 
+              left_join(status)%>% 
+              filter(!is.na(redlist))%>%
+              count(releve_nr, name="richness_redlist"))%>%
+  left_join(spe %>% 
+              summarise(richness_all = n_distinct(species), 
+                        .by = releve_nr))%>%
+  distinct(releve_nr,richness_redlist,richness_all)%>%
+  mutate(richness_redlist = replace_na(richness_redlist, 0))%>%
+  mutate(richness_redlist_perc= richness_redlist/richness_all*100)%>%
+  left_join(env%>% select(releve_nr, forest))%>%
+  summarise(redlist_mean_perc = mean(richness_redlist_perc), .by=forest)%>%
+  arrange(forest)
+```
+
+But I can also ask about diferences in abundances of some plant groups. What is the proportion of cover of alien species relative to total cover in different forests? I will again use the function we used for cover combination during import from Turboveg.
+
+```{r}
+combine_cover <- function(x){
+  while (length(x)>1){
+    x[2] <- x[1]+(100-x[1])*x[2]/100
+    x <- x[-1]
+  }
+  return(x)
+}
+```
+
+```{r}
+spe%>% 
+  left_join(spe %>% 
+              left_join(status)%>% 
+              filter(origin %in% c("arch","neo"))%>%
+              summarize(cover_alien = combine_cover(cover_perc), 
+                        .by=releve_nr))%>%
+  left_join(spe %>% 
+              summarize(cover_total = combine_cover(cover_perc), 
+                        .by=releve_nr))%>%
+  distinct(releve_nr, cover_alien, cover_total)%>%
+  mutate(cover_alien = replace_na(cover_alien, 0))%>%
+  mutate(cover_alien_perc= cover_alien/cover_total*100)%>%
+  left_join(env%>% select(releve_nr, forest))%>%
+  summarise(alien_cover_mean_perc = mean(cover_alien_perc), .by=forest)%>%
+  arrange(forest)
+```
+
+## 2.4 Community weighted means
+
+Summarise is often used for getting so-called **community means** or community weighted means. For example we have traits for individual species and we want to calculate a mean for each site and compare it. We can also consider to use abundance to weight the result. This is called **community weighted mean** and it simply gives higher importance to those species that are more abundant and lower importance to the rare once. Here the abundance is approximated as percentage cover in the site. The example below compares mean plant height both weighted and unweighted. To have meaningful values, I looked just at the herb-layers species.
+
+```{r}
+spe %>%
+  left_join(plant_height) %>%
+  filter(layer==6)%>%
+  summarise(meanHeight= mean(height_mean, na.rm=T),
+            meanHeight_weighted = weighted.mean(height_mean, cover_perc, na.rm = TRUE),
+            .by=releve_nr)
+```
+
+## 2.5 Ellenberg indicator values
+
+In the same way we can calculate community means across more variables. Here we will try the **Ellenberg indicator values** (abbreviated as EIV, measures of species demands for the particular factors, the higher value mean higher demands or affinity to habitats with higher values of these environmental factors). We will apply them just for presences of species, so no weights. Therefore we do not need to care that much for the differences among layers. However, we will keep each species only once (list of unique species for each plot), so we will remove information about layers first and use distinct. Alternative is to add #filter(Layer==6)%\>% if we want to focus on herb-layer only
+
+```{r}
+spe %>%
+  left_join(indicator_values) %>%
+  select(-c(layer,cover_perc))%>%
+  distinct()%>%
+  group_by(releve_nr)%>%
+  summarise(across(starts_with("eiv"), ~ mean(.x, na.rm = TRUE)))
+```
+
+**Boxplots of Ellenberg-type indicator values** can be produced for example like this:
+
+```{r}
+spe %>% 
+  left_join(indicator_values) %>%
+  select(-c(layer, cover_perc)) %>%
+  distinct() %>%
+  group_by(releve_nr) %>%
+  summarise(across(starts_with("EIV"), ~ mean(.x, na.rm = TRUE))) %>%
+  left_join(env %>% select(releve_nr, forest))%>%
+  pivot_longer(
+    cols = starts_with("EIV"),
+    names_to = "EIV_variable",
+    values_to = "value")%>%
+  ggplot(aes(x = forest, y = value, fill = forest)) +
+  geom_boxplot() +
+  facet_wrap(~ EIV_variable, scales = "free_y") +
+  theme_bw()+
+  theme(legend.position = 'none')+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  labs(x = NULL) +
+  labs (y = NULL)
+```

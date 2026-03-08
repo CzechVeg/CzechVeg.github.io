@@ -1,0 +1,502 @@
+---
+title: "Turboveg to R"
+format: html
+author: Irena Axmanová
+---
+
+The aim of this tutorial is to show you step by step how to import the data from Turboveg 2 to R and prepare it for further analyses.
+
+## 1.1 Turboveg data format
+
+Turboveg for Windows is a program designed for the storage, selection, and export of vegetation plot data (relevés). The data are divided among several files that are matched by either species ID or relevé ID. You do not see this structure directly in the Turboveg interface, but you can find it in the *Turbowin* folder, subfolder *data* and particular database (see example below).
+
+![](images/clipboard-683841843.png){width="637"}
+
+At some point, you need to export the data and process them further. This can be done in a specialised software called [JUICE](https://www.sci.muni.cz/botany/juice/NET/index.htm), but also directly in R.
+
+![](images/clipboard-3933108048.png)
+
+To get Turboveg data to R, you first need to **export the Turboveg database** to a folder where you want to process the data. This step requires the **selection of all the plots** you want to export. Alternatively, you can access the files directly in the data folder in Turbowin, but if you do something wrong here, you might completely lose your data.
+
+## 1.2 Load libraries
+
+```{r}
+#| warning: false
+library(foreign)   #for reading dbf files 
+library(tidyverse) #for data handling, pipes and visualisation 
+library(readxl)    #for data import directly from Excel 
+library(janitor)   #for unified, easy-to-handle format of variable names
+```
+
+## 1.3 Import env file = header data
+
+### 1.3.1 Import
+
+**One option** is to check the exported database manually, open the file called *tvhabita.dbf* in Excel and save it as *tvhabita.xlsx* or *tvhabita.csv* (UTF 8 encoded) file into your *data* folder. Although it includes one more step outside R, it is still rather straightforward and it saves you troubles with different formats in Turboveg and in R (encoding issues).
+
+You can then import the file from Excel
+
+```{r}
+#| eval: false
+env <- read_excel("data/tvhabita.xlsx")
+```
+
+or from a csv file, which is a slightly more universal option, and we will use it for the import of most of the files.
+
+```{r}
+env <- read_csv("data/tvhabita.csv")
+```
+
+If you check the imported names, they are rather difficult to handle.
+
+```{r}
+names(env)
+```
+
+Therefore, we will directly change them to tidy names with the `clean_names` function from the package `janitor`. An alternative is to rename them one by one using e.g. `rename`, but here we want to save time and effort.
+
+```{r}
+env <- read_csv("data/tvhabita.csv")%>% 
+  clean_names() 
+
+tibble(env)
+```
+
+Note that the **pipe** `%>%` allows the output of a previous command to be used as input to another command instead of using nested functions. It means that a pipe binds individual steps into a sequence and it reads from left to right. You can insert it into your code using `Ctrl+Shift+M`.
+
+```{r}
+names(env)
+```
+
+Pipe also enables us to see the output before saving the result. We want to select just a few variables for checking, but not overwrite the data, before we are happy with the selection. For example, here we see that the habitat information is not filled (returns NAs), so I will not use it.
+
+```{r}
+env %>% 
+  select(releve_nr, habitat, latitude, longitude)
+```
+
+When I am fine with the selection, I can rewrite the file
+
+```{r}
+env <- env %>% 
+  select(releve_nr, coverscale,field_nr, country, author, date, syntaxon, 
+         altitude, exposition, inclinatio, 
+         cov_trees, cov_shrubs, cov_herbs, cov_mosses, 
+         latitude, longitude, precision, bias_min, bias_gps, locality )
+```
+
+Or I can add all the steps I did so far into one pipeline and check the resulting dataset
+
+```{r}
+env <- read_csv("data/tvhabita.csv")%>% 
+  clean_names() %>% 
+  select(releve_nr, coverscale, field_nr, country, author, date, syntaxon, 
+         altitude, exposition, inclinatio, 
+         cov_trees, cov_shrubs, cov_herbs, cov_mosses, 
+         latitude, longitude, precision, bias_min, bias_gps, locality ) %>% 
+  glimpse()
+```
+
+And save it for easier access. Always keep releve_nr and coverscale, as you will need them later.
+
+```{r}
+write.csv(env, "data/env.csv")
+```
+
+**\*An alternative option** is to directly import the file exported from the Turboveg database named **tvhabita.dbf**. Since dbf is a specific type of files and we need to use a specialised packages. Here I used **read.dbf** function from the `foreign` library.
+
+```{r}
+env_dbf <- read.dbf("data/tvhabita.dbf", as.is = F) %>%    
+  clean_names()
+```
+
+Check the structure, directly in R
+
+```{r}
+view(env_dbf)
+```
+
+Get the list of the variable names
+
+```{r}
+names(env_dbf)
+```
+
+There are several issues with this type of import, as there might be different encodings used in the original files, not compatible with R. For the Czech dataset, I needed to further change the encoding style, so that the diacritics in text columns is translated correctly.
+
+First we need to select the columns that include text and can have issues with diacritics and special symbols, e.g. remarks, locality... I specify them in the brackets and use function **iconv** to change the encoding to UTF-8. You may need to play a bit to see if it works correctly and change the original type in the from argument. I added one more line to transform the dataframe to tibble, which is the data format used in tidyverse packages.
+
+```{r}
+env_dbf %>%   
+  mutate(across(c(remarks, locality, habitat, soil),
+                ~ iconv(.x, from = "cp852", to = "UTF-8"))) %>%
+  select(locality, soil) %>%
+  as_tibble()
+```
+
+In the next step we select variables we want to keep further, which is useful, as the database structure also includes predefined variables, even if they are empty. Another advantage of the select function.
+
+```{r}
+env <- env_dbf %>%
+  mutate(across(c(remarks, locality, habitat, soil),
+                ~ iconv(.x, from = "cp852", to = "UTF-8"))) %>%
+  select(releve_nr, coverscale,field_nr, country, author, date, syntaxon, 
+         altitude, exposition, inclinatio, 
+         cov_trees, cov_shrubs, cov_herbs, cov_mosses, 
+         latitude, longitude, precision, bias_min, bias_gps, locality )%>%
+  as_tibble()
+```
+
+### 1.3.2 Coordinates
+
+In the Turboveg 2 databases, the geographical coordinates are stored in a format with DDMMSS.SS. To show the plots in the map or perform any spatial calculations, you will need to transform the coordinates to decimal degrees.
+
+![](images/clipboard-2767520514.png){width="298"}
+
+That is the purpose of the following function, where I specify which parts of the string are degrees (position 1-2), which are minutes (3-4) and seconds (5 to11) and how to transform them.
+
+```{r}
+ coord_to_degrees <- function(coord){
+  as.numeric(str_sub(coord, 1, 2)) + as.numeric(str_sub(coord, 3, 4)) / 60 + as.numeric(str_sub(coord, 5, 11)) / 3600
+}
+```
+
+Below I will check if it works as I need. Please consider that here we apply it to central European dataset and adjustments are needed in other countries e.g. if the coordinates are higher than 99° \~ DDDMMSS.SS
+
+```{r}
+env %>%
+  mutate(deg_lat = coord_to_degrees(latitude),
+         deg_lon = coord_to_degrees(longitude)) %>% 
+  select(releve_nr, latitude, deg_lat, longitude, deg_lon)
+```
+
+If I know I will need coordinates for mapping I will add the respective lines directly to my pipeline
+
+```{r}
+env <- read_csv("data/tvhabita.csv")%>% 
+  clean_names() %>% 
+  mutate(deg_lat = coord_to_degrees(latitude),
+         deg_lon = coord_to_degrees(longitude)) %>% 
+  select(releve_nr, coverscale, field_nr, country, author, date, syntaxon, 
+         altitude, exposition, inclinatio, 
+         cov_trees, cov_shrubs, cov_herbs, cov_mosses, 
+         deg_lat, deg_lon, precision, bias_min, bias_gps, locality) %>% 
+  glimpse()
+```
+
+and save it for later
+
+```{r}
+write.csv(env, "data/env.csv")
+```
+
+## 1.4 Import spe file = species file in a long format
+
+The first option is again to open the *tvabund.dbf* in Excel, save it as *tvabund.csv* and import it to our environment in R. Again, I will use the clean_names function during import, so that we have the same style of the variable names.
+
+```{r}
+tvabund <- read_csv("data/tvabund.csv") %>% 
+  clean_names()
+```
+
+\*An alternative option is to read the data directly from the dbf file. In this case, it is less complicated than the import of an env file, as there are no problematic text variables.
+
+```{r}
+#| eval: false
+tvabund <- read.dbf("data/tvabund.dbf", as.is = F) %>% 
+  clean_names()
+```
+
+```{r}
+glimpse(tvabund)
+```
+
+Now we will check the data again and we see, that there are no species names, just numbers. Also, the cover is given in the original codes and not in percentages. See the scheme below to understand where each piece of information is stored.
+
+![](images/clipboard-161695252.png)
+
+We have to prepare these different files we need, import them and merge them.
+
+### 1.4.1 Nomenclature
+
+In the abund file, species numbers refer to the codes in the checklist used in the Turboveg database. To translate them into species names you will need a translation table with the original number in the database, the original name in the database and the name you want to use in the analyses.
+
+![](images/clipboard-3188719096.png)
+
+**Preparation of the translation table:** To show you how to prepare such a table, I opened the checklist file, so called *species.dbf* from the folder: Turbowin/species/CzechiaSlovakia2015 and saved it here in the data folder as *species.csv.* Using the following pipeline, you can prepare your own translation table and add other names or information.
+
+```{r}
+nomenclature_raw <- read_csv("data/species.csv") %>%   
+  clean_names() %>%   
+  left_join(select(., species_nr, accepted_abbreviat = abbreviat),     
+            by = c("valid_nr" = "species_nr")) %>%   
+  mutate(accepted_name = if_else(synonym, accepted_abbreviat, abbreviat)) %>%
+  select(-accepted_abbreviat) 
+```
+
+We will now import the nomenclature file that is already adapted for the Czech flora.
+
+```{r}
+nomenclature <- read_csv("data/nomenclature_20251108.csv") %>%
+  clean_names()  
+
+tibble(nomenclature)
+```
+
+There are several advantages of this approach. First, you can adjust the nomenclature to the newest source/regional checklist. In our example, the name in Turboveg is translated to the nomenclature presented in the recent edition of the Key to the Flora of the Czech Republick, and it is named after the main editor Kaplan.
+
+Second, I can add a concept that groups several taxa into higher units, e.g. taxa that are not easy to recognise in the field are assigned into aggregates. This is exactly the same approach you use when creating an expert system file. Here it is even easier to understand and much easier to change the translation when you need to fix something. The name in this file is called ESy.
+
+Last but not least. I can directly add much more information into such a table. For example invasion status, growth form or anything else. Here we have an indication of whether the species is nonvascular.
+
+I might want to check how the species are translated using my translation file and select just these matching rows. Either create a variable called selection indicating if the species is in the subset or not.
+
+```{r}
+nomenclature_check<- nomenclature %>% 
+  left_join(tvabund %>% 
+              distinct(species_nr)%>%
+              mutate(selection=1)) 
+```
+
+or I can even add the frequency, how many times it appears in the records of the dataset
+
+```{r}
+nomenclature_check<- nomenclature %>% 
+  left_join(tvabund %>% 
+              count(species_nr)) 
+```
+
+I can then write the file, make adjustments e.g. in Excel and upload it again. Great thing is that I have an indication of which species are in the dataset, and I do not have to pay attention to the other rows.
+
+```{r}
+write.csv(nomenclature_check, "data/nomenclature_check.csv")
+```
+
+upload the new, adjusted file
+
+```{r}
+#| eval: false
+nomenclature <- read_csv("data/nomenclature_check.csv") %>%
+  clean_names()  
+```
+
+### 1.4.2 Cover
+
+We have a translation table for nomenclature, but we still need to translate cover codes to percentages. For translation of cover we need to use information about the cover scale (stored in the header data / tvhabita / env file) and information on how to translate the values in that particular scale to percentages. The file here was prepared based on the translation of cover values in different scales to percentages following the EVA database approach. One more column was added to enable different adjustments, for example, change the values for rare species. For any project, we suggest to open the file and check if the scales you are using are there and if you agree with the translation.
+
+```{r}
+cover <- read_csv("data/cover_20230402.csv") %>% clean_names()  
+
+tibble(cover)
+```
+
+Here I can check the different scale names included in the file
+
+```{r}
+cover %>% distinct(cover_scale_name) 
+```
+
+And I can also filter the rows of the specified scales. E.g. here I am looking for all those that start with a specific pattern "Braun"
+
+```{r}
+cover %>% 
+  filter(str_starts(cover_scale_name, "Braun")) %>% 
+  print(n=20)
+```
+
+### 1.4.2 Merging all files into complete spe file
+
+Finally, I have translation to nomenclature, to cover, so I need to put everything together.
+
+```{r}
+tvabund %>% 
+  left_join(nomenclature %>% 
+              select(species_nr, kaplan, expert_system, nonvascular)) %>% 
+  left_join(env %>% select(releve_nr, coverscale)) %>% 
+  left_join(cover %>% select(coverscale,cover_code,cover_perc))
+```
+
+The output contains these variables
+
+```         
+ "releve_nr"     "species_nr"    "cover_code"    "layer"         "orig_name"     "kaplan"        "expert_system" "nonvascular"   "coverscale"    "cover_perc"   
+```
+
+If I am satisfied with the result, I assign the pipeline into the *spe* file and add one more line to select just the needed variables. Here I decided to use the *expert_system name* and I renamed it directly in the `select` function.
+
+```{r}
+spe<- tvabund %>% 
+  left_join(nomenclature %>% 
+              select(species_nr, kaplan, expert_system, nonvascular)) %>% 
+  left_join(env %>% select(releve_nr, coverscale)) %>% 
+  left_join(cover %>% select(coverscale,cover_code,cover_perc)) %>%
+  # filter (!nonvascular=1) %>% # optional to remove nonvasculars
+  select(releve_nr, species= expert_system, nonvascular, layer, cover_perc)
+```
+
+To see the result we will use view
+
+```{r}
+view(spe)
+```
+
+We can again save the final file, to be easily accessible for later
+
+```{r}
+write.csv(spe, "data/spe.csv")
+```
+
+## 1.5 Merging of species covers across layers
+
+### 1.5.1 Duplicate species records
+
+What is the problem? Sometimes we have some species names listed more than once in the same plot. Either because we changed the original concept (from subspecies to species level, or after additional identification) or because we recorded the same species in different layers. Depending on our further questions and analyses this might become minor or bigger problem.
+
+![](images/clipboard-1112219948.png)
+
+**A**\> In the first case, duplicate within one layer, I can fix the problem by summing the values for the same species in the same layer to get distinct species-layer combinations per plot. This is something we need to do. Otherwise our data would go against tidy approach and we will experience issues in joins, summarisation etc.
+
+**B**\> In the other case, duplicate across layers, the data are OK, because there is one more variable that makes it unique record (layer). But if we want to look at the whole community and e.g. calculate share of some life forms weighted by cover, etc. we again need to sum the values across layers and put all the species as they were in the same layer (this is then usually marked as 0).
+
+### 1.5.2 Duplicates checking
+
+We recommend to always do the following check of the data. Simply group species by releves/plots and count if some of the species are at more rows.
+
+```{r}
+spe %>%    
+  group_by(releve_nr, species, layer) %>%    
+  count() %>%   
+  filter(n>1)   
+```
+
+We can see that in two releves/plots there is a conflict in the species *Galium palustre* agg. Most probably we separated two species in the field that we later on decided to group into this aggregate. We can go back and check where exactly this happened, by exactly specifying where to look.
+
+```{r}
+tvabund %>%    
+  select(releve_nr, species_nr)%>%   
+  left_join(nomenclature %>%                
+              select(species_nr, turboveg= turboveg_czechia_slovakia,  species=expert_system)) %>%   
+  filter(releve_nr %in% c(132, 183182) & species =="Galium palustre agg.")   
+```
+
+Alternatively, I can save the first output and use semi-join function, which is very useful if there are more rows I want to check and I do not need to specify multiple conditions in the filter.
+
+```{r}
+test<-spe %>%    
+  group_by(releve_nr, species, layer) %>%    
+  count() %>%   
+  filter(n>1)   
+
+tvabund %>%    
+  select(releve_nr, species_nr)%>%   
+  left_join(nomenclature %>%                
+              select(species_nr, turboveg= turboveg_czechia_slovakia, species=expert_system)) %>%   
+  semi_join(test)
+```
+
+OK, I understand why it happened and I have to fix it now. But we continue checking. Now we will check if there is also problem with species across layers (B). I will simply change the grouping conditions, to the higher hierarchy.
+
+```{r}
+spe %>%    
+  group_by(releve_nr, species) %>%    
+  count() %>%   
+  filter(n>1)
+```
+
+We got lot of duplicates, right? But it is understandable in the vegetation type we have. So keep it in mind for later analyses.
+
+Sometimes it is good to take some extra time and just look at what is inside. Are there just trees recorded also as shrubs and juveniles or are there some herbs by mistake included in tree layer? Add **%\>% view ()** to see the whole list.
+
+```{r}
+spe %>%    
+  distinct(species,layer)%>%   
+  group_by(species) %>%    
+  count() %>%   
+  filter(n>1) 
+```
+
+### 1.5.3 Fixing duplicate rows
+
+Now finally the fixing. For some questions the most easiest thing how to resolve duplicate rows is to select only the relevant variables and groups and use distinct function. E.g. for species richness this would be enough. BUT we will lose information about the abundance, in our case percentage cover of each species.
+
+```{r}
+spe %>%    
+  distinct(releve_nr, species,layer)
+```
+
+The percentage cover is estimated visually relative to the total area. In the field it is estimated indepently of other plants, because we know that the plants overlap within vertical space. If we use normal sum function, we can easily get total cover per plot above 100%. Although we can separate the information into vegetation layers, it is still rather coarse division. Especially in grasslands where the main diversity is in just one, often very dense, layer.
+
+Therefore we will use the approach suggested by H.S. Fischer in the paper *On combination of species from different vegetation layers* (AVS 2014), where he suggested summing up covers considering overlap among species, so that the overall maximum value is 100 and all the values are adjusted relative to this treshold. We will prepare function called `combine_cover`
+
+```{r}
+combine_cover <- function(x){
+  while (length(x)>1){
+    x[2] <- x[1]+(100-x[1])*x[2]/100
+    x <- x[-1]
+  }
+  return(x)
+}
+```
+
+**A,** Now let's check how it works. We will first fix the issue with duplicates within the same layer (A)
+
+```{r}
+spe %>%    
+  group_by(releve_nr, species, layer) %>%    
+  summarise(cover_perc_new = combine_cover(cover_perc)) 
+```
+
+and we will add the pipelines for checking if there are still some duplicate rows. Note `summarise` finished the `group_by` function, so I have to specify the grouping again in the `count` (or add the group_by before count again).
+
+```{r}
+#| warning: false 
+spe %>%    
+  group_by(releve_nr, species, layer) %>%    
+  summarize(cover_perc_new = combine_cover(cover_perc))%>%   
+  count(releve_nr, species, layer) %>%   
+  filter(n>1)
+```
+
+When the output have no rows, it means our attempt solved the issue.
+
+If I am happy, I overwrite cover directly, save the output for easier access (next time you can start with reloading this file) or I will assign the whole pipeline into a new object e.g. -\>*spe_merged*
+
+```{r}
+spe %>% 
+  group_by(releve_nr, species, layer) %>% 
+  summarize(cover_perc = combine_cover(cover_perc))%>%
+  write_csv("data/spe_merged_covers.csv")
+```
+
+**B,** We want to also remove information about layer and work at whole community level. This means we will do the same, we will just not add the layer into grouping, as we do not want to pay attention to it anymore.
+
+```{r}
+#| warning: false
+spe %>% 
+  group_by(releve_nr, species) %>% 
+  summarize(cover_perc = combine_cover(cover_perc))%>%
+  write_csv("data/spe_merged_covers_across_layers.csv")
+```
+
+### 1.5.4 Total cover of all species in the plot
+
+The same approach as we did for merging covers can be used also for calculating total cover in the plot. Here you can see the comparison of total cover calculated as ordinary sum and total cover calculated with considering the overlaps.
+
+```{r}
+spe %>% 
+  group_by(releve_nr) %>% 
+  summarize(covertotal_sum = sum(cover_perc), 
+            covertotal_overlap = combine_cover(cover_perc)) %>%
+  select(releve_nr, covertotal_sum, covertotal_overlap)%>%
+  arrange(desc(covertotal_sum))
+```
+
+The same with respect to layers
+
+```{r}
+spe %>% 
+  group_by(releve_nr, layer) %>% 
+  summarize(covertotal_sum = sum(cover_perc), 
+            covertotal_overlap = combine_cover(cover_perc)) %>%
+  select(releve_nr, layer, covertotal_sum, covertotal_overlap)
+```

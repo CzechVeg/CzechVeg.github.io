@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Milan Chytrý, Ilona Knollová, Jan Divíšek">
+
+<title>Data description – Czech Vegetation Database</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-0508618caa1d256af916c83e0797e277.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Data/data_availability.html">Data</a></li><li class="breadcrumb-item"><a href="../Data/data_description.html">Data description</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../CVD_logo_EN_col_V.png" alt="Botzool Logo" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../About/history.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">History</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../About/acknowledgements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Acknowledgements</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../Data/data_availability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data/map_viewer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Map viewer</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data/czech_veg_open.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CzechVeg-Open</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data/czech_veg_openstrat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CzechVeg-OpenStrat</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data/data_description.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Data description</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data/turboveg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Turboveg</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../DataProcessingTutorial/data_processing_tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data processing tutorial</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../DataProcessingTutorial/turboveg_r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Turboveg to R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../DataProcessingTutorial/basic_analyses.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Basic data analyses</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../DataProcessingTutorial/export.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Export to other formats</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../DataProcessingTutorial/data_stratification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data stratification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../DataProcessingTutorial/data_resampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data resampling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../DataProcessingTutorial/export_gbif.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Export to GBIF</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#species-data" id="toc-species-data" class="nav-link active" data-scroll-target="#species-data">1 Species data</a></li>
+  <li><a href="#header-data" id="toc-header-data" class="nav-link" data-scroll-target="#header-data">2 Header data</a>
+  <ul class="collapse">
+  <li><a href="#basic-header-data-variables" id="toc-basic-header-data-variables" class="nav-link" data-scroll-target="#basic-header-data-variables">2.1 Basic header-data variables</a></li>
+  <li><a href="#header-data-variables-with-outdated-content-replaced-by-new-variables" id="toc-header-data-variables-with-outdated-content-replaced-by-new-variables" class="nav-link" data-scroll-target="#header-data-variables-with-outdated-content-replaced-by-new-variables">2.2 Header-data variables with outdated content replaced by new variables</a></li>
+  <li><a href="#rarely-or-never-used-header-data-variables" id="toc-rarely-or-never-used-header-data-variables" class="nav-link" data-scroll-target="#rarely-or-never-used-header-data-variables">2.3 Rarely or never used header-data variables</a></li>
+  <li><a href="#inconsistently-used-header-data-variables-with-non-unified-content" id="toc-inconsistently-used-header-data-variables-with-non-unified-content" class="nav-link" data-scroll-target="#inconsistently-used-header-data-variables-with-non-unified-content">2.4 Inconsistently used header data variables with non-unified content</a></li>
+  <li><a href="#environmental-biogeographical-strata-for-data-resampling" id="toc-environmental-biogeographical-strata-for-data-resampling" class="nav-link" data-scroll-target="#environmental-biogeographical-strata-for-data-resampling">2.5 Environmental &amp; biogeographical strata for data resampling</a></li>
+  </ul></li>
+  <li><a href="#remarks" id="toc-remarks" class="nav-link" data-scroll-target="#remarks">3 Remarks</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Data/data_availability.html">Data</a></li><li class="breadcrumb-item"><a href="../Data/data_description.html">Data description</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Data description</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Milan Chytrý, Ilona Knollová, Jan Divíšek </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Following the structure of the Turboveg database management software, vegetation-plot data in the Czech Vegetation Database are divided into three parts:</p>
+<ol type="1">
+<li>Species data</li>
+<li>Header data</li>
+<li>Remarks</li>
+</ol>
+<section id="species-data" class="level2">
+<h2 class="anchored" data-anchor-id="species-data">1 Species data</h2>
+<p>Species data contain unique plot identifiers (RELEVE_NR), species numbers (SPECIES_NR), cover-abundance grade for each species record (COVER_CODE), and vegetation layer for each species record (LAYER). Species numbers are linked to species names, and cover-abundances are linked to percentage covers using translation tables.</p>
+</section>
+<section id="header-data" class="level2">
+<h2 class="anchored" data-anchor-id="header-data">2 Header data</h2>
+<p>Header data contain information on vegetation plots other than species and their cover-abundances. They include details of sampling methods, location, vegetation structure, vegetation type, and environmental information.</p>
+<p>In addition to basic variables, the database also contains variables with outdated content (replaced by new variables with up-to-date content), variables that are rarely or never used, and one variable with non-unified content. Individual private databases incorporated into the Czech Vegetation Database may also have contained other variablesspecific to those databases.</p>
+<section id="basic-header-data-variables" class="level3">
+<h3 class="anchored" data-anchor-id="basic-header-data-variables">2.1 Basic header-data variables</h3>
+<p><strong>Relevé number (RELEVE_NR).</strong> Unique numerical code of the vegetation plot in the database.</p>
+<p><strong>Country code (COUNTRY).</strong> Two-letter country code according to ISO 3166-1 alpha-2. All plots recorded within the territory of the Czech Republic have the value “CZ”.</p>
+<p><strong>Biblioreference (REFERENCE).</strong> Bibliographic reference for vegetation plots that have been published in a citable source (article, book, student thesis, research report). The dataset in the Turboveg 2 format (DBF) contains the reference numeric code. The CSV format also includes the full reference in the fields <strong>REFERENCE_AUTHOR</strong>, <strong>REFERENCE_YEAR</strong>, <strong>REFERENCE_TITLE</strong> and <strong>REFERENCE_JOURNAL</strong>. A database of biblioreferences is available here: <a href="https://www.sci.muni.cz/botany/tvref/" class="uri">https://www.sci.muni.cz/botany/tvref/</a>.</p>
+<p><strong>Number of table in publication (TABLE_NR).</strong> Number of the table in which the vegetation plot was published in the cited source. If the plot was separately rather than included in a table, the page number is given after the abbreviation “p.” (e.g., “p.&nbsp;15”).</p>
+<p><strong>Number of relevé in table (NR_IN_TAB).</strong> Number of the vegetation plot in the cited source.</p>
+<p><strong>Cover-abundance scale (COVER SCALE).</strong> Species cover was recorded in vegetation plots either as percentages or using various scales derived from percentage cover intervals. Some scales are supplemented, for species with low cover, by grades expressing the number of individuals. The database contains both general scales used by multiple researchers and scales defined for a single purpose. In the database, grades of all scales are converted to the midpoint of the percentage interval they represent. The dataset in the Turboveg 2 format (DBF) contains the scale numeric code. The CSV format also includes the full scale name in the field <strong>COVER_SCALE_NAME</strong>. General scales and their conversions to percentages are as follows (unused codes refer to scales defined only for a single purpose):</p>
+<ul>
+<li>00 – Percentage (%)</li>
+<li>01 – Braun-Blanquet (old), with seven grades: r = 1%, + = 2%, 1 = 3%, 2 = 13%, 3 = 38%, 4 = 63%, 5 = 88%</li>
+<li>02 – Braun-Blanquet (new), with nine grades: r = 1%, + = 2%, 1 = 3%, 2m = 4%, 2a = 8%, 2b = 18%, 3 = 38%, 4 = 63%, 5 = 88%</li>
+<li>03 – Londo: r1 = 1%, p1 = 1%, a1 = 1%, m1 = 1%, r2 = 2%, p2 = 2%, a2 = 2%, m2 = 2%, r4 = 4%, p4 = 4%, a4 = 4%, m4 = 4%, 1- = 7%, 1 = 10%, 1+ = 12%, 2- = 17%, 2 = 20%, 2+ = 22%, 3- = 27%, 3 = 30%, 3+ = 32%, 4- = 37%, 4 = 40%, 4+ = 42%, 5- = 47%, 5 = 50%, 5+ = 52%, 6- = 57%, 6 = 60%, 6+ = 62%, 7- = 67%, 7 = 70%, 7+ = 72%, 8- = 77%, 8 = 80%, 8+ = 82%, 9- = 87%, 9 = 90%, 9+ = 92%, 10 = 97%</li>
+<li>04 – Presence/Absence: x, 1</li>
+<li>05 – Ordinal scale (1–9), corresponding to the “Braun-Blanquet (new)” scale, but with mixed character-numeric symbols replaced by integers: 1 = 1%, 2 = 2%, 3 = 3%, 4 = 4%, 5 = 8%, 6 = 18%, 7 = 38%, 8 = 68%, 9 = 88%</li>
+<li>06 – Barkman, Doing &amp; Segal: r = 1%, +r = 1%, +p = 1%, +a = 1%, +b = 2%, 1p = 1%, 1a = 2%, 1b = 3%, 2m = 4%, 2a = 8%, 2b = 18%, 3a = 31%, 3b = 43%, 4a = 56%, 4b = 68%, 5a = 81%, 5b = 93%</li>
+<li>07 – Doing: r = 1%, p = 1%, a = 2%, m = 4%, 1 = 10%, 2 = 20%, 3 = 30%, 4 = 40%, 5 = 50%, 6 = 60%, 7 = 70%, 8 = 80%, 9 = 90%, 10 = 97%</li>
+<li>08 – Domin: + = 1%, 1 = 2%, 2 = 3%, 3 = 4%, 4 = 13%, 5 = 23%, 6 = 29%, 7 = 42%, 8 = 63%, 9 = 88%, 10 = 99%</li>
+<li>10 – Zlatník: - = 1%, + = 2%, 1 = 3%, -2 = 10%, +2 = 20%, -3 = 31%, +3 = 44%, -4 = 56%, +4 = 69%, -5 = 81%, +5 = 94%</li>
+<li>14 – Domin-Hadač: + = 0.5%, 1 = 1%, 2 = 2%, 3 = 4%, 4 = 10%, 5 = 20%, 6 = 29%, 7 = 42%, 8 = 63%, 9 = 85%, 10 = 98%</li>
+<li>15 – Percentual (r, +): r = 0.1%, + = 0.5%, and integer values corresponding to percentages</li>
+<li>18 – Hult-Sernader-DuRietz: r = 0.1%, + = 0.5%, 1 = 3.5%, 2 = 8.3%, 3 = 18.3%, 4 = 37.5%, 5 = 62.5%, 6 = 87.5</li>
+</ul>
+<p><strong>Author code (AUTHOR).</strong> Author of the vegetation plot. The dataset in the Turboveg 2 format (DBF) contains the author numeric code. The CSV format also includes the full author name in the field <strong>AUTHOR_NAME</strong>.</p>
+<p><strong>Date (DATE).</strong> Date of vegetation plot sampling, recorded in the format YYYYMMDD. The CSV format also includes <strong>YEAR</strong>.</p>
+<p><strong>Syntaxon (SYNTAXON).</strong> Vegetation unit (syntaxon) to which the vegetation plot was subjectively assigned by its author or a database administrator. The dataset in the Turboveg 2 format (DBF) contains the syntaxon code. The CSV format also includes the full syntaxon name in the field <strong>SYNTAXON_NAME</strong>. The vegetation classification is according to the classification system in the publication:</p>
+<ul>
+<li>Chytrý M. (ed.) (2007–2013) <em>Vegetace České republiky 1–4. Vegetation of the Czech Republic 1–4</em>. Academia, Praha.</li>
+</ul>
+<p><strong>ESy code (ESY_CODE).</strong> Code of the vegetation unit according to the Vegetation of the Czech Republic (Chytrý 2007–2013), assigned based on vegetation classification by the expert system CzechVeg-Esy, version v1-2020-01-12 (<a href="https://doi.org/10.5281/zenodo.3605562" class="uri">https://doi.org/10.5281/zenodo.3605562</a>). This field is empty for plots that were not unambiguously classified by the expert system.</p>
+<p><strong>ESy name (ESY_NAME).</strong> Name of the vegetation unit according to the Vegetation of the Czech Republic (Chytrý 2007–2013), assigned based on vegetation classification by the expert system CzechVeg-Esy, version v1-2020-01-12 (<a href="https://doi.org/10.5281/zenodo.3605562" class="uri">https://doi.org/10.5281/zenodo.3605562</a>). This field is empty for plots that were not unambiguously classified by the expert system.</p>
+<p><strong>Syntaxon code (ESY_K_CODE).</strong> Code of the vegetation unit according to the expert system (taken from the ESy code variable), which is supplemented by subjective classification from the Syntaxon field for plots not classified by the expert system.</p>
+<p><strong>Syntaxon name (ESY_K_NAME).</strong> Name of the vegetation unit according to the expert system (taken from the ESy code variable), which is supplemented by subjective classification from the Syntaxon field for plots not classified by the expert system.</p>
+<p><strong>Relevé area (SURF_AREA).</strong> Area of the vegetation plot in m². A value of -1 represents missing data.</p>
+<p><strong>Altitude (ALTITUDE).</strong> Altitude of the vegetation plot in meters. A value of -1 represents missing data.</p>
+<p><strong>Aspect (EXPOSITION).</strong> Slope aspect in azimuth degrees from 1 to 360°.</p>
+<p><strong>Slope (INCLINATIO).</strong> Slope inclination in degrees. A value of -1 represents missing data.</p>
+<p><strong>Cover total (COV_TOTAL).</strong> Total percentage cover of all vegetation layers. A value of -1 represents missing data.</p>
+<p><strong>Cover tree layer (COV_TREES).</strong> Percentage cover of the tree layer. A value of -1 represents missing data.</p>
+<p><strong>Cover shrub layer (COV_SHRUBS).</strong> Percentage cover of the shrub layer. A value of -1 represents missing data.</p>
+<p><strong>Cover herb layer (COV_HERBS).</strong> Percentage cover of the herb layer. A value of -1 represents missing data.</p>
+<p><strong>Cover moss layer (COV_MOSSES).</strong> Percentage cover of the moss layer, including bryophytes and lichens. A value of -1 represents missing data.</p>
+<p><strong>Height (high) tree layer (TREE_HIGH).</strong> Height of the tree layer in meters. If the height of the higher and lower sublayers was estimated separately, this field contains the height of the higher sublayer.</p>
+<p><strong>Height (high) shrub layer (SHRUB_HIGH).</strong> Height of the shrub layer in meters. If the height of the higher and lower sublayers was estimated separately, this field contains the height of the higher sublayer.</p>
+<p><strong>Height (high) herb layer (HERB_HIGH).</strong> Height of the herb layer in centimeters. If the height of the higher and lower sublayers was estimated separately, this field contains the height of the higher sublayer.</p>
+<p><strong>Maximum height herb layer (HERB_MAX).</strong> Height of the tallest herbs exceeding the general herb layer level, in centimeters.</p>
+<p><strong>Mosses identified (MOSS_IDENT).</strong> Information on whether bryophytes were recorded and identified in the vegetation plot.</p>
+<p><strong>Lichens identified (LICH_IDENT).</strong> Information on whether lichens were recorded and identified in the vegetation plot.</p>
+<p><strong>Coordinate source (COORD_CODE).</strong> Method used to determine the coordinates of the vegetation plot, either in the field using a GPS receiver or subsequently using electronic or paper maps. The dataset in the Turboveg 2 format (DBF) contains the coordinate numeric code as listed below. The CSV format also includes the full information in the fields <strong>COORD_SOURCE</strong>, <strong>COORD_SYST</strong> and <strong>SCALE</strong>.</p>
+<ul>
+<li>01 – GPS</li>
+<li>02 – Geobáze 100 (electronic map 1 : 100,000)</li>
+<li>03 – Geobáze 50 (electronic map 1 : 50,000)</li>
+<li>04 – Vojenské mapy 50 (paper maps 1 : 50,000)</li>
+<li>05 – ZM 5 (paper maps 1 : 5,000)</li>
+<li>06 – ZM 10 (paper maps 1 : 10,000)</li>
+<li>07 – ZM 25 (paper maps 1 : 25,000)</li>
+<li>08 – ZM 50 (paper maps 1 : 50,000)</li>
+<li>09 – GIS (electronic map)</li>
+<li>10 – Military maps 25 (paper maps 1 : 25,000)</li>
+<li>11 – www.mapy.cz (electronic map or orthophoto)</li>
+<li>12 – www.atlas.cz (electronic map or orthophoto)</li>
+<li>13 – Google Earth (orthophoto)</li>
+</ul>
+<p><strong>Locality (LOCALITY).</strong> Verbal description of the locality of the vegetation plot.</p>
+<p><strong>Longitude (LONGITUDE).</strong> Longitude in the format DDMMSS.SS in the WGS-84 system (e.g., 170322.55 corresponds to 17° 3’ 22.55’’ E).</p>
+<p><strong>Latitude (LATITUDE).</strong> Latitude in the format DDMMSS.SS in the WGS-84 system (e.g., 492215.12 corresponds to 49° 22’ 15.12’’ N).</p>
+<p><strong>Precision (PRECISION).</strong> Estimated uncertainty of the given geographic coordinates in meters.</p>
+<p><strong>Field number (FIELD_NR).</strong> Field number or code of the vegetation plot used by its author.</p>
+<p><strong>Habitat (HABITAT).</strong> Textual description of the abiotic or biotic environment in the vegetation plot and its close surroundings.</p>
+<p><strong>Geology (GEOLOGY).</strong> Textual description of geological bedrock in the vegetation plot.</p>
+<p><strong>Soil (SOIL).</strong> Textual description of soil in the vegetation plot.</p>
+</section>
+<section id="header-data-variables-with-outdated-content-replaced-by-new-variables" class="level3">
+<h3 class="anchored" data-anchor-id="header-data-variables-with-outdated-content-replaced-by-new-variables">2.2 Header-data variables with outdated content replaced by new variables</h3>
+<p><strong>Syntaxon old (SYNTAX_OLD).</strong> Vegetation unit (syntaxon) to which the vegetation plot was subjectively assigned by its author or database administrator according to the outdated classification system in the publication:</p>
+<ul>
+<li>Moravec J., Balátová-Tuláčková E., Blažková D., Hadač E., Hejný S., Husák Š., Jeník J., Kolbek J., Krahulec F., Kropáč Z., Neuhäusl R., Rybníček K., Řehořek V. &amp; Vicherek J. (1995): Rostlinná společenstva České republiky a jejich ohrožení. Ed. 2. <em>Severočeskou přírodou</em>, Příloha 1995: 1–206.</li>
+</ul>
+<p>The dataset in the Turboveg 2 format (DBF) contains the syntaxon code. The CSV format also includes the full syntaxon name in the field <strong>SYNTAXON_OLD_NAME</strong>.</p>
+</section>
+<section id="rarely-or-never-used-header-data-variables" class="level3">
+<h3 class="anchored" data-anchor-id="rarely-or-never-used-header-data-variables">2.3 Rarely or never used header-data variables</h3>
+<p><strong>UTM grid system code (UTM).</strong> Code of geographic position in the Universal Transverse Mercator (UTM) system.</p>
+<p><strong>Cover lichen layer (COV_LICHEN).</strong> Percentage cover of lichens. Usually left empty, as lichens are included in the moss layer.</p>
+<p><strong>Cover algae layer (COV_ALGAE).</strong> Percentage cover of algae. A value of -1 represents missing data.</p>
+<p><strong>Cover litter layer (COV_LITTER).</strong> Percentage cover of litter (dead plant material). A value of -1 represents missing data.</p>
+<p><strong>Cover open water (COV_WATER).</strong> Percentage cover of open water surface. A value of -1 represents missing data.</p>
+<p><strong>Cover bare rock (COV_ROCK).</strong> Percentage cover of rock outcrops and stones. A value of -1 represents missing data.</p>
+<p><strong>Height low tree layer (TREE_LOW).</strong> Height of the lower tree sublayer in meters.</p>
+<p><strong>Height low shrub layer (SHRUB_LOW).</strong> Height of the lower shrub sublayer in meters.</p>
+<p><strong>Height low herb layer (HERB_LOW).</strong> Height of the lower herb sublayer in centimeters.</p>
+<p><strong>Maximum height cryptogam layer (CRYPT_HIGH).</strong> Height of the tallest bryophytes or lichens in centimeters.</p>
+</section>
+<section id="inconsistently-used-header-data-variables-with-non-unified-content" class="level3">
+<h3 class="anchored" data-anchor-id="inconsistently-used-header-data-variables-with-non-unified-content">2.4 Inconsistently used header data variables with non-unified content</h3>
+<p><strong>Project code (PROJECT).</strong> Project codes were entered by some data contributors and served their internal purposes. Within the entire Czech Vegetation Database, project codes are not unified. Consequently, the same project code used by different data contributors can refer to different projects.</p>
+</section>
+<section id="environmental-biogeographical-strata-for-data-resampling" class="level3">
+<h3 class="anchored" data-anchor-id="environmental-biogeographical-strata-for-data-resampling">2.5 Environmental &amp; biogeographical strata for data resampling</h3>
+<p>The following variables contain environmental or biogeographical strata (landscape types or regions) that can be used for stratified resampling of vegetation plots.</p>
+<p><strong>Env_strata (ENV_STRATA).</strong> Environmental strata used in the resampling procedure to create <a href="https://czechvegetationdatabase.github.io/Data/czech_veg_openstrat.html">CzechVeg-OpenStrat</a>. For details, see <a href="https://czechvegetationdatabase.github.io/DataProcessingTutorial/data_stratification.html">Data stratification</a>.</p>
+<p><strong>Skalicky1988 (SKALICKY1988).</strong> Phytogeographical regions by Skalický (1988).</p>
+<ul>
+<li>Skalický V. (1988) Regionálně fytogeografické členění [Regional phytogeographic division]. – In: Hejný S., Slavík B., Chrtek J., Tomšovic P. &amp; Kovanda M. (eds), <em>Květena České socialistické republiky</em> [<em>Flora of the Czech Socialist Republic</em>] 1: 103–121, Academia, Praha.</li>
+</ul>
+<p><strong>Culek1996 (CULEK1996).</strong> Biogeographical regions by Culek (1996).</p>
+<ul>
+<li>Culek, M. (ed.) (1996) <em>Biogeografické členění České republiky</em> [<em>Biogeographical division of the Czech Republic</em>]. Enigma, Praha.</li>
+</ul>
+<p><strong>Culek2005 (CULEK2005).</strong> Landscape types (so-called biochores) delineated by Culek (2005) based on a combination of altitudinal vegetation zones, relief types, soil types, and their moisture.</p>
+<ul>
+<li>Culek, M. (ed.) (2005) <em>Biogeografické členění České republiky II. díl.</em> [<em>Biogeographical division of the Czech Republic Part II.</em>] AOPK ČR, Praha.</li>
+</ul>
+<p><strong>Chuman_Romportl2010 (CHUMAN_ROMPORTL2010).</strong> Landscape types delineated by Chuman &amp; Romportl (2010) using a modified TWINSPAN algorithm and data on elevation, aspect, slope, soils, reconstructed natural vegetation, mean annual temperature, mean annual precipitation, and land cover for grid cells spanning 2 × 2 km.</p>
+<ul>
+<li>Chuman, T., &amp; Romportl, D. (2010) Multivariate classification analysis of cultural landscapes: An example from the Czech Republic. <em>Landscape and Urban Planning</em>, 98(3–4), 200–209.</li>
+</ul>
+<p><strong>Divisek2014_unconst (DIVISEK2014_UNCONST).</strong> Landscape types delineated by Divíšek et al.&nbsp;(2014) using unconstrained hierarchical clustering of data on the distribution of natural habitats in grid cells spanning 5’ longitude × 3’ latitude.</p>
+<ul>
+<li>Divíšek, J., Chytrý, M., Grulich, V., &amp; Poláková, L. (2014) Landscape classification of the Czech Republic based on the distribution of natural habitats. <em>Preslia</em>, 86(3), 209–231.</li>
+</ul>
+<p><strong>Divisek2014_const (DIVISEK2014_CONST).</strong> Regions delineated by Divíšek et al.&nbsp;(2014) using spatially constrained hierarchical clustering of data on the distribution of natural habitats in grid cells spanning 5’ longitude × 3’ latitude.</p>
+<ul>
+<li>Divíšek, J., Chytrý, M., Grulich, V., &amp; Poláková, L. (2014) Landscape classification of the Czech Republic based on the distribution of natural habitats. <em>Preslia</em>, 86(3), 209–231.</li>
+</ul>
+</section>
+</section>
+<section id="remarks" class="level2">
+<h2 class="anchored" data-anchor-id="remarks">3 Remarks</h2>
+<p>The <strong>REMARKS</strong> field contains non-standardized textual comments, such as details of taxonomic interpretation for some taxa reported in the plot, the identification uncertainty for specific taxa, and sampling methods. There is one REMARKS field for each vegetation plot.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>This page is built with <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
