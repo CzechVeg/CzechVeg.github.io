@@ -173,8 +173,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Data/map_viewer.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Map viewer</span></a>
+  <a href="../Data/data_viewer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CzechVeg-DataViewer</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -226,8 +226,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../DataProcessingTutorial/export.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Export to other formats</span></a>
+  <a href="../DataProcessingTutorial/data_conversions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data format conversions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -283,20 +283,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Here we provide a tutorial on how to import data from the Turboveg database and how to process it in R, run basic analyses and prepare data for export to other formats.</p>
 <p><img src="images/clipboard-2427925261.png" class="img-fluid"></p>
 <p>We are using the tidyverse approach and tidy data rules. If you are interested in more details and links to additional literature, check our <strong>study materials</strong> <a href="https://botzooldataanalysis.github.io/DataManipulationVisualisation/1_introduction.html"><strong>here</strong></a>.</p>
-<p>For data processing, we recommend using a <strong>project in <a href="https://posit.co/download/rstudio-desktop/">Rstudio</a></strong>. The advantage of using projects, is that you can directly use the same structure with exactly the same paths as provided in this tutorial. For this, add a subfolder “data” directly to the main folder, to store all the data files.</p>
-<p>We show all the data processing using an example of forest understory data from the Czech Vegetation Database. If you want to train in the same way as is described in the tutorials, you can download zip files with data here <a href="https://github.com/CzechVegetationDatabase/CzechVegetationDatabase.github.io/tree/main/DataProcessingTutorial/data/data.zip"><code>Link to Github folder</code></a>or with the whole project here <a href="https://github.com/CzechVegetationDatabase/CzechVegetationDatabase.github.io/tree/main/DataProcessingTutorial/data/CzechVeg_tutorial.zip"><code>Link to Github folder</code></a>.</p>
-<p>In individual subchapters you can find instructions and individual parts of the code, which you can copy and insert them into your own script (<strong><em>use</em></strong> <strong><em>the</em></strong> <strong><em>copy icon in the upper right corner to copy individual code chunks</em></strong>).</p>
+<p>For data processing, we recommend using a <strong>project in <a href="https://posit.co/download/rstudio-desktop/">Rstudio</a></strong>. The advantage of using projects, is that you can directly use the same structure with exactly the same paths as provided in this tutorial. For this, add a subfolder “data” directly in the main folder to store all the data files.</p>
+<p>We show all the data processing using an example of forest understory data from the Czech Vegetation Database. If you want to train in the same way as is described in the tutorials, you can download zip files with data here <a href="https://github.com/CzechVegetationDatabase/CzechVeg.github.io/tree/main/DataProcessingTutorial/data/data.zip"><code>Link to Github folder</code></a>or with the whole project here <a href="https://github.com/CzechVegetationDatabase/CzechVeg.github.io/tree/main/DataProcessingTutorial/data/CzechVeg_tutorial.zip"><code>Link to Github folder</code></a>.</p>
+<p>In individual subchapters, you can find instructions and individual parts of the code, which you can copy and insert them into your own script (<strong><em>use</em></strong> <strong><em>the</em></strong> <strong><em>copy icon in the upper right corner to copy individual code chunks</em></strong>).</p>
 <p><img src="images/clipboard-1035751728.png" class="img-fluid" width="369"></p>
 <p>Please note that we do not provide the whole script, but we encourage you to copy the code chunks from the examples here and use them to build your own script, adjusted to your needs.</p>
-<p>At the beginning of your work, load the following libraries. If needed, first install missing libraries by function <code>install.packages("packageName")</code></p>
+<p>At the beginning of your work, load the listed libraries (example for the chapter “Turboveg to R” is below). If needed, first install missing libraries by function <code>install.packages("packageName")</code>. Another option is to copy the libraries into your script, close it and re-open it. Rstudio will automatically ask whether you want to install these libraries.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreign)   <span class="co">#for reading dbf files </span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co">#for data handling, pipes and visualisation </span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)    <span class="co">#for data import directly from Excel </span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)   <span class="co">#for unified, easy-to-handle format of variable names</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We are using <strong>pipes</strong> <code>%&gt;%</code> throughout the scripts. Pipes allows the output of a previous command to be used as input to another command instead of using nested functions. It means that a pipe binds individual steps into a sequence and it reads from left to right. You can insert it into your code by pressing <code>Ctrl+Shift+M</code>.</p>
-<p>To play a bit with the pipes, you can take part of the script, send it to the console with <code>Ctrl+Enter</code> and just try if and how it works without assigning it to the final object as in the picture below.</p>
+<p>We use <strong>pipes</strong> <code>%&gt;%</code> throughout the scripts. Pipes allow the output of a previous command to be used as input to another command instead of using nested functions. It means that a pipe binds individual steps into a sequence, which reads from left to right. You can insert it into your code by pressing <code>Ctrl+Shift+M</code>.</p>
+<p>To play a bit with the pipes, you can take part of the script, send it to the console with <code>Ctrl+Enter</code> and just try if and how it works without assigning it to the final object, as in the picture below.</p>
 <p><img src="images/clipboard-522705929.png" class="img-fluid"></p>
 
 

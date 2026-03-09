@@ -30,8 +30,8 @@ website:
       - section: "Data"
         href: Data/data_availability.qmd
         contents:
-          - text: "Map viewer"
-            href: Data/map_viewer.qmd
+          - text: "CzechVeg-DataViewer"
+            href: Data/data_viewer.qmd
           - text: "CzechVeg-Open"
             href: Data/czech_veg_open.qmd
           - text: "CzechVeg-OpenStrat"
@@ -48,8 +48,8 @@ website:
             href: DataProcessingTutorial/turboveg_r.qmd
           - text: "Basic data analyses"
             href: DataProcessingTutorial/basic_analyses.qmd
-          - text: "Export to other formats"
-            href: DataProcessingTutorial/export.qmd
+          - text: "Data format conversions"
+            href: DataProcessingTutorial/data_conversions.qmd
           - text: 'Data stratification'
             href: DataProcessingTutorial/data_stratification.qmd
           - text: 'Data resampling'

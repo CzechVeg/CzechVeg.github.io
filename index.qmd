@@ -18,7 +18,6 @@ The database is coordinated at the [Vegetation Science Group](https://botzool.cz
 
 In November 2025, the database contained 117,740 vegetation plots from the Czech Republic, sampled between 1922 and 2025. These plots represent all vegetation types found in the country, with grassland and forest plots being the most numerous, followed by plots from wetlands, ruderal, and weed vegetation.
 
-
 ## 2 Related resources
 
 ### EVA-MAP
@@ -31,16 +30,17 @@ An interactive online viewer for the European Vegetation Archive, which includes
 
 [www.sci.muni.cz/botany/tvref](https://www.sci.muni.cz/botany/tvref/)
 
-This online database contains the full bibliographic references to the sources of vegetation-plot data that have been digitized and included in the Cyech Vegetation Database.
+This online database contains the full bibliographic references to the sources of vegetation-plot data that have been digitized and included in the Czech Vegetation Database.
 
 ## 3 Website authors
 
--   Web design: Irena Axmanová and Klára Friesová
--   Data preparation: Ilona Knollová, with contributions from Marcela Řezníčková, Irena Axmanová, Martin Večeřa, and Milan Chytrý
+-   Data preparation: Ilona Knollová, with contributions from Irena Axmanová, Marcela Řezníčková, Martin Večeřa, and Milan Chytrý
 -   Stratified version of the database: Jan Divíšek and Martin Večeřa
+-   GBIF data: Ilona Knollová, Salza Palpurina, Martin Večeřa
 -   Online map viewer: Klára Friesová
--   Introductory text and data description: Milan Chytrý, with contributions from Ilona Knollová
+-   Introductory text and data description: Milan Chytrý, with contributions from Ilona Knollová and Jan Divíšek
 -   Data processing tutorial: Irena Axmanová, Jan Divíšek, and Martin Večeřa
+-   Web design: Irena Axmanová and Klára Friesová
 -   Project coordination: Milan Chytrý
 
 ## 4 Funding

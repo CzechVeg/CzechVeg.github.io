@@ -1,5 +1,5 @@
 ---
-title: "Map viewer"
+title: "Data viewer"
 format: html
 author: Klára Friesová
 ---

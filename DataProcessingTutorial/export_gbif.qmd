@@ -1,9 +1,9 @@
 ---
 title: "Export to GBIF"
 format: html
-author: Martin Večeřa, Ilona Knollová
+author: Martin Večeřa, Ilona Knollová, Salza Palpurina
 ---
 
 ## 
 
-Hopefully coming soon :)
+Coming soon

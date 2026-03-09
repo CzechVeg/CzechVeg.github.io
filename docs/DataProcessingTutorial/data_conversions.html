@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Klára Friesová">
+<meta name="author" content="Irena Axmanová">
 
-<title>Map viewer – Czech Vegetation Database</title>
+<title>Data format conversions – Czech Vegetation Database</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -80,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Data/data_availability.html">Data</a></li><li class="breadcrumb-item"><a href="../Data/map_viewer.html">Map viewer</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../DataProcessingTutorial/data_processing_tutorial.html">Data processing tutorial</a></li><li class="breadcrumb-item"><a href="../DataProcessingTutorial/data_conversions.html">Data format conversions</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -139,8 +174,8 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Data/map_viewer.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Map viewer</span></a>
+  <a href="../Data/data_viewer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CzechVeg-DataViewer</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -192,8 +227,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../DataProcessingTutorial/export.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Export to other formats</span></a>
+  <a href="../DataProcessingTutorial/data_conversions.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Data format conversions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -221,15 +256,22 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#long-to-wide-format" id="toc-long-to-wide-format" class="nav-link active" data-scroll-target="#long-to-wide-format">3.1 Long to wide format</a></li>
+  <li><a href="#juice-input-files" id="toc-juice-input-files" class="nav-link" data-scroll-target="#juice-input-files">3.2 Juice input files</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Data/data_availability.html">Data</a></li><li class="breadcrumb-item"><a href="../Data/map_viewer.html">Map viewer</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../DataProcessingTutorial/data_processing_tutorial.html">Data processing tutorial</a></li><li class="breadcrumb-item"><a href="../DataProcessingTutorial/data_conversions.html">Data format conversions</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Map viewer</h1>
+<h1 class="title">Data format conversions</h1>
 </div>
 
 
@@ -239,7 +281,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Klára Friesová </p>
+             <p>Irena Axmanová </p>
           </div>
   </div>
     
@@ -252,11 +294,154 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><a href="https://vegscibrno.shinyapps.io/CzechVegetationDatabase/">https://vegscibrno.shinyapps.io/CzechVegetationDatabase</a></p>
-<p>This interactive viewer of the Czech Vegetation Database provides maps and summary characteristics of vegetation plots for the whole database and its subsets defined by plot size and location uncertainty, years of sampling, altitude, covers of vegetation layers, and occurrence of specific species or species groups.</p>
-<p><img src="images/clipboard-2787976972.jpeg" class="img-fluid"></p>
+<section id="long-to-wide-format" class="level2">
+<h2 class="anchored" data-anchor-id="long-to-wide-format">3.1 Long to wide format</h2>
+<p>There are two main ways how the data can be organised across rows and columns. Wide or long format. We will show you an example of spruce forest data, where we recorded plant species in several sites and at each site we also estimated their abundance, here approximated as percentage cover (higher value means that the species covered larger area of the surveyed vegetation plot, but we do not give the area itself, just value relatively to the total area, i.e.&nbsp;percentage of total area). The covers of species might overlap, as they grow in different heights.</p>
+<p><img src="images/clipboard-3056205394.png" class="img-fluid"></p>
+<p><strong>Wide format</strong> is more conservative and used in many older packages for ecological data analysis. In our example we list all species and the colums are used to indicate their abundance at each site. This is the way you need to prepare your species matrix for ordinations in <code>vegan</code>. However, wide format has also many cons.</p>
+<p>One of them is the size of the file. In the example above, there are abundance of given plants in each of the site. When the species is present in just one site, here <em>Trientalis europaea</em>, it is still keeping space across the whole table, where there can be hundreds or thousands of sites. The table code is then of course memory demanding. Another disadvantage is that you cannot add easily new information to the listed species. If you for example want to separate species that are in a tree vegetation layer (recognised in vegetation ecology as 1), herb layer (6) and moss layer (9), you would have to add this information to the name of the species e.g.&nbsp;<em>Picea_abies_1</em>.</p>
+<p><img src="images/clipboard-2090306854.png" class="img-fluid"></p>
+<p><strong>Long format</strong> in contrast, is great for handling large datasets. We can also add any information, describing the data, such as vegetation layers, growth forms, native/alien status etc. After that we can very simply filter, summarise and calculate further statistics.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl) </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We will upload the species data saved in a long format and transform it into a matrix =wide format, so that it can be used in specific ecological analyses e.g.&nbsp;in <code>vegan</code>. (For wide to long see <a href="https://botzooldataanalysis.github.io/DataManipulationVisualisation/4_wide_vs_long.html">study materials</a>)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/spe.csv"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>New names:
+Rows: 4583 Columns: 6
+── Column specification
+──────────────────────────────────────────────────────── Delimiter: "," chr
+(1): species dbl (5): ...1, releve_nr, nonvascular, layer, cover_perc
+ℹ Use `spec()` to retrieve the full column specification for this data. ℹ
+Specify the column types or set `show_col_types = FALSE` to quiet this message.
+• `` -&gt; `...1`</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(spe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4,583 × 6
+    ...1 releve_nr species                   nonvascular layer cover_perc
+   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;                           &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;
+ 1     1    183111 Carex digitata                      0     6        0.5
+ 2     2    183111 Carpinus betulus                    0     7        3  
+ 3     3    183111 Cytisus nigricans                   0     6        0.1
+ 4     4    183111 Festuca ovina                       0     6        3  
+ 5     5    183111 Fraxinus excelsior                  0     7        0.1
+ 6     6    183111 Galium rotundifolium                0     6        0.1
+ 7     7    183111 Hieracium lachenalii                0     6        3  
+ 8     8    183111 Hieracium murorum                   0     6        0.5
+ 9     9    183111 Hieracium sabaudum s.lat.           0     6        0.1
+10    10    183111 Hypericum perforatum                0     6        0.1
+# ℹ 4,573 more rows</code></pre>
+</div>
+</div>
+<p>We can see that there are plant species names sorted by <em>releve_nr</em>, where each number indicates a vegetation record from one specific site (can be also called vegetation plot or sample). We may need to change the species names to be in the compact format, without any spaces, just underscores. For this we will use <strong>mutate</strong> function with <strong>str_replace</strong> (for string specification) indicating that each space should be changed to underscore and we will directly apply it to the original column.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>spe <span class="sc">%&gt;%</span>    </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">species =</span> <span class="fu">str_replace_all</span>(species, <span class="st">" "</span>, <span class="st">"_"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4,583 × 6
+    ...1 releve_nr species                   nonvascular layer cover_perc
+   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;                           &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;
+ 1     1    183111 Carex_digitata                      0     6        0.5
+ 2     2    183111 Carpinus_betulus                    0     7        3  
+ 3     3    183111 Cytisus_nigricans                   0     6        0.1
+ 4     4    183111 Festuca_ovina                       0     6        3  
+ 5     5    183111 Fraxinus_excelsior                  0     7        0.1
+ 6     6    183111 Galium_rotundifolium                0     6        0.1
+ 7     7    183111 Hieracium_lachenalii                0     6        3  
+ 8     8    183111 Hieracium_murorum                   0     6        0.5
+ 9     9    183111 Hieracium_sabaudum_s.lat.           0     6        0.1
+10    10    183111 Hypericum_perforatum                0     6        0.1
+# ℹ 4,573 more rows</code></pre>
+</div>
+</div>
+<p>We have the condensed name with underscores, but there are still more variables in the table. We can either remove them or merge them to be included in the final wide format. Here we will go a bit against tidy rules and add the information about the vegetation layer directly to the variable Species using <strong>unite</strong> function from the package <code>tidyr</code> which merges strings from two or more columns into a new one: <strong>A+B =A_B</strong>. Default separator is again underscore, unless you specify it differently by <em>sep=XX</em> argument.</p>
+<p><img src="images/clipboard-3109823273.png" class="img-fluid"></p>
+<p>Argument <em>na.rm</em> indicates what to do if in one of the combined columns there is no value but NA. We have set this argument to TRUE to remove the NA. If you keep it FALSE it can happen that in some data the new string will be a_NA or NA_b, or even NA_NA (see line 4 of our example).</p>
+<p><em>Remove</em> argument set to TRUE will remove the original columns which we used to combine the new one (in the example above you will have only z). In our case we will keep original columns for visual checking and we will use select function in the next step to remove them.</p>
+<p>Note that function that works in an opposite direction is called <code>separate</code> or <code>separate_wider_delim</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>spe <span class="sc">%&gt;%</span>   </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">species =</span> <span class="fu">str_replace_all</span>(species, <span class="st">" "</span>, <span class="st">"_"</span>))<span class="sc">%&gt;%</span>   </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unite</span>(<span class="st">"species_layer"</span>, species,layer, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">remove =</span> <span class="cn">FALSE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4,583 × 7
+    ...1 releve_nr species_layer            species nonvascular layer cover_perc
+   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;                    &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;
+ 1     1    183111 Carex_digitata_6         Carex_…           0     6        0.5
+ 2     2    183111 Carpinus_betulus_7       Carpin…           0     7        3  
+ 3     3    183111 Cytisus_nigricans_6      Cytisu…           0     6        0.1
+ 4     4    183111 Festuca_ovina_6          Festuc…           0     6        3  
+ 5     5    183111 Fraxinus_excelsior_7     Fraxin…           0     7        0.1
+ 6     6    183111 Galium_rotundifolium_6   Galium…           0     6        0.1
+ 7     7    183111 Hieracium_lachenalii_6   Hierac…           0     6        3  
+ 8     8    183111 Hieracium_murorum_6      Hierac…           0     6        0.5
+ 9     9    183111 Hieracium_sabaudum_s.la… Hierac…           0     6        0.1
+10    10    183111 Hypericum_perforatum_6   Hyperi…           0     6        0.1
+# ℹ 4,573 more rows</code></pre>
+</div>
+</div>
+<p>At this point we have everything we need to use it as input for the wide format table: releve_nr. species_layer and values of the abundance saved as cover_perc. One more step is to select only these or to deselect (-) those not needed.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>spe <span class="sc">%&gt;%</span>   </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">species =</span> <span class="fu">str_replace_all</span>(species, <span class="st">" "</span>, <span class="st">"_"</span>))<span class="sc">%&gt;%</span>   </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unite</span>(<span class="st">"species_layer"</span>, species,layer, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">remove =</span> <span class="cn">FALSE</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(releve_nr, species_layer, cover_perc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4,583 × 3
+   releve_nr species_layer               cover_perc
+       &lt;dbl&gt; &lt;chr&gt;                            &lt;dbl&gt;
+ 1    183111 Carex_digitata_6                   0.5
+ 2    183111 Carpinus_betulus_7                 3  
+ 3    183111 Cytisus_nigricans_6                0.1
+ 4    183111 Festuca_ovina_6                    3  
+ 5    183111 Fraxinus_excelsior_7               0.1
+ 6    183111 Galium_rotundifolium_6             0.1
+ 7    183111 Hieracium_lachenalii_6             3  
+ 8    183111 Hieracium_murorum_6                0.5
+ 9    183111 Hieracium_sabaudum_s.lat._6        0.1
+10    183111 Hypericum_perforatum_6             0.1
+# ℹ 4,573 more rows</code></pre>
+</div>
+</div>
+<p>Now we can finaly use the <strong>pivot wider</strong> function to transform the data. We have to specify from where we are taking the names of new variables (<strong>names_from</strong>) and from where we should take the values which should appear in the table (<strong>values_from</strong>). Since we changed the format, all species, even those not occurring in that particular site/plot have to get some values. Therefore, one more step is to fill the empty cells by zeros using <strong>values_fill</strong>. In this case we can do that, because we know that if the species was absent its abundance was exactly 0.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>spe <span class="sc">%&gt;%</span>   </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">species =</span> <span class="fu">str_replace_all</span>(species, <span class="st">" "</span>, <span class="st">"_"</span>))<span class="sc">%&gt;%</span>   </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unite</span>(<span class="st">"species_layer"</span>, species,layer, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">remove =</span> <span class="cn">FALSE</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> species_layer, </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> cover_perc, </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_fill =</span> <span class="dv">0</span>) <span class="ot">-&gt;</span> spe_wide</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(spe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4,583 × 6
+    ...1 releve_nr species                   nonvascular layer cover_perc
+   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;                           &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;
+ 1     1    183111 Carex digitata                      0     6        0.5
+ 2     2    183111 Carpinus betulus                    0     7        3  
+ 3     3    183111 Cytisus nigricans                   0     6        0.1
+ 4     4    183111 Festuca ovina                       0     6        3  
+ 5     5    183111 Fraxinus excelsior                  0     7        0.1
+ 6     6    183111 Galium rotundifolium                0     6        0.1
+ 7     7    183111 Hieracium lachenalii                0     6        3  
+ 8     8    183111 Hieracium murorum                   0     6        0.5
+ 9     9    183111 Hieracium sabaudum s.lat.           0     6        0.1
+10    10    183111 Hypericum perforatum                0     6        0.1
+# ℹ 4,573 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="juice-input-files" class="level2">
+<h2 class="anchored" data-anchor-id="juice-input-files">3.2 Juice input files</h2>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

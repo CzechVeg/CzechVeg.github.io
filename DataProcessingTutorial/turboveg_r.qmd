@@ -4,7 +4,7 @@ format: html
 author: Irena Axmanová
 ---
 
-The aim of this tutorial is to show you step by step how to import the data from Turboveg 2 to R and prepare it for further analyses.
+The aim of this part of the tutorial is to show you step by step how to import the data from Turboveg 2 to R and prepare it for further analyses.
 
 ## 1.1 Turboveg data format
 
@@ -16,9 +16,11 @@ At some point, you need to export the data and process them further. This can be
 
 ![](images/clipboard-3933108048.png)
 
-To get Turboveg data to R, you first need to **export the Turboveg database** to a folder where you want to process the data. This step requires the **selection of all the plots** you want to export. Alternatively, you can access the files directly in the data folder in Turbowin, but if you do something wrong here, you might completely lose your data.
+To get Turboveg data to R, you first need to **export the Turboveg database** to a folder where you want to process the data. Or you can use the **edit** function and **filter** plots according to your **selection** and export only this selection as a new database. Alternatively, you can access the files directly in the data folder in Turbowin, but if you do something wrong here, you might completely lose your data.
 
 ## 1.2 Load libraries
+
+For further data handling we will use following libraries
 
 ```{r}
 #| warning: false
@@ -32,7 +34,7 @@ library(janitor)   #for unified, easy-to-handle format of variable names
 
 ### 1.3.1 Import
 
-**One option** is to check the exported database manually, open the file called *tvhabita.dbf* in Excel and save it as *tvhabita.xlsx* or *tvhabita.csv* (UTF 8 encoded) file into your *data* folder. Although it includes one more step outside R, it is still rather straightforward and it saves you troubles with different formats in Turboveg and in R (encoding issues).
+**One option** is to check the exported database manually, open the file called *tvhabita.dbf* in Excel and save it as *tvhabita.xlsx* or *tvhabita.csv* (UTF 8 encoded) file into your *data* folder. Although it includes one more step outside R, it is still rather straightforward and it saves you troubles with different formats in Turboveg and in R (encoding issues). The only limiting factor is the size of the file that can be handled in Excel.
 
 You can then import the file from Excel
 
@@ -103,7 +105,7 @@ And save it for easier access. Always keep releve_nr and coverscale, as you will
 write.csv(env, "data/env.csv")
 ```
 
-**\*An alternative option** is to directly import the file exported from the Turboveg database named **tvhabita.dbf**. Since dbf is a specific type of files and we need to use a specialised packages. Here I used **read.dbf** function from the `foreign` library.
+**\*An alternative option** is to directly import the file exported from the Turboveg database named **tvhabita.dbf**. Since dbf is a specific type of files, we need to use a specialised packages. Here I used **read.dbf** function from the `foreign` library.
 
 ```{r}
 env_dbf <- read.dbf("data/tvhabita.dbf", as.is = F) %>%    
@@ -134,7 +136,7 @@ env_dbf %>%
   as_tibble()
 ```
 
-In the next step we select variables we want to keep further, which is useful, as the database structure also includes predefined variables, even if they are empty. Another advantage of the select function.
+In the next step we select the variables we want to keep further, which is useful, as the database structure also includes predefined variables, even if they are empty. Another advantage of the select function.
 
 ```{r}
 env <- env_dbf %>%
@@ -170,7 +172,7 @@ env %>%
   select(releve_nr, latitude, deg_lat, longitude, deg_lon)
 ```
 
-If I know I will need coordinates for mapping I will add the respective lines directly to my pipeline
+If I know I will need coordinates for mapping, I will add the respective lines directly to my pipeline
 
 ```{r}
 env <- read_csv("data/tvhabita.csv")%>% 
@@ -243,7 +245,7 @@ nomenclature <- read_csv("data/nomenclature_20251108.csv") %>%
 tibble(nomenclature)
 ```
 
-There are several advantages of this approach. First, you can adjust the nomenclature to the newest source/regional checklist. In our example, the name in Turboveg is translated to the nomenclature presented in the recent edition of the Key to the Flora of the Czech Republick, and it is named after the main editor Kaplan.
+There are several advantages of this approach. First, you can adjust the nomenclature to the newest source/regional checklist. In our example, the name in Turboveg is translated to the nomenclature presented in the recent edition of the Key to the Flora of the Czech Republic, and it is named after the main editor Kaplan.
 
 Second, I can add a concept that groups several taxa into higher units, e.g. taxa that are not easy to recognise in the field are assigned into aggregates. This is exactly the same approach you use when creating an expert system file. Here it is even easier to understand and much easier to change the translation when you need to fix something. The name in this file is called ESy.
 

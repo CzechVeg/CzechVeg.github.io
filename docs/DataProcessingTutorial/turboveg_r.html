@@ -174,8 +174,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Data/map_viewer.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Map viewer</span></a>
+  <a href="../Data/data_viewer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CzechVeg-DataViewer</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -227,8 +227,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../DataProcessingTutorial/export.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Export to other formats</span></a>
+  <a href="../DataProcessingTutorial/data_conversions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data format conversions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -312,17 +312,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>The aim of this tutorial is to show you step by step how to import the data from Turboveg 2 to R and prepare it for further analyses.</p>
+<p>The aim of this part of the tutorial is to show you step by step how to import the data from Turboveg 2 to R and prepare it for further analyses.</p>
 <section id="turboveg-data-format" class="level2">
 <h2 class="anchored" data-anchor-id="turboveg-data-format">1.1 Turboveg data format</h2>
 <p>Turboveg for Windows is a program designed for the storage, selection, and export of vegetation plot data (relevés). The data are divided among several files that are matched by either species ID or relevé ID. You do not see this structure directly in the Turboveg interface, but you can find it in the&nbsp;<em>Turbowin</em>&nbsp;folder, subfolder&nbsp;<em>data</em>&nbsp;and particular database (see example below).</p>
 <p><img src="images/clipboard-683841843.png" class="img-fluid" width="637"></p>
 <p>At some point, you need to export the data and process them further. This can be done in a specialised software called <a href="https://www.sci.muni.cz/botany/juice/NET/index.htm">JUICE</a>, but also directly in R.</p>
 <p><img src="images/clipboard-3933108048.png" class="img-fluid"></p>
-<p>To get Turboveg data to R, you first need to&nbsp;<strong>export the Turboveg database</strong>&nbsp;to a folder where you want to process the data. This step requires&nbsp;the <strong>selection of all the plots</strong>&nbsp;you want to export. Alternatively, you can access the files directly in the data folder in Turbowin, but if you do something wrong here, you might completely lose your data.</p>
+<p>To get Turboveg data to R, you first need to&nbsp;<strong>export the Turboveg database</strong>&nbsp;to a folder where you want to process the data. Or you can use the <strong>edit</strong> function and <strong>filter</strong> plots according to your <strong>selection</strong>&nbsp;and export only this selection as a new database. Alternatively, you can access the files directly in the data folder in Turbowin, but if you do something wrong here, you might completely lose your data.</p>
 </section>
 <section id="load-libraries" class="level2">
 <h2 class="anchored" data-anchor-id="load-libraries">1.2 Load libraries</h2>
+<p>For further data handling we will use following libraries</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreign)   <span class="co">#for reading dbf files </span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co">#for data handling, pipes and visualisation </span></span>
@@ -334,7 +335,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="import-env-file-header-data">1.3 Import env file = header data</h2>
 <section id="import" class="level3">
 <h3 class="anchored" data-anchor-id="import">1.3.1 Import</h3>
-<p><strong>One option</strong> is to check the exported database manually, open the file called <em>tvhabita.dbf</em> in Excel and save it as <em>tvhabita.xlsx</em> or <em>tvhabita.csv</em> (UTF 8 encoded) file into your <em>data</em> folder. Although it includes one more step outside R, it is still rather straightforward and it saves you troubles with different formats in Turboveg and in R (encoding issues).</p>
+<p><strong>One option</strong> is to check the exported database manually, open the file called <em>tvhabita.dbf</em> in Excel and save it as <em>tvhabita.xlsx</em> or <em>tvhabita.csv</em> (UTF 8 encoded) file into your <em>data</em> folder. Although it includes one more step outside R, it is still rather straightforward and it saves you troubles with different formats in Turboveg and in R (encoding issues). The only limiting factor is the size of the file that can be handled in Excel.</p>
 <p>You can then import the file from Excel</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>env <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/tvhabita.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -517,7 +518,7 @@ $ locality   &lt;chr&gt; "Svinošice (Brno, Kuřim); 450 m SZ od středu obce", 
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(env, <span class="st">"data/env.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>*An alternative option</strong> is to directly import the file exported from the Turboveg database named <strong>tvhabita.dbf</strong>. Since dbf is a specific type of files and we need to use a specialised packages. Here I used <strong>read.dbf</strong> function from the <code>foreign</code> library.</p>
+<p><strong>*An alternative option</strong> is to directly import the file exported from the Turboveg database named <strong>tvhabita.dbf</strong>. Since dbf is a specific type of files, we need to use a specialised packages. Here I used <strong>read.dbf</strong> function from the <code>foreign</code> library.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>env_dbf <span class="ot">&lt;-</span> <span class="fu">read.dbf</span>(<span class="st">"data/tvhabita.dbf"</span>, <span class="at">as.is =</span> F) <span class="sc">%&gt;%</span>    </span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -574,7 +575,7 @@ $ locality   &lt;chr&gt; "Svinošice (Brno, Kuřim); 450 m SZ od středu obce", 
 # ℹ 127 more rows</code></pre>
 </div>
 </div>
-<p>In the next step we select variables we want to keep further, which is useful, as the database structure also includes predefined variables, even if they are empty. Another advantage of the select function.</p>
+<p>In the next step we select the variables we want to keep further, which is useful, as the database structure also includes predefined variables, even if they are empty. Another advantage of the select function.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>env <span class="ot">&lt;-</span> env_dbf <span class="sc">%&gt;%</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(remarks, locality, habitat, soil),</span>
@@ -619,7 +620,7 @@ $ locality   &lt;chr&gt; "Svinošice (Brno, Kuřim); 450 m SZ od středu obce", 
 # ℹ 127 more rows</code></pre>
 </div>
 </div>
-<p>If I know I will need coordinates for mapping I will add the respective lines directly to my pipeline</p>
+<p>If I know I will need coordinates for mapping, I will add the respective lines directly to my pipeline</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>env <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/tvhabita.csv"</span>)<span class="sc">%&gt;%</span> </span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="sc">%&gt;%</span> </span>
@@ -768,7 +769,7 @@ lgl (1): SYNONYM
 # ℹ 1 more variable: nonvascular &lt;dbl&gt;</code></pre>
 </div>
 </div>
-<p>There are several advantages of this approach. First, you can adjust the nomenclature to the newest source/regional checklist. In our example, the name in Turboveg is translated to the nomenclature presented in the recent edition of the Key to the Flora of the Czech Republick, and it is named after the main editor Kaplan.</p>
+<p>There are several advantages of this approach. First, you can adjust the nomenclature to the newest source/regional checklist. In our example, the name in Turboveg is translated to the nomenclature presented in the recent edition of the Key to the Flora of the Czech Republic, and it is named after the main editor Kaplan.</p>
 <p>Second, I can add a concept that groups several taxa into higher units, e.g.&nbsp;taxa that are not easy to recognise in the field are assigned into aggregates. This is exactly the same approach you use when creating an expert system file. Here it is even easier to understand and much easier to change the translation when you need to fix something. The name in this file is called ESy.</p>
 <p>Last but not least. I can directly add much more information into such a table. For example invasion status, growth form or anything else. Here we have an indication of whether the species is nonvascular.</p>
 <p>I might want to check how the species are translated using my translation file and select just these matching rows. Either create a variable called selection indicating if the species is in the subset or not.</p>
