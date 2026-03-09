@@ -22,7 +22,7 @@ The standard Turboveg list of the Czech flora (common with the standard list of 
 
 -   [species.zip](files/species.zip) (version 28 November 2024)
 
-Extract this file. After extraction, you will receive a folder named Czechia_Slovakia_2015, which should be copied to the folder /TURBOWIN/species on your computer. In the Turboveg program, assign the species list to each specific database using *Database/Modify attributes*.
+Extract this file. After extraction, you will receive a folder named Czechia_Slovakia_2015, which should be copied to the folder /TURBOWIN/species on your computer. In the Turboveg program, assign the species list to each specific database using *Database/Modify attributes*. Translation of the Turboveg checklist to currently used taxonomy can be found in the [crosswalk table](https://github.com/CzechVeg/CzechVeg.github.io/tree/main/Data/crosswalk_tables/table_nomenclature.csv).
 
 ### 2.3 Installation and update of the common database directories
 

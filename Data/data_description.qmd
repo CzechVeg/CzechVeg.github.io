@@ -12,13 +12,56 @@ Following the structure of the Turboveg database management software, vegetation
 
 ## 1 Species data
 
-Species data contain unique plot identifiers (RELEVE_NR), species numbers (SPECIES_NR), cover-abundance grade for each species record (COVER_CODE), and vegetation layer for each species record (LAYER). Species numbers are linked to species names, and cover-abundances are linked to percentage covers using translation tables.
+Species data contain unique plot identifiers and corresponding species identifiers, provided together with information about the vegetation layer and estimated abundance.
+
+**Relevé number (RELEVE_NR).** Unique numerical code of the vegetation plot in the database.
+
+**Species number (SPECIES_NR).** Unique numerical code referring to the taxon in the Czechia-Slovakia checklist. We used a [crosswalk table](https://github.com/CzechVeg/CzechVeg.github.io/tree/main/Data/crosswalk_tables/table_nomenclature.csv) to translate this code into different taxon concepts and to add the associated information provided below*:*
+
+**Original taxon name in the database checklist (TURBOVEG_NAME)**. In this database, corresponding to the Czechia-Slovakia checklist. For details, see the [crosswalk table](https://github.com/CzechVeg/CzechVeg.github.io/tree/main/Data/crosswalk_tables/table_nomenclature.csv).
+
+**Taxon name in the currently accepted nomenclature (KAPLAN_PLUS_NAME).** The concept follows the PLADIAS database for vascular plants, adopting the nomenclature presented in the recent edition of the Key to the Flora of the Czech Republic, edited by Zdeněk Kaplan. For mosses and lichens, it follows the DALIBOR database. Where not available, the concept is harmonised with the GBIF taxonomy. For details, see the [crosswalk table](https://github.com/CzechVeg/CzechVeg.github.io/tree/main/Data/crosswalk_tables/table_nomenclature.csv).
+
+**Taxon name in the currently accepted nomenclature, analyses friendly version (KAPLAN_PLUS_NAME_SIMPLE).** The concept is the same as described above; we only used x instead of hybrid marks and ä, ë is written as a, e for easier coding. For example, *Salix x fragilis, Hierochloe australis.* For details, see the [crosswalk table](https://github.com/CzechVeg/CzechVeg.github.io/tree/main/Data/crosswalk_tables/table_nomenclature.csv).
+
+**Taxon concept authorship (AUTHORSHIP).** Information about the author of the taxon concept was primarily taken from the Pladias database for vascular plants and from DALIBOR for nonvascular plants, and if not available, we added this information from the GBIF database. For details, see the [crosswalk table](https://github.com/CzechVeg/CzechVeg.github.io/tree/main/Data/crosswalk_tables/table_nomenclature.csv).
+
+**Taxon name following Czech Expert system (CZECHVEG_ESY_NAME).** A concept that groups several taxa into higher units, e.g. taxa that are not easy to recognise in the field are assigned into aggregates. This system is suitable for vegetation classification, an updated version of the one used in the Czech Vegetation series (edited by Milan Chytrý). Note that subspecies are shortened as "ssp." and genus level taxa are supplemented by "species" as in the original file.
+
+**Taxon name following the Czech Expert system (CZECHVEG_ESY_NAME_SUBSP).** The same as previous, but considers subspecies as "subsp." and taxa determined at genus level are written without "species". For details, see the [crosswalk table](https://github.com/CzechVeg/CzechVeg.github.io/tree/main/Data/crosswalk_tables/table_nomenclature.csv).
+
+**Broad plant group (PLANT_GROUP).** Each plant is assigned to one of the following categories for easier filtering and analyses of the dataset
+
+-   alga
+-   cyanobacterium
+-   lichen
+-   moss
+-   vascular
+
+**Vegetation layer** **(LAYER).** If available in the original data, we provide for each species record information on the vegetation layer where it was recorded:
+
+-   0 no layer (used when no information is available or for merged layers)
+-   1 tree layer (high)
+-   2 tree layer
+-   3
+-   4 shrub layer
+-   5
+-   6 herb layer
+-   7 juveniles
+-   8
+-   9 moss layer
+
+**Cover scale (COVER_SCALE).** Cover scale is available for each plot and specifies how the different cover codes assigned to each taxon should be translated. Cover scale is primarily available in the header data. For more details, see the description in the header data below.
+
+**Cover-abundance grade for each species record** **(COVER_CODE).** The abundance is estimated as grades at the specified scale. For more details, see the description of individual cover scales in the header data below.
+
+**Percentage cover (COVER_PERC).** Cover-abundances are linked to percentage covers to enable direct comparisons of abundances estimated at different scales. In this approach, cover is considered as a percentage of the total plot area. The translation is done with the [translation table available here](https://github.com/CzechVeg/CzechVeg.github.io/tree/main/Data/crosswalk_tables/table_cover.csv) and includes both the translation suggested in EVA exports and an adjusted one, including values \<1. Note that the covers of individual species might overlap in space, and the total sum often exceeds 100%. For merging species covers, considering or not considering the overlaps, see our tutorial.
 
 ## 2 Header data
 
 Header data contain information on vegetation plots other than species and their cover-abundances. They include details of sampling methods, location, vegetation structure, vegetation type, and environmental information.
 
-In addition to basic variables, the database also contains variables with outdated content (replaced by new variables with up-to-date content), variables that are rarely or never used, and one variable with non-unified content. Individual private databases incorporated into the Czech Vegetation Database may also have contained other variablesspecific to those databases.
+In addition to basic variables, the database also contains variables with outdated content (replaced by new variables with up-to-date content), variables that are rarely or never used, and one variable with non-unified content. Individual private databases incorporated into the Czech Vegetation Database may also have contained other variables specific to those databases.
 
 ### 2.1 Basic header-data variables
 
@@ -26,13 +69,13 @@ In addition to basic variables, the database also contains variables with outdat
 
 **Country code (COUNTRY).** Two-letter country code according to ISO 3166-1 alpha-2. All plots recorded within the territory of the Czech Republic have the value “CZ”.
 
-**Biblioreference (REFERENCE).** Bibliographic reference for vegetation plots that have been published in a citable source (article, book, student thesis, research report). The dataset in the Turboveg 2 format (DBF) contains the reference numeric code. The CSV format also includes the full reference in the fields **REFERENCE_AUTHOR**, **REFERENCE_YEAR**, **REFERENCE_TITLE** and **REFERENCE_JOURNAL**. A database of biblioreferences is available here: <https://www.sci.muni.cz/botany/tvref/>.
+**Biblioreference (REFERENCE).** Bibliographic reference for vegetation plots that have been published in a citable source (article, book, student thesis, research report). The dataset in the Turboveg 2 format (DBF) contains the reference numeric code. The CSV format also includes the full reference in the fields **REFERENCE_AUTHOR**, **REFERENCE_YEAR**, **REFERENCE_TITLE** and **REFERENCE_JOURNAL** appended from the [crosswalk table](https://github.com/CzechVeg/CzechVeg.github.io/tree/main/Data/crosswalk_tables/table_references.csv). A complete database of biblioreferences is available here: <https://www.sci.muni.cz/botany/tvref/>.
 
 **Number of table in publication (TABLE_NR).** Number of the table in which the vegetation plot was published in the cited source. If the plot was separately rather than included in a table, the page number is given after the abbreviation “p.” (e.g., “p. 15”).
 
 **Number of relevé in table (NR_IN_TAB).** Number of the vegetation plot in the cited source.
 
-**Cover-abundance scale (COVER_SCALE).** Species cover was recorded in vegetation plots either as percentages or using various scales derived from percentage cover intervals. Some scales are supplemented, for species with low cover, by grades expressing the number of individuals. The database contains both general scales used by multiple researchers and scales defined for a single purpose. In the database, grades of all scales are converted to the midpoint of the percentage interval they represent. The dataset in the Turboveg 2 format (DBF) contains the scale numeric code. The CSV format also includes the full scale name in the field **COVER_SCALE_NAME**. General scales and their conversions to percentages are as follows (unused codes refer to scales defined only for a single purpose):
+**Cover-abundance scale (COVER_SCALE).** Species cover was recorded in vegetation plots either as percentages or using various scales derived from percentage cover intervals. Some scales are supplemented, for species with low cover, by grades expressing the number of individuals. The database contains both general scales used by multiple researchers and scales defined for a single purpose. In the database, grades of all scales are converted to the midpoint of the percentage interval they represent. The dataset in the Turboveg 2 format (DBF) contains the scale numeric code. The CSV format also includes the full scale name in the field **COVER_SCALE_NAME**. General scales and their conversions to percentages are as follows (unused codes refer to scales defined only for a single purpose, all scales can be found in the [crosswalk table](https://github.com/CzechVeg/CzechVeg.github.io/tree/main/Data/crosswalk_tables/table_cover.csv)):
 
 -   00 – Percentage (%)
 -   01 – Braun-Blanquet (old), with seven grades: r = 1%, + = 2%, 1 = 3%, 2 = 13%, 3 = 38%, 4 = 63%, 5 = 88%
@@ -48,11 +91,11 @@ In addition to basic variables, the database also contains variables with outdat
 -   15 – Percentual (r, +): r = 0.1%, + = 0.5%, and integer values corresponding to percentages
 -   18 – Hult-Sernader-DuRietz: r = 0.1%, + = 0.5%, 1 = 3.5%, 2 = 8.3%, 3 = 18.3%, 4 = 37.5%, 5 = 62.5%, 6 = 87.5
 
-**Author code (AUTHOR).** Author of the vegetation plot. The dataset in the Turboveg 2 format (DBF) contains the author numeric code. The CSV format also includes the full author name in the field **AUTHOR_NAME**.
+**Author code (AUTHOR).** Author of the vegetation plot. The dataset in the Turboveg 2 format (DBF) contains the author numeric code. The CSV format also includes the full author name in the field **AUTHOR_NAME**. Translation of codes to author names is available in the [crosswalk table](https://github.com/CzechVeg/CzechVeg.github.io/tree/main/Data/crosswalk_tables/table_authors.csv).
 
 **Date (DATE).** Date of vegetation plot sampling, recorded in the format YYYYMMDD. The CSV format also includes **YEAR**.
 
-**Syntaxon (SYNTAXON).** Vegetation unit (syntaxon) to which the vegetation plot was subjectively assigned by its author or a database administrator. The dataset in the Turboveg 2 format (DBF) contains the syntaxon code. The CSV format also includes the full syntaxon name in the field **SYNTAXON_NAME**. The vegetation classification is according to the classification system in the publication:
+**Syntaxon (SYNTAXON).** Vegetation unit (syntaxon) to which the vegetation plot was subjectively assigned by its author or a database administrator. The dataset in the Turboveg 2 format (DBF) contains the syntaxon code. The CSV format also includes the full syntaxon name in the field **SYNTAXON_NAME**. Translation of codes to corresponding names is available in the [crosswalk table](https://github.com/CzechVeg/CzechVeg.github.io/tree/main/Data/crosswalk_tables/table_syntaxon.csv). The vegetation classification is according to the classification system in the publication:
 
 -   Chytrý M. (ed.) (2007–2013) *Vegetace České republiky 1–4. Vegetation of the Czech Republic 1–4*. Academia, Praha.
 
@@ -112,9 +155,13 @@ In addition to basic variables, the database also contains variables with outdat
 
 **Locality (LOCALITY).** Verbal description of the locality of the vegetation plot.
 
+**Latitude (LATITUDE).** Latitude in the format DDMMSS.SS in the WGS-84 system (e.g., 492215.12 corresponds to 49° 22’ 15.12’’ N).
+
 **Longitude (LONGITUDE).** Longitude in the format DDMMSS.SS in the WGS-84 system (e.g., 170322.55 corresponds to 17° 3’ 22.55’’ E).
 
-**Latitude (LATITUDE).** Latitude in the format DDMMSS.SS in the WGS-84 system (e.g., 492215.12 corresponds to 49° 22’ 15.12’’ N).
+**Decimal-degrees latitude (degLAT).** Latitude in the format of decimal degrees.
+
+**Decimal-degrees longitude (degLON).** Longitude in the format of decimal degrees.
 
 **Precision (PRECISION).** Estimated uncertainty of the given geographic coordinates in meters.
 
@@ -132,7 +179,7 @@ In addition to basic variables, the database also contains variables with outdat
 
 -   Moravec J., Balátová-Tuláčková E., Blažková D., Hadač E., Hejný S., Husák Š., Jeník J., Kolbek J., Krahulec F., Kropáč Z., Neuhäusl R., Rybníček K., Řehořek V. & Vicherek J. (1995): Rostlinná společenstva České republiky a jejich ohrožení. Ed. 2. *Severočeskou přírodou*, Příloha 1995: 1–206.
 
-The dataset in the Turboveg 2 format (DBF) contains the syntaxon code. The CSV format also includes the full syntaxon name in the field **SYNTAXON_OLD_NAME**.
+The dataset in the Turboveg 2 format (DBF) contains the syntaxon code. The CSV format also includes the full syntaxon name in the field **SYNTAXON_OLD_NAME**. The translation is available in the [crosswalk table](https://github.com/CzechVeg/CzechVeg.github.io/tree/main/Data/crosswalk_tables/table_syntaxonOLD.csv).
 
 ### 2.3 Rarely or never used header-data variables
 
@@ -164,7 +211,7 @@ The dataset in the Turboveg 2 format (DBF) contains the syntaxon code. The CSV f
 
 The following variables contain environmental or biogeographical strata (landscape types or regions) that can be used for stratified resampling of vegetation plots.
 
-**Env_strata (ENV_STRATA).** Environmental strata used in the resampling procedure to create [CzechVeg-OpenStrat](https://czechvegetationdatabase.github.io/Data/czech_veg_openstrat.html). For details, see [Data stratification](https://czechvegetationdatabase.github.io/DataProcessingTutorial/data_stratification.html).
+**Env_strata (ENV_STRATA).** Environmental strata used in the resampling procedure to create [CzechVeg-OpenStrat](https://czechveg.github.io/Data/czech_veg_openstrat.html). For details, see [Data stratification](https://czechveg.github.io/DataProcessingTutorial/data_stratification.html).
 
 **Skalicky1988 (SKALICKY1988).** Phytogeographical regions by Skalický (1988).
 

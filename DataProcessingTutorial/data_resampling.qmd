@@ -6,7 +6,7 @@ author: Jan Divíšek
 
 # Introduction
 
-Vegetation-plot records from large databases, including CzechVeg, are usually unevenly distributed in space because some areas, such as nature reserves or other botanically attractive locations, have been sampled more frequently than others. Vegetation plots from these areas also often record the same vegetation type, leading to overrepresentation of this vegetation and its environmental conditions in the dataset. This may be undesirable in analyses that require evenly distributed data. To reduce local oversampling and provide a dataset that is spatially, environmentally, and compositionally more balanced, we have prepared a stratified version of the Czech Vegetation Database: [**CzechVeg-Open-Strat**](https://czechvegetationdatabase.github.io/Data/czech_veg_openstrat.html).
+Vegetation-plot records from large databases, including CzechVeg, are usually unevenly distributed in space because some areas, such as nature reserves or other botanically attractive locations, have been sampled more frequently than others. Vegetation plots from these areas also often record the same vegetation type, leading to overrepresentation of this vegetation and its environmental conditions in the dataset. This may be undesirable in analyses that require evenly distributed data. To reduce local oversampling and provide a dataset that is spatially, environmentally, and compositionally more balanced, we have prepared a stratified version of the Czech Vegetation Database: [**CzechVeg-Open-Strat**](https://czechveg.github.io/Data/czech_veg_openstrat.html).
 
 Now, we will go through all the steps of the resampling procedure so that every user of the CzechVeg data can prepare an alternative resampled and stratified dataset according to their own criteria. We will start with the CzechVeg-Open dataset. After removing plots without geographical coordinates and those containing only genera or non-vascular plants, the dataset contains 116,148 vegetation plots as shown below. Yellow areas are those with the highest plot density, which was calculated as the number of plots within the radius of 20 km from each plot.
 
@@ -162,6 +162,6 @@ res
 
 ![](images/result.png){width="379"}
 
-As shown below, the density of plots in intensively sampled areas decreased considerably. This dataset is provided as [**CzechVeg-Open-Strat**](https://czechvegetationdatabase.github.io/Data/czech_veg_openstrat.html).
+As shown below, the density of plots in intensively sampled areas decreased considerably. This dataset is provided as [**CzechVeg-Open-Strat**](https://czechveg.github.io/Data/czech_veg_openstrat.html).
 
 ![](images/CzechVeg_allPlots_vs_strat.png)

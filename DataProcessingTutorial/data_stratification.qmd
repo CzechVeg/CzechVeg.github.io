@@ -6,9 +6,9 @@ author: Martin Večeřa
 
 # Introduction
 
-We followed the procedure below to create an environmental stratification scheme for [CzechVeg-OpenStrat](https://czechvegetationdatabase.github.io/Data/czech_veg_openstrat.html), the environmentally stratified version of the Czech Vegetation Database.
+We followed the procedure below to create an environmental stratification scheme for [CzechVeg-OpenStrat](https://czechveg.github.io/Data/czech_veg_openstrat.html), the environmentally stratified version of the Czech Vegetation Database.
 
-As spatial units for the environmental strata, we used the [1 km EEA reference grid for the Czech Republic](https://sdi.eea.europa.eu/catalogue/srv/api/records/9e80fdac-a518-462b-942b-82701035c079f). Each 1 km grid cell was assigned to a stratum based on a combination of environmental variables using principal component analysis (PCA). We then assigned each vegetation plot (N = 116,148) to a stratum based on the grid cell in which it was located. This assignment was subsequently used as one of the criteria in the resampling procedure (described [here](https://czechvegetationdatabase.github.io/DataProcessingTutorial/data_resampling.html)) to prepare a spatially and environmentally balanced, publicly available subset of the Czech Vegetation Database.
+As spatial units for the environmental strata, we used the [1 km EEA reference grid for the Czech Republic](https://sdi.eea.europa.eu/catalogue/srv/api/records/9e80fdac-a518-462b-942b-82701035c079f). Each 1 km grid cell was assigned to a stratum based on a combination of environmental variables using principal component analysis (PCA). We then assigned each vegetation plot (N = 116,148) to a stratum based on the grid cell in which it was located. This assignment was subsequently used as one of the criteria in the resampling procedure (described [here](https://czechveg.github.io/DataProcessingTutorial/data_resampling.html)) to prepare a spatially and environmentally balanced, publicly available subset of the Czech Vegetation Database.
 
 ```{r}
 #| label: Load packages

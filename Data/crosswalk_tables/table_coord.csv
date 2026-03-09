@@ -1,0 +1,14 @@
+﻿"COORD_CODE","COORD_SOURCE","COORD_SYST","SCALE"
+"01","GPS","WGS 84",NA
+"02","Geobáze 100","WGS 84","1:100 000"
+"03","Geobáze 50","WGS 84","1:50 000"
+"04","Vojenské mapy 50","S 42","1:50 000"
+"05","ZM 5","JTSK","1: 5 000"
+"06","ZM 10","JTSK","1: 10 000"
+"07","ZM 25","JTSK","1: 25 000"
+"08","ZM 50","JTSK","1: 50 000"
+"09","GIS","WGS 84",NA
+"10","Vojenské mapy 25","S 42","1: 25 000"
+"11","www.mapy.cz","WGS 84",NA
+"12","mapa: www.atlas.cz","WGS 84",NA
+"13","Google Earth","WGS 84",NA
