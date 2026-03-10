@@ -7,10 +7,11 @@ CzechVeg-OpenStrat is a publicly available, geographically and environmentally s
 
 **Version 1.0**
 
--   Source database: CzechVeg-Open version 1.0, 3 November 2025
+-   Source database: CzechVeg-Open version 1.0, 10 March 2026
 -   Size: 61,282 vegetation plots
 -   DOI: <https:/doi.org/10.5281/zenodo.18289905>
 -   Licence: Creative Commons Attribution 4.0 International ([CC-BY](https://creativecommons.org/licenses/by/4.0/))
 -   Download
-    -   Vegetation-plot data in CSV format
-    -   Species nomenclature (useful for interpretation of plant taxon concepts and names)
+    -   Vegetation-plot species data in CSV format
+    -   Vegetation-plot header data in CSV format
+    -   [Taxonomic backbone](https://github.com/CzechVeg/CzechVeg.github.io/blob/main/Data/crosswalk_tables/table_nomenclature.csv) (a table for interpretation of taxon concepts and names)

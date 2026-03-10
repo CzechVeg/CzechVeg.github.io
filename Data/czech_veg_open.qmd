@@ -5,17 +5,18 @@ format: html
 
 CzechVeg-Open is a publicly available, full version of the Czech Vegetation Database, containing all vegetation-plot records included in the database. The taxonomy and nomenclature of plant taxa are not fully harmonized. The data description is available [here](https://czechveg.github.io/Data/data_description.html).
 
-CzechVeg-Open is available in two formats: the Turboveg 2 format, which requires the [Turboveg 2](https://czechveg.github.io/About/turboveg_windows.html) program, and the CSV format (see the [Data processing tutorial](https://czechveg.github.io/DataProcessingTutorial/data_processing_tutorial.html)).
+CzechVeg-Open is available in two formats: the Turboveg 2 format, which requires the [Turboveg 2](https://czechveg.github.io/Data/turboveg.html) program, and the CSV format (see the [Data processing tutorial](https://czechveg.github.io/DataProcessingTutorial/data_processing_tutorial.html)).
 
 **Version 1.0**
 
--   Compiled on: 3 November 2025
+-   Compiled on: 10 March 2026
 -   Size: 117,739 vegetation plots
 -   DOI: <https:/doi.org/10.5281/zenodo.18289905>
 -   Licence: Creative Commons Attribution 4.0 International ([CC-BY](https://creativecommons.org/licenses/by/4.0/))
 -   Download
-    -   Vegetation-plot data in CSV format
+    -   Vegetation-plot species data in CSV format
+    -   Vegetation-plot header data in CSV format
     -   Vegetation-plot data in Turboveg 2 format
     -   [Turboveg species list](https://github.com/czechveg.github.io/About/files/species.zip) (necessary for Turboveg 2)
     -   [Turboveg popup lists](https://czechveg.github.io/About/files/popup.zip) (necessary for Turboveg 2)
-    -   Species nomenclature (useful for interpretation of plant taxon concepts and names)
+    -   [Taxonomic backbone](https://github.com/CzechVeg/CzechVeg.github.io/blob/main/Data/crosswalk_tables/table_nomenclature.csv) (a table for interpretation of taxon concepts and names)

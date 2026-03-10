@@ -22,8 +22,8 @@ Species data include unique identifiers for vegetation plots and corresponding s
 
 **Taxon name in the currently accepted nomenclature (KAPLAN_PLUS_NAME).** For vascular plants, this name corresponds to the [Pladias Database of Czech Flora and Vegetation](https://www.pladias.cz/), which adopts the taxonomy and nomenclature accepted in the second edition of the Key to the Flora of the Czech Republic (Kaplan et al. 2019), with a few additions. For bryophytes and lichens, it follows the DaLiBor database. Where not available, the concept is harmonised with the GBIF taxonomy.
 
--   Kaplan Z., Danihelka J., Chrtek J., Kirschner J., Kubát K., Štech M. & Štěpánek J. (eds) (2019) Klíč ke květeně České republiky \[Key to the Flora of the Czech Republic\]. Ed. 2. Academia, Praha.
--   Man M., Malíček J., Kalčík V., Novotný P., Chobot K. & Wild J. (2022) DaLiBor: Database of Lichens and Bryophytes of the Czech Republic. Preslia 94: 579–605. <https://doi.org/10.23855/preslia.2022.579>
+-   Kaplan Z., Danihelka J., Chrtek J., Kirschner J., Kubát K., Štech M. & Štěpánek J. (eds) (2019) *Klíč ke květeně České republiky \[Key to the Flora of the Czech Republic\]*. Ed. 2. Academia, Praha.
+-   Man M., Malíček J., Kalčík V., Novotný P., Chobot K. & Wild J. (2022) DaLiBor: Database of Lichens and Bryophytes of the Czech Republic. *Preslia* 94: 579–605. <https://doi.org/10.23855/preslia.2022.579>
 
 **Taxon name in the currently accepted nomenclature, analysis-friendly version (KAPLAN_PLUS_NAME_SIMPLE).** The same as KAPLAN_PLUS_NAME but with x instead of hybrid marks and ä, ë written as a, e for easier coding. For example, *Salix x fragilis, Hierochloe australis.*
 
@@ -32,7 +32,7 @@ Species data include unique identifiers for vegetation plots and corresponding s
 **Taxon name used in the CzechVeg-ESy expert system (CZECHVEG_ESY_NAME).** This taxonomy groups some taxonomically challenging taxa into higher units, such as aggregates. It is used in the expert system CzechVeg-ESy (Chytrý et al. 2020) for automatic vegetation classification according to Vegetation of the Czech Republic (Chytrý 2007–2013). Note that subspecies are abbreviated as "ssp." and genus-level taxa are supplemented by "species" as in the original file.
 
 -   Chytrý M. (ed.) (2007–2013) *Vegetace České republiky 1–4. Vegetation of the Czech Republic 1–4*. Academia, Praha.
--   Chytrý M., Tichý L., Boublík K., Černý T., Douda J., Hájek M., Hájková P., Hédl R., Kočí M., Krahulec F., Kučera T., Landucci F., Láníková D., Lososová Z., Navrátilová J., Petřík P., Preislerová Z., Řezníčková M., Roleček J., Sádlo J., Šumberová K., Vítková M. & Zelený D. (2020) CzechVeg-ESy: Expert system for automatic classification of vegetation plots from the Czech Republic. Zenodo. <https://doi.org/10.5281/zenodo.3605561>
+-   Chytrý M., Tichý L., Boublík K., Černý T., Douda J., Hájek M., Hájková P., Hédl R., Kočí M., Krahulec F., Kučera T., Landucci F., Láníková D., Lososová Z., Navrátilová J., Petřík P., Preislerová Z., Řezníčková M., Roleček J., Sádlo J., Šumberová K., Vítková M. & Zelený D. (2020) *CzechVeg-ESy: Expert system for automatic classification of vegetation plots from the Czech Republic*. Zenodo. <https://doi.org/10.5281/zenodo.3605561>
 
 **Taxon name following the Czech Expert system (CZECHVEG_ESY_NAME_SUBSP).** This is the same as above, but uses "subsp." and does not add "species" to taxa determined at the genus level.
 
@@ -183,7 +183,7 @@ In addition to basic variables, the Czech Vegetation Database also contains vari
 
 **Syntaxon old (SYNTAX_OLD).** Vegetation unit (syntaxon) to which the vegetation plot was subjectively assigned by its author or database administrator according to the outdated classification system in the publication:
 
--   Moravec J., Balátová-Tuláčková E., Blažková D., Hadač E., Hejný S., Husák Š., Jeník J., Kolbek J., Krahulec F., Kropáč Z., Neuhäusl R., Rybníček K., Řehořek V. & Vicherek J. (1995): Rostlinná společenstva České republiky a jejich ohrožení. Ed. 2. *Severočeskou přírodou*, Příloha 1995: 1–206.
+-   Moravec J., Balátová-Tuláčková E., Blažková D., Hadač E., Hejný S., Husák Š., Jeník J., Kolbek J., Krahulec F., Kropáč Z., Neuhäusl R., Rybníček K., Řehořek V. & Vicherek J. (1995): Rostlinná společenstva České republiky a jejich ohrožení \[Plant communities of the Czech Republic and their threats\]. Ed. 2. *Severočeskou přírodou*, Příloha 1995: 1–206.
 
 The dataset in Turboveg 2 format (DBF) contains the syntaxon code. The CSV format also includes the full syntaxon name in the field **SYNTAXON_OLD_NAME**. The translation is available in the [crosswalk table](https://github.com/CzechVeg/CzechVeg.github.io/tree/main/Data/crosswalk_tables/table_syntaxonOLD.csv).
 
