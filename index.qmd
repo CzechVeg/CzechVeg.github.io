@@ -38,7 +38,7 @@ This online database contains the full bibliographic references to the sources o
 -   Stratified version of the database: Jan Divíšek and Martin Večeřa
 -   GBIF data preparation: Ilona Knollová, Martin Večeřa, Irena Axmanová, and Salza Palpurina
 -   CzechVeg-DataViewer: Klára Friesová
--   Introductory text: Milan Chytrý 
+-   Introductory text: Milan Chytrý
 -   Data description: Milan Chytrý, Ilona Knollová, Irena Axmanová, and Jan Divíšek
 -   Turboveg instructions: Milan Chytrý and Ilona Knollová
 -   Data processing tutorial: Irena Axmanová, Jan Divíšek, and Martin Večeřa
@@ -47,7 +47,7 @@ This online database contains the full bibliographic references to the sources o
 
 ## 4 Recommended citation
 
-Chytrý, M., Axmanová, I., Divíšek, J., Friesová, K., Palpurina, S., Řezníčková, M., Večeřa, M. & Knollová, I. (2026) Czech Vegetation Database.  https://czechveg.github.io 
+Chytrý, M., Axmanová, I., Divíšek, J., Friesová, K., Palpurina, S., Řezníčková, M., Večeřa, M. & Knollová, I. (2026) Czech Vegetation Database. https://czechveg.github.io
 
 ## 5 Funding
 

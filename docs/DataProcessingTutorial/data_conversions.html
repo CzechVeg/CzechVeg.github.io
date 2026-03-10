@@ -71,7 +71,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-d9589ad4e98504035195c70aa99e1e7d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-0508618caa1d256af916c83e0797e277.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -312,30 +312,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/spe.csv"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>New names:
-Rows: 4583 Columns: 6
+Rows: 2278 Columns: 6
 ── Column specification
 ──────────────────────────────────────────────────────── Delimiter: "," chr
-(1): species dbl (5): ...1, releve_nr, nonvascular, layer, cover_perc
+(2): species, plant_group dbl (4): ...1, releve_nr, layer, cover_perc
 ℹ Use `spec()` to retrieve the full column specification for this data. ℹ
 Specify the column types or set `show_col_types = FALSE` to quiet this message.
 • `` -&gt; `...1`</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(spe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4,583 × 6
-    ...1 releve_nr species                   nonvascular layer cover_perc
-   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;                           &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;
- 1     1    183111 Carex digitata                      0     6        0.5
- 2     2    183111 Carpinus betulus                    0     7        3  
- 3     3    183111 Cytisus nigricans                   0     6        0.1
- 4     4    183111 Festuca ovina                       0     6        3  
- 5     5    183111 Fraxinus excelsior                  0     7        0.1
- 6     6    183111 Galium rotundifolium                0     6        0.1
- 7     7    183111 Hieracium lachenalii                0     6        3  
- 8     8    183111 Hieracium murorum                   0     6        0.5
- 9     9    183111 Hieracium sabaudum s.lat.           0     6        0.1
-10    10    183111 Hypericum perforatum                0     6        0.1
-# ℹ 4,573 more rows</code></pre>
+<pre><code># A tibble: 2,278 × 6
+    ...1 releve_nr species                  plant_group layer cover_perc
+   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;                    &lt;chr&gt;       &lt;dbl&gt;      &lt;dbl&gt;
+ 1     1         1 Acer campestre           vascular        1       20  
+ 2     2         1 Acer campestre           vascular        7        0.5
+ 3     3         1 Acer platanoides         vascular        7        0.1
+ 4     4         1 Anemone                  vascular        6        0.5
+ 5     5         1 Bromus ramosus agg.      vascular        6        0.1
+ 6     6         1 Carex digitata           vascular        6        3  
+ 7     7         1 Carex michelii           vascular        6        0.1
+ 8     8         1 Carex montana            vascular        6        0.5
+ 9     9         1 Carpinus betulus         vascular        7        0.5
+10    10         1 Cephalanthera damasonium vascular        6        0.1
+# ℹ 2,268 more rows</code></pre>
 </div>
 </div>
 <p>We can see that there are plant species names sorted by <em>releve_nr</em>, where each number indicates a vegetation record from one specific site (can be also called vegetation plot or sample). We may need to change the species names to be in the compact format, without any spaces, just underscores. For this we will use <strong>mutate</strong> function with <strong>str_replace</strong> (for string specification) indicating that each space should be changed to underscore and we will directly apply it to the original column.</p>
@@ -343,20 +343,20 @@ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>spe <span class="sc">%&gt;%</span>    </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">species =</span> <span class="fu">str_replace_all</span>(species, <span class="st">" "</span>, <span class="st">"_"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4,583 × 6
-    ...1 releve_nr species                   nonvascular layer cover_perc
-   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;                           &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;
- 1     1    183111 Carex_digitata                      0     6        0.5
- 2     2    183111 Carpinus_betulus                    0     7        3  
- 3     3    183111 Cytisus_nigricans                   0     6        0.1
- 4     4    183111 Festuca_ovina                       0     6        3  
- 5     5    183111 Fraxinus_excelsior                  0     7        0.1
- 6     6    183111 Galium_rotundifolium                0     6        0.1
- 7     7    183111 Hieracium_lachenalii                0     6        3  
- 8     8    183111 Hieracium_murorum                   0     6        0.5
- 9     9    183111 Hieracium_sabaudum_s.lat.           0     6        0.1
-10    10    183111 Hypericum_perforatum                0     6        0.1
-# ℹ 4,573 more rows</code></pre>
+<pre><code># A tibble: 2,278 × 6
+    ...1 releve_nr species                  plant_group layer cover_perc
+   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;                    &lt;chr&gt;       &lt;dbl&gt;      &lt;dbl&gt;
+ 1     1         1 Acer_campestre           vascular        1       20  
+ 2     2         1 Acer_campestre           vascular        7        0.5
+ 3     3         1 Acer_platanoides         vascular        7        0.1
+ 4     4         1 Anemone                  vascular        6        0.5
+ 5     5         1 Bromus_ramosus_agg.      vascular        6        0.1
+ 6     6         1 Carex_digitata           vascular        6        3  
+ 7     7         1 Carex_michelii           vascular        6        0.1
+ 8     8         1 Carex_montana            vascular        6        0.5
+ 9     9         1 Carpinus_betulus         vascular        7        0.5
+10    10         1 Cephalanthera_damasonium vascular        6        0.1
+# ℹ 2,268 more rows</code></pre>
 </div>
 </div>
 <p>We have the condensed name with underscores, but there are still more variables in the table. We can either remove them or merge them to be included in the final wide format. Here we will go a bit against tidy rules and add the information about the vegetation layer directly to the variable Species using <strong>unite</strong> function from the package <code>tidyr</code> which merges strings from two or more columns into a new one: <strong>A+B =A_B</strong>. Default separator is again underscore, unless you specify it differently by <em>sep=XX</em> argument.</p>
@@ -369,20 +369,20 @@ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">species =</span> <span class="fu">str_replace_all</span>(species, <span class="st">" "</span>, <span class="st">"_"</span>))<span class="sc">%&gt;%</span>   </span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unite</span>(<span class="st">"species_layer"</span>, species,layer, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">remove =</span> <span class="cn">FALSE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4,583 × 7
-    ...1 releve_nr species_layer            species nonvascular layer cover_perc
-   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;                    &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;
- 1     1    183111 Carex_digitata_6         Carex_…           0     6        0.5
- 2     2    183111 Carpinus_betulus_7       Carpin…           0     7        3  
- 3     3    183111 Cytisus_nigricans_6      Cytisu…           0     6        0.1
- 4     4    183111 Festuca_ovina_6          Festuc…           0     6        3  
- 5     5    183111 Fraxinus_excelsior_7     Fraxin…           0     7        0.1
- 6     6    183111 Galium_rotundifolium_6   Galium…           0     6        0.1
- 7     7    183111 Hieracium_lachenalii_6   Hierac…           0     6        3  
- 8     8    183111 Hieracium_murorum_6      Hierac…           0     6        0.5
- 9     9    183111 Hieracium_sabaudum_s.la… Hierac…           0     6        0.1
-10    10    183111 Hypericum_perforatum_6   Hyperi…           0     6        0.1
-# ℹ 4,573 more rows</code></pre>
+<pre><code># A tibble: 2,278 × 7
+    ...1 releve_nr species_layer            species plant_group layer cover_perc
+   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;                    &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;      &lt;dbl&gt;
+ 1     1         1 Acer_campestre_1         Acer_c… vascular        1       20  
+ 2     2         1 Acer_campestre_7         Acer_c… vascular        7        0.5
+ 3     3         1 Acer_platanoides_7       Acer_p… vascular        7        0.1
+ 4     4         1 Anemone_6                Anemone vascular        6        0.5
+ 5     5         1 Bromus_ramosus_agg._6    Bromus… vascular        6        0.1
+ 6     6         1 Carex_digitata_6         Carex_… vascular        6        3  
+ 7     7         1 Carex_michelii_6         Carex_… vascular        6        0.1
+ 8     8         1 Carex_montana_6          Carex_… vascular        6        0.5
+ 9     9         1 Carpinus_betulus_7       Carpin… vascular        7        0.5
+10    10         1 Cephalanthera_damasoniu… Cephal… vascular        6        0.1
+# ℹ 2,268 more rows</code></pre>
 </div>
 </div>
 <p>At this point we have everything we need to use it as input for the wide format table: releve_nr. species_layer and values of the abundance saved as cover_perc. One more step is to select only these or to deselect (-) those not needed.</p>
@@ -392,20 +392,20 @@ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unite</span>(<span class="st">"species_layer"</span>, species,layer, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">remove =</span> <span class="cn">FALSE</span>)<span class="sc">%&gt;%</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(releve_nr, species_layer, cover_perc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4,583 × 3
-   releve_nr species_layer               cover_perc
-       &lt;dbl&gt; &lt;chr&gt;                            &lt;dbl&gt;
- 1    183111 Carex_digitata_6                   0.5
- 2    183111 Carpinus_betulus_7                 3  
- 3    183111 Cytisus_nigricans_6                0.1
- 4    183111 Festuca_ovina_6                    3  
- 5    183111 Fraxinus_excelsior_7               0.1
- 6    183111 Galium_rotundifolium_6             0.1
- 7    183111 Hieracium_lachenalii_6             3  
- 8    183111 Hieracium_murorum_6                0.5
- 9    183111 Hieracium_sabaudum_s.lat._6        0.1
-10    183111 Hypericum_perforatum_6             0.1
-# ℹ 4,573 more rows</code></pre>
+<pre><code># A tibble: 2,278 × 3
+   releve_nr species_layer              cover_perc
+       &lt;dbl&gt; &lt;chr&gt;                           &lt;dbl&gt;
+ 1         1 Acer_campestre_1                 20  
+ 2         1 Acer_campestre_7                  0.5
+ 3         1 Acer_platanoides_7                0.1
+ 4         1 Anemone_6                         0.5
+ 5         1 Bromus_ramosus_agg._6             0.1
+ 6         1 Carex_digitata_6                  3  
+ 7         1 Carex_michelii_6                  0.1
+ 8         1 Carex_montana_6                   0.5
+ 9         1 Carpinus_betulus_7                0.5
+10         1 Cephalanthera_damasonium_6        0.1
+# ℹ 2,268 more rows</code></pre>
 </div>
 </div>
 <p>Now we can finaly use the <strong>pivot wider</strong> function to transform the data. We have to specify from where we are taking the names of new variables (<strong>names_from</strong>) and from where we should take the values which should appear in the table (<strong>values_from</strong>). Since we changed the format, all species, even those not occurring in that particular site/plot have to get some values. Therefore, one more step is to fill the empty cells by zeros using <strong>values_fill</strong>. In this case we can do that, because we know that if the species was absent its abundance was exactly 0.</p>
@@ -420,20 +420,20 @@ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(spe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4,583 × 6
-    ...1 releve_nr species                   nonvascular layer cover_perc
-   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;                           &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;
- 1     1    183111 Carex digitata                      0     6        0.5
- 2     2    183111 Carpinus betulus                    0     7        3  
- 3     3    183111 Cytisus nigricans                   0     6        0.1
- 4     4    183111 Festuca ovina                       0     6        3  
- 5     5    183111 Fraxinus excelsior                  0     7        0.1
- 6     6    183111 Galium rotundifolium                0     6        0.1
- 7     7    183111 Hieracium lachenalii                0     6        3  
- 8     8    183111 Hieracium murorum                   0     6        0.5
- 9     9    183111 Hieracium sabaudum s.lat.           0     6        0.1
-10    10    183111 Hypericum perforatum                0     6        0.1
-# ℹ 4,573 more rows</code></pre>
+<pre><code># A tibble: 2,278 × 6
+    ...1 releve_nr species                  plant_group layer cover_perc
+   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;                    &lt;chr&gt;       &lt;dbl&gt;      &lt;dbl&gt;
+ 1     1         1 Acer campestre           vascular        1       20  
+ 2     2         1 Acer campestre           vascular        7        0.5
+ 3     3         1 Acer platanoides         vascular        7        0.1
+ 4     4         1 Anemone                  vascular        6        0.5
+ 5     5         1 Bromus ramosus agg.      vascular        6        0.1
+ 6     6         1 Carex digitata           vascular        6        3  
+ 7     7         1 Carex michelii           vascular        6        0.1
+ 8     8         1 Carex montana            vascular        6        0.5
+ 9     9         1 Carpinus betulus         vascular        7        0.5
+10    10         1 Cephalanthera damasonium vascular        6        0.1
+# ℹ 2,268 more rows</code></pre>
 </div>
 </div>
 </section>

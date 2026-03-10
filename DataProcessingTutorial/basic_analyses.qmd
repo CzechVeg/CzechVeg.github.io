@@ -21,7 +21,7 @@ We will play a bit with measured variables from our plots and try few useful fun
 First I want to add some more variables that were measured separately. In addition this file is already filtered to a subset I want to use.
 
 ```{r}
-env_extra<- read_csv("data/axmanova_forest_env_extra.csv")%>%      
+env_extra<- read_csv("data/env_measured.csv")%>%      
   clean_names()
 ```
 
@@ -54,11 +54,11 @@ list.files("data")
 I will import plant height data, Ellenberg-type indicator values and status (origin and Red List categories). All these data are available in the [PLADIAS](https://pladias.cz/) database of the Czech flora and vegetation. I used the datasets from the download section and adjusted the format for easier data handling.
 
 ```{r}
-plant_height<- read_csv("data/plant_height.csv")
+traits <- read_csv("data/traits.csv")
 ```
 
 ```{r}
-indicator_values <- read_csv("data/indicator_values.csv")
+indicator_values <- read_csv("data/ellenberg_type_indicators_cz.csv")
 ```
 
 ```{r}
@@ -133,8 +133,8 @@ Combine and summarise different variables / explanation will be added
 ```{r}
 spe %>% 
   filter(layer == "6") %>%
-  left_join(plant_height %>% 
-              select(species, height = height_mean)) %>%
+  left_join(traits %>% 
+              select(species, height)) %>%
   left_join(env) %>%
   arrange(forest) %>%
   summarise(across(c(height,cov_herbs, biomass, cov_trees,soil_ph ),
@@ -237,10 +237,10 @@ Summarise is often used for getting so-called **community means** or community
 
 ```{r}
 spe %>%
-  left_join(plant_height) %>%
+  left_join(traits) %>%
   filter(layer==6)%>%
-  summarise(meanHeight= mean(height_mean, na.rm=T),
-            meanHeight_weighted = weighted.mean(height_mean, cover_perc, na.rm = TRUE),
+  summarise(meanHeight= mean(height, na.rm=T),
+            meanHeight_weighted = weighted.mean(height, cover_perc, na.rm = TRUE),
             .by=releve_nr)
 ```
 
@@ -249,6 +249,7 @@ spe %>%
 In the same way we can calculate community means across more variables. Here we will try the **Ellenberg indicator values** (abbreviated as EIV, measures of species demands for the particular factors, the higher value mean higher demands or affinity to habitats with higher values of these environmental factors). We will apply them just for presences of species, so no weights. Therefore we do not need to care that much for the differences among layers. However, we will keep each species only once (list of unique species for each plot), so we will remove information about layers first and use distinct. Alternative is to add #filter(Layer==6)%\>% if we want to focus on herb-layer only
 
 ```{r}
+#| eval: false
 spe %>%
   left_join(indicator_values) %>%
   select(-c(layer,cover_perc))%>%
@@ -260,6 +261,7 @@ spe %>%
 **Boxplots of Ellenberg-type indicator values** can be produced for example like this:
 
 ```{r}
+#| eval: false
 spe %>% 
   left_join(indicator_values) %>%
   select(-c(layer, cover_perc)) %>%
