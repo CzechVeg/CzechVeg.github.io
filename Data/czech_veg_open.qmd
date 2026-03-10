@@ -16,6 +16,6 @@ CzechVeg-Open is available in two formats: the Turboveg 2 format, which requires
 -   Download
     -   Vegetation-plot data in CSV format
     -   Vegetation-plot data in Turboveg 2 format
-    -   [Turboveg species list](https://czechveg.github.io/About/files/species.zip) (necessary for Turboveg 2)
+    -   [Turboveg species list](https://github.com/czechveg.github.io/About/files/species.zip) (necessary for Turboveg 2)
     -   [Turboveg popup lists](https://czechveg.github.io/About/files/popup.zip) (necessary for Turboveg 2)
     -   Species nomenclature (useful for interpretation of plant taxon concepts and names)
