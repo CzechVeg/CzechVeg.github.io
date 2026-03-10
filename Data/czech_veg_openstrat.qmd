@@ -7,7 +7,8 @@ CzechVeg-OpenStrat is a publicly available, geographically and environmentally s
 
 **Version 1.0**
 
--   Source database: CzechVeg-Open version 1.0, 10 March 2026
+-   Compiled on: 10 March 2026
+-   Source database: CzechVeg-Open version 1.0
 -   Size: 61,282 vegetation plots
 -   DOI: <https:/doi.org/10.5281/zenodo.18289905>
 -   Licence: Creative Commons Attribution 4.0 International ([CC-BY](https://creativecommons.org/licenses/by/4.0/))
