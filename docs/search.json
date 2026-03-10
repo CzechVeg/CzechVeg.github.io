@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Czech Vegetation Database",
     "section": "",
-    "text": "The Czech Vegetation Database (formerly the Czech National Phytosociological Database) is an open digital archive of vegetation-plot records from the territory of the Czech Republic. It includes phytosociological relevés, i.e., records of plant species composition and cover-abundances in delimited plots within relatively homogeneous vegetation patches, as well as similar vegetation-plot data from vegetation surveys, monitoring programs, and ecological studies.\nThe database is registered in the Global Index of Vegetation-Plot Databases (GIVD, Dengler et al. 2011) with the code EU-CZ-001. It contributes data to:\n\nEuropean Vegetation Archive (EVA) (Chytrý et al. 2016), a centralized database of European vegetation plots\nReSurveyEurope (Knollová et al. 2024), a database of resurveyed and permanent vegetation plots from Europe\nsPlot (Bruelheide et al. 2019), a global database of vegetation plots\nGBIF, a global database of species occurrence records\nPladias (Chytrý et al. 2021), a database of Czech flora and vegetation\n\nThe database is coordinated at the Vegetation Science Group, Department of Botany and Zoology, Faculty of Science, Masaryk University, Brno, Czech Republic. The current database administrator is Ilona Knollová (ikuzel@sci.muni.cz).\nIn November 2025, the database contained 117,740 vegetation plots from the Czech Republic, sampled between 1922 and 2025. These plots represent all vegetation types found in the country, with grassland and forest plots being the most numerous, followed by plots from wetlands, ruderal, and weed vegetation.",
+    "text": "The Czech Vegetation Database (formerly the Czech National Phytosociological Database) is an open digital archive of vegetation-plot records from the territory of the Czech Republic. It includes phytosociological relevés, i.e., records of plant species composition and cover-abundances in delimited plots within relatively homogeneous vegetation patches, as well as similar vegetation-plot data from vegetation surveys, monitoring programs, and ecological studies.\nThe database is registered in the Global Index of Vegetation-Plot Databases (GIVD, Dengler et al. 2011) with the code EU-CZ-001. It contributes data to:\n\nEuropean Vegetation Archive (EVA) (Chytrý et al. 2016), a centralized database of European vegetation plots\nReSurveyEurope (Knollová et al. 2024), a database of resurveyed and permanent vegetation plots from Europe\nsPlot (Bruelheide et al. 2019), a global database of vegetation plots\nGBIF, a global database of species occurrence records\nPladias (Chytrý et al. 2021), a database of Czech flora and vegetation\n\nThe database is coordinated at the Vegetation Science Group, Department of Botany and Zoology, Faculty of Science, Masaryk University, Brno, Czech Republic. The current database administrator is Ilona Knollová (ikuzel@sci.muni.cz).\nIn November 2025, the database contained 117,739 vegetation plots from the Czech Republic, sampled between 1922 and 2025. These plots represent all vegetation types found in the country, with grassland and forest plots being the most numerous, followed by plots from wetlands, ruderal, and weed vegetation.",
     "crumbs": [
       "About"
     ]
@@ -14,7 +14,7 @@
     "href": "index.html#introduction",
     "title": "Czech Vegetation Database",
     "section": "",
-    "text": "The Czech Vegetation Database (formerly the Czech National Phytosociological Database) is an open digital archive of vegetation-plot records from the territory of the Czech Republic. It includes phytosociological relevés, i.e., records of plant species composition and cover-abundances in delimited plots within relatively homogeneous vegetation patches, as well as similar vegetation-plot data from vegetation surveys, monitoring programs, and ecological studies.\nThe database is registered in the Global Index of Vegetation-Plot Databases (GIVD, Dengler et al. 2011) with the code EU-CZ-001. It contributes data to:\n\nEuropean Vegetation Archive (EVA) (Chytrý et al. 2016), a centralized database of European vegetation plots\nReSurveyEurope (Knollová et al. 2024), a database of resurveyed and permanent vegetation plots from Europe\nsPlot (Bruelheide et al. 2019), a global database of vegetation plots\nGBIF, a global database of species occurrence records\nPladias (Chytrý et al. 2021), a database of Czech flora and vegetation\n\nThe database is coordinated at the Vegetation Science Group, Department of Botany and Zoology, Faculty of Science, Masaryk University, Brno, Czech Republic. The current database administrator is Ilona Knollová (ikuzel@sci.muni.cz).\nIn November 2025, the database contained 117,740 vegetation plots from the Czech Republic, sampled between 1922 and 2025. These plots represent all vegetation types found in the country, with grassland and forest plots being the most numerous, followed by plots from wetlands, ruderal, and weed vegetation.",
+    "text": "The Czech Vegetation Database (formerly the Czech National Phytosociological Database) is an open digital archive of vegetation-plot records from the territory of the Czech Republic. It includes phytosociological relevés, i.e., records of plant species composition and cover-abundances in delimited plots within relatively homogeneous vegetation patches, as well as similar vegetation-plot data from vegetation surveys, monitoring programs, and ecological studies.\nThe database is registered in the Global Index of Vegetation-Plot Databases (GIVD, Dengler et al. 2011) with the code EU-CZ-001. It contributes data to:\n\nEuropean Vegetation Archive (EVA) (Chytrý et al. 2016), a centralized database of European vegetation plots\nReSurveyEurope (Knollová et al. 2024), a database of resurveyed and permanent vegetation plots from Europe\nsPlot (Bruelheide et al. 2019), a global database of vegetation plots\nGBIF, a global database of species occurrence records\nPladias (Chytrý et al. 2021), a database of Czech flora and vegetation\n\nThe database is coordinated at the Vegetation Science Group, Department of Botany and Zoology, Faculty of Science, Masaryk University, Brno, Czech Republic. The current database administrator is Ilona Knollová (ikuzel@sci.muni.cz).\nIn November 2025, the database contained 117,739 vegetation plots from the Czech Republic, sampled between 1922 and 2025. These plots represent all vegetation types found in the country, with grassland and forest plots being the most numerous, followed by plots from wetlands, ruderal, and weed vegetation.",
     "crumbs": [
       "About"
     ]
@@ -34,7 +34,17 @@
     "href": "index.html#website-authors",
     "title": "Czech Vegetation Database",
     "section": "3 Website authors",
-    "text": "3 Website authors\n\nData preparation: Ilona Knollová, with contributions from Irena Axmanová, Marcela Řezníčková, Martin Večeřa, and Milan Chytrý\nStratified version of the database: Jan Divíšek and Martin Večeřa\nGBIF data: Ilona Knollová, Salza Palpurina, Martin Večeřa\nOnline map viewer: Klára Friesová\nIntroductory text and data description: Milan Chytrý, with contributions from Ilona Knollová and Jan Divíšek\nData processing tutorial: Irena Axmanová, Jan Divíšek, and Martin Večeřa\nWeb design: Irena Axmanová and Klára Friesová\nProject coordination: Milan Chytrý",
+    "text": "3 Website authors\n\nData preparation: Ilona Knollová, with contributions from Irena Axmanová, Marcela Řezníčková, Martin Večeřa, and Milan Chytrý\nStratified version of the database: Jan Divíšek and Martin Večeřa\nGBIF data preparation: Ilona Knollová, Martin Večeřa, Irena Axmanová, and Salza Palpurina\nCzechVeg-DataViewer: Klára Friesová\nIntroductory text: Milan Chytrý\nData description: Milan Chytrý, Ilona Knollová, Irena Axmanová, and Jan Divíšek\nTurboveg instructions: Milan Chytrý and Ilona Knollová\nData processing tutorial: Irena Axmanová, Jan Divíšek, and Martin Večeřa\nWeb design: Irena Axmanová and Klára Friesová\nProject coordination: Milan Chytrý",
+    "crumbs": [
+      "About"
+    ]
+  },
+  {
+    "objectID": "index.html#recommended-citation",
+    "href": "index.html#recommended-citation",
+    "title": "Czech Vegetation Database",
+    "section": "4 Recommended citation",
+    "text": "4 Recommended citation\nChytrý, M., Axmanová, I., Divíšek, J., Friesová, K., Palpurina, S., Řezníčková, M., Večeřa, M. & Knollová, I. (2026) Czech Vegetation Database. https://czechveg.github.io",
     "crumbs": [
       "About"
     ]
@@ -43,8 +53,8 @@
     "objectID": "index.html#funding",
     "href": "index.html#funding",
     "title": "Czech Vegetation Database",
-    "section": "4 Funding",
-    "text": "4 Funding\nThis website was launched in January 2026. Its development was supported through the Open Science Clusters’ Action for Research and Society (OSCARS) Horizon Europe project under grant agreement No. 101129751, subproject “EVA-FAIR - Implementing FAIR principles in the European Vegetation Archive data”.",
+    "section": "5 Funding",
+    "text": "5 Funding\nThis website was launched in January 2026. Its development was supported through the Open Science Clusters’ Action for Research and Society (OSCARS) Horizon Europe project under grant agreement No. 101129751, subproject “EVA-FAIR - Implementing FAIR principles in the European Vegetation Archive data”.",
     "crumbs": [
       "About"
     ]
@@ -219,7 +229,7 @@
     "href": "Data/czech_veg_openstrat.html",
     "title": "CzechVeg-OpenStrat",
     "section": "",
-    "text": "CzechVeg-OpenStrat is a publicly available, geographically and environmentally stratified subset of the Czech Vegetation Database, with harmonized taxonomy and nomenclature of plant taxa. The stratification process and choices are described here, resampling procedure here CzechVeg-OpenStrat is only available in the CSV format (see the Data processing tutorial).\nVersion 1.0\n\nSource database: CzechVeg-Open version 1.0, 3 November 2025\nSize: XXXX vegetation plots\nDOI: https:/doi.org/10.5281/zenodo.18289905\nLicence: Creative Commons Attribution 4.0 International (CC-BY)\nDownload\n\nVegetation-plot data in CSV format\nSpecies nomenclature (useful for interpretation of plant taxon concepts and names)",
+    "text": "CzechVeg-OpenStrat is a publicly available, geographically and environmentally stratified subset of the Czech Vegetation Database, with harmonized taxonomy and nomenclature of plant taxa. The stratification process and choices are described here, resampling procedure here CzechVeg-OpenStrat is only available in the CSV format (see the Data processing tutorial).\nVersion 1.0\n\nSource database: CzechVeg-Open version 1.0, 3 November 2025\nSize: 61,282 vegetation plots\nDOI: https:/doi.org/10.5281/zenodo.18289905\nLicence: Creative Commons Attribution 4.0 International (CC-BY)\nDownload\n\nVegetation-plot data in CSV format\nSpecies nomenclature (useful for interpretation of plant taxon concepts and names)",
     "crumbs": [
       "Data",
       "CzechVeg-OpenStrat"
@@ -252,7 +262,7 @@
     "href": "Data/czech_veg_open.html",
     "title": "CzechVeg-Open",
     "section": "",
-    "text": "CzechVeg-Open is a publicly available, full version of the Czech Vegetation Database, containing all vegetation-plot records included in the database. The taxonomy and nomenclature of plant taxa are not fully harmonized. The data description is available here.\nCzechVeg-Open is available in two formats: the Turboveg 2 format, which requires the Turboveg 2 program, and the CSV format (see the Data processing tutorial).\nVersion 1.0\n\nCompiled on: 3 November 2025\nSize: 117,740 vegetation plots\nDOI: https:/doi.org/10.5281/zenodo.18289905\nLicence: Creative Commons Attribution 4.0 International (CC-BY)\nDownload\n\nVegetation-plot data in Turboveg 2 format\nVegetation-plot data in CSV format\nSpecies nomenclature (useful for interpretation of plant taxon concepts and names)\nTurboveg species list (necessary for Turboveg 2)\nTurboveg popup lists (necessary for Turboveg 2)",
+    "text": "CzechVeg-Open is a publicly available, full version of the Czech Vegetation Database, containing all vegetation-plot records included in the database. The taxonomy and nomenclature of plant taxa are not fully harmonized. The data description is available here.\nCzechVeg-Open is available in two formats: the Turboveg 2 format, which requires the Turboveg 2 program, and the CSV format (see the Data processing tutorial).\nVersion 1.0\n\nCompiled on: 3 November 2025\nSize: 117,739 vegetation plots\nDOI: https:/doi.org/10.5281/zenodo.18289905\nLicence: Creative Commons Attribution 4.0 International (CC-BY)\nDownload\n\nVegetation-plot data in CSV format\nVegetation-plot data in Turboveg 2 format\nTurboveg species list (necessary for Turboveg 2)\nTurboveg popup lists (necessary for Turboveg 2)\nSpecies nomenclature (useful for interpretation of plant taxon concepts and names)",
     "crumbs": [
       "Data",
       "CzechVeg-Open"
@@ -271,9 +281,9 @@
   {
     "objectID": "Data/data_viewer.html",
     "href": "Data/data_viewer.html",
-    "title": "Data viewer",
+    "title": "CzechVeg-DataViewer",
     "section": "",
-    "text": "https://vegscibrno.shinyapps.io/czechveg\nThis interactive viewer of the Czech Vegetation Database provides maps and summary characteristics of vegetation plots for the whole database and its subsets defined by plot size and location uncertainty, years of sampling, altitude, covers of vegetation layers, and occurrence of specific species or species groups.",
+    "text": "https://vegscibrno.shinyapps.io/czechveg\nThis interactive data viewer provides maps and summary characteristics of vegetation plots for the entire Czech Vegetation Database and its subsets defined by plot size and location uncertainty, years of sampling, altitude, covers of vegetation layers, and occurrence of specific species or species groups.",
     "crumbs": [
       "Data",
       "CzechVeg-DataViewer"

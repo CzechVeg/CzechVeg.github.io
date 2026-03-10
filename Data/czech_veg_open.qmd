@@ -10,12 +10,12 @@ CzechVeg-Open is available in two formats: the Turboveg 2 format, which requires
 **Version 1.0**
 
 -   Compiled on: 3 November 2025
--   Size: 117,740 vegetation plots
+-   Size: 117,739 vegetation plots
 -   DOI: https:/doi.org/10.5281/zenodo.18289905
 -   Licence: Creative Commons Attribution 4.0 International (CC-BY)
 -   Download
-    -   Vegetation-plot data in Turboveg 2 format
     -   Vegetation-plot data in CSV format
-    -   Species nomenclature (useful for interpretation of plant taxon concepts and names)
+    -   Vegetation-plot data in Turboveg 2 format
     -   [Turboveg species list](https://czechvegetationdatabase.github.io/About/files/species.zip) (necessary for Turboveg 2)
     -   [Turboveg popup lists](https://czechvegetationdatabase.github.io/About/files/popup.zip) (necessary for Turboveg 2)
+    -   Species nomenclature (useful for interpretation of plant taxon concepts and names)

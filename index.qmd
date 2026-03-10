@@ -11,12 +11,12 @@ The database is registered in the *Global Index of Vegetation-Plot Databases* ([
 -   [European Vegetation Archive (EVA)](https://euroveg.org/eva-database/) ([Chytrý et al. 2016](https://doi.org/10.1111/avsc.12191)), a centralized database of European vegetation plots
 -   [ReSurveyEurope](https://euroveg.org/resurvey/) ([Knollová et al. 2024](https://doi.org/10.1111/jvs.13235)), a database of resurveyed and permanent vegetation plots from Europe
 -   [sPlot](https://www.idiv.de/en/splot.html) ([Bruelheide et al. 2019](https://doi.org/10.1111/jvs.12710)), a global database of vegetation plots
--   [GBIF](https://www.gbif.org/), a global database of species occurrence records
+-   [GBIF](https://www.gbif.org/dataset/5b514765-9a1b-4910-a497-3473572ef053), a global database of species occurrence records
 -   [Pladias](https://www.pladias.cz/en/) ([Chytrý et al. 2021](https://www.preslia.cz/article/view?id=9)), a database of Czech flora and vegetation
 
 The database is coordinated at the [Vegetation Science Group](https://botzool.cz/vegsci/), [Department of Botany and Zoology](https://botzool.sci.muni.cz/en), Faculty of Science, Masaryk University, Brno, Czech Republic. The current database administrator is Ilona Knollová ([ikuzel\@sci.muni.cz](mailto:ikuzel@sci.muni.cz)).
 
-In November 2025, the database contained 117,740 vegetation plots from the Czech Republic, sampled between 1922 and 2025. These plots represent all vegetation types found in the country, with grassland and forest plots being the most numerous, followed by plots from wetlands, ruderal, and weed vegetation.
+In November 2025, the database contained 117,739 vegetation plots from the Czech Republic, sampled between 1922 and 2025. These plots represent all vegetation types found in the country, with grassland and forest plots being the most numerous, followed by plots from wetlands, ruderal, and weed vegetation.
 
 ## 2 Related resources
 
@@ -36,14 +36,20 @@ This online database contains the full bibliographic references to the sources o
 
 -   Data preparation: Ilona Knollová, with contributions from Irena Axmanová, Marcela Řezníčková, Martin Večeřa, and Milan Chytrý
 -   Stratified version of the database: Jan Divíšek and Martin Večeřa
--   GBIF data: Ilona Knollová, Salza Palpurina, Martin Večeřa
--   Online map viewer: Klára Friesová
--   Introductory text and data description: Milan Chytrý, with contributions from Ilona Knollová and Jan Divíšek
+-   GBIF data preparation: Ilona Knollová, Martin Večeřa, Irena Axmanová, and Salza Palpurina
+-   CzechVeg-DataViewer: Klára Friesová
+-   Introductory text: Milan Chytrý 
+-   Data description: Milan Chytrý, Ilona Knollová, Irena Axmanová, and Jan Divíšek
+-   Turboveg instructions: Milan Chytrý and Ilona Knollová
 -   Data processing tutorial: Irena Axmanová, Jan Divíšek, and Martin Večeřa
 -   Web design: Irena Axmanová and Klára Friesová
 -   Project coordination: Milan Chytrý
 
-## 4 Funding
+## 4 Recommended citation
+
+Chytrý, M., Axmanová, I., Divíšek, J., Friesová, K., Palpurina, S., Řezníčková, M., Večeřa, M. & Knollová, I. (2026) Czech Vegetation Database.  https://czechveg.github.io 
+
+## 5 Funding
 
 This website was launched in January 2026. Its development was supported through the Open Science Clusters' Action for Research and Society ([OSCARS](https://oscars-project.eu/)) Horizon Europe project under grant agreement No. 101129751, subproject "[EVA-FAIR](https://oscars-project.eu/projects/eva-fair-implementing-fair-principles-european-vegetation-archive-data) - Implementing FAIR principles in the European Vegetation Archive data".
 
