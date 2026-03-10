@@ -229,7 +229,7 @@
     "href": "Data/czech_veg_openstrat.html",
     "title": "CzechVeg-OpenStrat",
     "section": "",
-    "text": "CzechVeg-OpenStrat is a publicly available, geographically and environmentally stratified subset of the Czech Vegetation Database, with harmonized taxonomy and nomenclature of plant taxa. The stratification process and choices are described here, resampling procedure here CzechVeg-OpenStrat is only available in the CSV format (see the Data processing tutorial).\nVersion 1.0\n\nSource database: CzechVeg-Open version 1.0, 3 November 2025\nSize: 61,282 vegetation plots\nDOI: https:/doi.org/10.5281/zenodo.18289905\nLicence: Creative Commons Attribution 4.0 International (CC-BY)\nDownload\n\nVegetation-plot data in CSV format\nSpecies nomenclature (useful for interpretation of plant taxon concepts and names)",
+    "text": "CzechVeg-OpenStrat is a publicly available, geographically and environmentally stratified subset of the Czech Vegetation Database, with harmonized taxonomy and nomenclature of plant taxa. The stratification process and choices are described here, resampling procedure here. CzechVeg-OpenStrat is only available in the CSV format (see the Data processing tutorial).\nVersion 1.0\n\nSource database: CzechVeg-Open version 1.0, 3 November 2025\nSize: 61,282 vegetation plots\nDOI: https:/doi.org/10.5281/zenodo.18289905\nLicence: Creative Commons Attribution 4.0 International (CC-BY)\nDownload\n\nVegetation-plot data in CSV format\nSpecies nomenclature (useful for interpretation of plant taxon concepts and names)",
     "crumbs": [
       "Data",
       "CzechVeg-OpenStrat"
