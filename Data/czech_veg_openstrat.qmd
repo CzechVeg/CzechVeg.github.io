@@ -3,7 +3,7 @@ title: "CzechVeg-OpenStrat"
 format: html
 ---
 
-CzechVeg-OpenStrat is a publicly available, geographically and environmentally stratified subset of the Czech Vegetation Database, with harmonized taxonomy and nomenclature of plant taxa. The stratification process and choices are described [here](https://czechveg.github.io/DataProcessingTutorial/data_stratification.html), resampling procedure [here](https://czechveg.github.io/DataProcessingTutorial/data_resampling.html). CzechVeg-OpenStrat is only available in the CSV format (see the [Data processing tutorial](https://czechveg.github.io/DataProcessingTutorial/data_processing_tutorial.html)).
+CzechVeg-OpenStrat is a publicly available, geographically and environmentally stratified subset of the Czech Vegetation Database, with harmonized taxonomy and nomenclature of plant taxa. It is more balanced and less biased than the entire database, and is therefore suitable for data analyses on the national and regional scales. The stratification process and choices are described [here](https://czechveg.github.io/DataProcessingTutorial/data_stratification.html), and the resampling procedure is described [here](https://czechveg.github.io/DataProcessingTutorial/data_resampling.html). CzechVeg-OpenStrat is available only in CSV format (see the [Data processing tutorial](https://czechveg.github.io/DataProcessingTutorial/data_processing_tutorial.html)).
 
 **Version 1.0**
 
@@ -12,6 +12,6 @@ CzechVeg-OpenStrat is a publicly available, geographically and environmentally s
 -   DOI: <https:/doi.org/10.5281/zenodo.18289905>
 -   Licence: Creative Commons Attribution 4.0 International ([CC-BY](https://creativecommons.org/licenses/by/4.0/))
 -   Download
-    -   Vegetation-plot species data in CSV format
-    -   Vegetation-plot header data in CSV format
+    -   [Vegetation-plot species data in CSV format](https://zenodo.org/records/18289905/files/CzechVeg-OpenStrat_species_v1-0_2026-03-10.csv?download=1)
+    -   [Vegetation-plot header data in CSV format](https://zenodo.org/records/18289905/files/CzechVeg-OpenStrat_headers_v1-0_2026-03-10.csv?download=1)
     -   [Taxonomic backbone](https://github.com/CzechVeg/CzechVeg.github.io/blob/main/Data/crosswalk_tables/table_nomenclature.csv) (a table for interpretation of taxon concepts and names)
