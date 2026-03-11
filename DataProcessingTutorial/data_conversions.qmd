@@ -80,4 +80,40 @@ spe %>%
 tibble(spe)
 ```
 
-## 3.2 Juice input files
+## 3.2 JUICE input files
+
+JUICE can handle the species files in long format as well and it is called *database data import*. We can make a selection of the important fields (releve nr, species, layer and cover) and save the file as csv. However, JUICE is primarily working with integers. Therefore, the first step is to check the cover values we have in our dataset.
+
+```{r}
+spe %>% count(cover_perc)
+```
+
+Here we are using values of the new Braun-Blaunquet scale transformed to percentages with decimals. We can either use some crosswalk table (see the [table_cover](https://github.com/CzechVeg/CzechVeg.github.io/blob/main/Data/crosswalk_tables/table_cover.csv) and column COVER_PERC_EVA) or change the values directly in the script as below and save the output as a csv file. I recommend using the file with original covers and not the one after merging in R. The same approach as we did here for merging covers (see function in the last section of the [Turboveg to R](https://czechveg.github.io/DataProcessingTutorial/turboveg_r.html#merging-of-species-covers-across-layers)) can be done in JUICE later on and it saves you from rounding complicated values before export.
+
+```{r}
+spe %>% 
+  select(releve_nr, species, layer, cover_perc) %>% 
+  arrange(releve_nr) %>%
+  mutate (cover_perc= case_when(cover_perc==0.1  ~ 1,
+                                cover_perc==0.5  ~ 2,
+                                cover_perc==3    ~ 3,
+                                cover_perc==4    ~ 4,
+                                cover_perc==10   ~ 8,
+                                cover_perc==20   ~ 18,
+                                cover_perc==37.5 ~ 38,
+                                cover_perc==62.5 ~ 63,
+                                cover_perc==87.5 ~ 88,
+                                TRUE ~ cover_perc)) %>% 
+  write_excel_csv("data/spe_juice_input.csv")
+ 
+```
+
+We will use the import through Database records. Note that sometimes it might be helpful to open the csv file in Excel and save it as csv UTF-8 again. The format seems to be the same but it respects your local settings of the environment.
+
+![](images/clipboard-2620833722.png)
+
+Select the file and check if you have defined the positions of individual columns (1,2...) as it is in your file.
+
+![](images/clipboard-2210966045.png)
+
+For headers we can use any selection of the header data, and import it as a second step.

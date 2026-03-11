@@ -103,7 +103,7 @@ And save it for easier access. Always keep releve_nr and coverscale, as you will
 
 ```{r}
 #| eval: false
-write.csv(env, "data/env.csv")
+write_csv(env, "data/env.csv")
 ```
 
 **\*An alternative option** is to directly import the file exported from the Turboveg database named **tvhabita.dbf**. Since dbf is a specific type of files, we need to use a specialised packages. Here I used **read.dbf** function from the `foreign` library.
@@ -190,7 +190,7 @@ env <- read_csv("data/tvhabita.csv")%>%
 and save it for later
 
 ```{r}
-write.csv(env, "data/env.csv")
+write_csv(env, "data/env.csv")
 ```
 
 ## 1.4 Import spe file = species file in a long format

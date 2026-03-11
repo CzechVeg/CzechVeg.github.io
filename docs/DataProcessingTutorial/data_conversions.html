@@ -262,7 +262,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#long-to-wide-format" id="toc-long-to-wide-format" class="nav-link active" data-scroll-target="#long-to-wide-format">3.1 Long to wide format</a></li>
-  <li><a href="#juice-input-files" id="toc-juice-input-files" class="nav-link" data-scroll-target="#juice-input-files">3.2 Juice input files</a></li>
+  <li><a href="#juice-input-files" id="toc-juice-input-files" class="nav-link" data-scroll-target="#juice-input-files">3.2 JUICE input files</a></li>
   </ul>
 </nav>
     </div>
@@ -438,7 +438,47 @@ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 </div>
 </section>
 <section id="juice-input-files" class="level2">
-<h2 class="anchored" data-anchor-id="juice-input-files">3.2 Juice input files</h2>
+<h2 class="anchored" data-anchor-id="juice-input-files">3.2 JUICE input files</h2>
+<p>JUICE can handle the species files in long format as well and it is called <em>database data import</em>. We can make a selection of the important fields (releve nr, species, layer and cover) and save the file as csv. However, JUICE is primarily working with integers. Therefore, the first step is to check the cover values we have in our dataset.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>spe <span class="sc">%&gt;%</span> <span class="fu">count</span>(cover_perc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 2
+  cover_perc     n
+       &lt;dbl&gt; &lt;int&gt;
+1        0.1   553
+2        0.5   957
+3        3     360
+4        4     135
+5       10     117
+6       20      51
+7       37.5    67
+8       62.5    36
+9       87.5     2</code></pre>
+</div>
+</div>
+<p>Here we are using values of the new Braun-Blaunquet scale transformed to percentages with decimals. We can either use some crosswalk table (see the <a href="https://github.com/CzechVeg/CzechVeg.github.io/blob/main/Data/crosswalk_tables/table_cover.csv">table_cover</a> and column COVER_PERC_EVA) or change the values directly in the script as below and save the output as a csv file. I recommend using the file with original covers and not the one after merging in R. The same approach as we did here for merging covers (see function in the last section of the <a href="https://czechveg.github.io/DataProcessingTutorial/turboveg_r.html#merging-of-species-covers-across-layers">Turboveg to R</a>) can be done in JUICE later on and it saves you from rounding complicated values before export.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>spe <span class="sc">%&gt;%</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(releve_nr, species, layer, cover_perc) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(releve_nr) <span class="sc">%&gt;%</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span> (<span class="at">cover_perc=</span> <span class="fu">case_when</span>(cover_perc<span class="sc">==</span><span class="fl">0.1</span>  <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>                                cover_perc<span class="sc">==</span><span class="fl">0.5</span>  <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>                                cover_perc<span class="sc">==</span><span class="dv">3</span>    <span class="sc">~</span> <span class="dv">3</span>,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>                                cover_perc<span class="sc">==</span><span class="dv">4</span>    <span class="sc">~</span> <span class="dv">4</span>,</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>                                cover_perc<span class="sc">==</span><span class="dv">10</span>   <span class="sc">~</span> <span class="dv">8</span>,</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>                                cover_perc<span class="sc">==</span><span class="dv">20</span>   <span class="sc">~</span> <span class="dv">18</span>,</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>                                cover_perc<span class="sc">==</span><span class="fl">37.5</span> <span class="sc">~</span> <span class="dv">38</span>,</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>                                cover_perc<span class="sc">==</span><span class="fl">62.5</span> <span class="sc">~</span> <span class="dv">63</span>,</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>                                cover_perc<span class="sc">==</span><span class="fl">87.5</span> <span class="sc">~</span> <span class="dv">88</span>,</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>                                <span class="cn">TRUE</span> <span class="sc">~</span> cover_perc)) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_excel_csv</span>(<span class="st">"data/spe_juice_input.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We will use the import through Database records. Note that sometimes it might be helpful to open the csv file in Excel and save it as csv UTF-8 again. The format seems to be the same but it respects your local settings of the environment.</p>
+<p><img src="images/clipboard-2620833722.png" class="img-fluid"></p>
+<p>Select the file and check if you have defined the positions of individual columns (1,2…) as it is in your file.</p>
+<p><img src="images/clipboard-2210966045.png" class="img-fluid"></p>
+<p>For headers we can use any selection of the header data, and import it as a second step.</p>
 
 
 </section>
