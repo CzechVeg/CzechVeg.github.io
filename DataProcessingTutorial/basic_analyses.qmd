@@ -24,7 +24,7 @@ First I want to add some more variables that were measured separately.
 env_extra<- read_csv("data/env_measured.csv")
 ```
 
-For the env dataset, I want to import the clean version saved in the previous script. I will directly add selected information from the other file. For more on joins, see the[ study materials](https://botzooldataanalysis.github.io/DataManipulationVisualisation/5_join_functions.html).
+For the env dataset, I want to import the clean version saved in the previous script. I will directly add selected information from the other file. For more on joins, see the[study materials](https://botzooldataanalysis.github.io/DataManipulationVisualisation/5_join_functions.html).
 
 ```{r}
 env<- read_csv("data/env.csv") %>%       
@@ -35,11 +35,11 @@ env<- read_csv("data/env.csv") %>%
 
 In this example I used nested pipes. If we want to examine this further we can test individual steps by sending them to console - I am attaching to the env file another file, called env_extra, but first I will modify it. I will select only the variables I want to keep
 
-![](images/clipboard-2139073392.png)
+![](images/clipboard-2139073392.png){fig-align="center" width="560" height="70"}
 
 and I will prepare a merged variable called *forest* with code and name merged together with the unite function: 1_oak forest...
 
-![](images/clipboard-4111733493.png)
+![](images/clipboard-4111733493.png){fig-align="center" width="560"}
 
 Try to send to console the pieces of the code step by step, to understand, what we are merging. Alternative way would be to save this part as another object and join it to the env file in another step. However, the approach above is more in tidyverse style.
 

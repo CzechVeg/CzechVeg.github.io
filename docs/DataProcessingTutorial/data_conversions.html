@@ -297,10 +297,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="long-to-wide-format" class="level2">
 <h2 class="anchored" data-anchor-id="long-to-wide-format">3.1 Long to wide format</h2>
 <p>There are two main ways how the data can be organised across rows and columns. Wide or long format. We will show you an example of spruce forest data, where we recorded plant species in several sites and at each site we also estimated their abundance, here approximated as percentage cover (higher value means that the species covered larger area of the surveyed vegetation plot, but we do not give the area itself, just value relatively to the total area, i.e.&nbsp;percentage of total area). The covers of species might overlap, as they grow in different heights.</p>
-<p><img src="images/clipboard-3056205394.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/clipboard-3056205394.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="628"></p>
+</figure>
+</div>
 <p><strong>Wide format</strong> is more conservative and used in many older packages for ecological data analysis. In our example we list all species and the colums are used to indicate their abundance at each site. This is the way you need to prepare your species matrix for ordinations in <code>vegan</code>. However, wide format has also many cons.</p>
 <p>One of them is the size of the file. In the example above, there are abundance of given plants in each of the site. When the species is present in just one site, here <em>Trientalis europaea</em>, it is still keeping space across the whole table, where there can be hundreds or thousands of sites. The table code is then of course memory demanding. Another disadvantage is that you cannot add easily new information to the listed species. If you for example want to separate species that are in a tree vegetation layer (recognised in vegetation ecology as 1), herb layer (6) and moss layer (9), you would have to add this information to the name of the species e.g.&nbsp;<em>Picea_abies_1</em>.</p>
-<p><img src="images/clipboard-2090306854.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/clipboard-2090306854.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="627"></p>
+</figure>
+</div>
 <p><strong>Long format</strong> in contrast, is great for handling large datasets. We can also add any information, describing the data, such as vegetation layers, growth forms, native/alien status etc. After that we can very simply filter, summarise and calculate further statistics.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) </span>
@@ -478,7 +486,11 @@ dbl (3): releve_nr, layer, cover_perc
 <p>We will use the import through Database records. Note that sometimes it might be helpful to open the csv file in Excel and save it as csv UTF-8 again. The format seems to be the same but it respects your local settings of the environment.</p>
 <p><img src="images/clipboard-2620833722.png" class="img-fluid"></p>
 <p>Select the file and check if you have defined the positions of individual columns (1,2…) as it is in your file.</p>
-<p><img src="images/clipboard-2210966045.png" class="img-fluid" width="513"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/clipboard-2210966045.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="538"></p>
+</figure>
+</div>
 <p>For headers we can use any selection of the header data, and import it as a second step after saving the file. Be sure to have the file arranged in the same way and to include the Relevé number.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"data/env_measured.csv"</span>)<span class="sc">%&gt;%</span></span>
