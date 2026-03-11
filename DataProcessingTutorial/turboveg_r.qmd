@@ -310,7 +310,7 @@ cover %>%
 
 ### 1.4.2 Merging all files into complete spe file
 
-Finally, I have translation to nomenclature, to cover, so I need to put everything together.
+Finally, I have translation to nomenclature, to cover, so I need to put everything together. I append the *nomenclature* file, from which I select only the relevant variables within the nested pipe. The same applies for joining *env* and *cover* files. See more on joins [here](https://botzooldataanalysis.github.io/DataManipulationVisualisation/5_join_functions.html).
 
 ```{r}
 tvabund %>% 

@@ -326,7 +326,7 @@ dbl (21): releve_nr, forest_type, herbs, juveniles, coverE1, biomass, soil_d...
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
 </div>
-<p>For the&nbsp;env dataset,&nbsp;I want to import the clean version saved in the previous script. For more on joins, see here.</p>
+<p>For the&nbsp;env dataset,&nbsp;I want to import the clean version saved in the previous script. I will directly add selected information from the other file. For more on joins, see the<a href="https://botzooldataanalysis.github.io/DataManipulationVisualisation/5_join_functions.html">study materials</a>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>env<span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/env.csv"</span>) <span class="sc">%&gt;%</span>       </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(env_extra <span class="sc">%&gt;%</span>                                 </span>
@@ -345,6 +345,11 @@ lgl  (1): syntaxon
 Joining with `by = join_by(releve_nr)`</code></pre>
 </div>
 </div>
+<p>In this example I used nested pipes. If we want to examine this further we can test individual steps by sending them to console - I am attaching to the env file another file, called env_extra, but first I will modify it. I will select only the variables I want to keep</p>
+<p><img src="images/clipboard-2139073392.png" class="img-fluid"></p>
+<p>and I will prepare a merged variable called <em>forest</em> with code and name merged together with the unite function: 1_oak forest…</p>
+<p><img src="images/clipboard-4111733493.png" class="img-fluid"></p>
+<p>Try to send to console the pieces of the code step by step, to understand, what we are merging. Alternative way would be to save this part as another object and join it to the env file in another step. However, the approach above is more in tidyverse style.</p>
 </section>
 <section id="spe-dataset" class="level3">
 <h3 class="anchored" data-anchor-id="spe-dataset">2.1.2 spe dataset</h3>

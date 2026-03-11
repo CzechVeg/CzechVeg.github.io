@@ -867,7 +867,7 @@ dbl (2): COVER_PERC_EVA, COVER_PERC
 </section>
 <section id="merging-all-files-into-complete-spe-file" class="level3">
 <h3 class="anchored" data-anchor-id="merging-all-files-into-complete-spe-file">1.4.2 Merging all files into complete spe file</h3>
-<p>Finally, I have translation to nomenclature, to cover, so I need to put everything together.</p>
+<p>Finally, I have translation to nomenclature, to cover, so I need to put everything together. I append the <em>nomenclature</em> file, from which I select only the relevant variables within the nested pipe. The same applies for joining <em>env</em> and <em>cover</em> files. See more on joins <a href="https://botzooldataanalysis.github.io/DataManipulationVisualisation/5_join_functions.html">here</a>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>tvabund <span class="sc">%&gt;%</span> </span>
 <span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(nomenclature <span class="sc">%&gt;%</span> </span>

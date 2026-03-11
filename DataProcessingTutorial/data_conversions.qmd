@@ -28,7 +28,7 @@ library(janitor)
 We will upload the species data saved in a long format and transform it into a matrix =wide format, so that it can be used in specific ecological analyses e.g. in `vegan`. (For wide to long see [study materials](https://botzooldataanalysis.github.io/DataManipulationVisualisation/4_wide_vs_long.html))
 
 ```{r}
-spe <- read_csv("data/spe.csv") 
+spe <- read_csv("data/spe_merged_covers.csv") 
 tibble(spe)
 ```
 
