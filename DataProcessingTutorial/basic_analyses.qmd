@@ -18,19 +18,18 @@ We will play a bit with measured variables from our plots and try few useful fun
 
 ### 2.1.1 env dataset
 
-First I want to add some more variables that were measured separately. In addition this file is already filtered to a subset I want to use.
+First I want to add some more variables that were measured separately.
 
 ```{r}
-env_extra<- read_csv("data/env_measured.csv")%>%      
-  clean_names()
+env_extra<- read_csv("data/env_measured.csv")
 ```
 
-For the env dataset, I want to import the clean version saved in the previous script, but I will directly filter it to the same subset as in the dataset above. I can do it with semi_join. But I decided to merge both datasets at this point - to keep only the matching rows, but all the information I want. For more on joins, see here.
+For the env dataset, I want to import the clean version saved in the previous script. For more on joins, see here.
 
 ```{r}
 env<- read_csv("data/env.csv") %>%       
-  inner_join(env_extra %>%                                 
-               select (releve_nr, forest_type, forest_type_name,                                                soil_ph=p_h_k_cl, biomass)%>%                           
+  left_join(env_extra %>%                                 
+               select (releve_nr, forest_type, forest_type_name,                                                soil_pH, biomass)%>%                           
                unite(forest, forest_type, forest_type_name))
 ```
 
@@ -137,7 +136,7 @@ spe %>%
               select(species, height)) %>%
   left_join(env) %>%
   arrange(forest) %>%
-  summarise(across(c(height,cov_herbs, biomass, cov_trees,soil_ph ),
+  summarise(across(c(height,cov_herbs, biomass, cov_trees,soil_pH ),
       list(
         min  = ~min(.x, na.rm = TRUE),
         mean = ~mean(.x, na.rm = TRUE),
@@ -147,9 +146,9 @@ spe %>%
 ```{r}
 env %>%
   arrange(forest) %>%
-  select(forest, cover_herbs=cov_herbs, biomass, cover_trees =cov_trees, soil_ph) %>%
+  select(forest, cover_herbs=cov_herbs, biomass, cover_trees =cov_trees, soil_pH) %>%
   tidyr::pivot_longer(
-    cols = c(cover_herbs, biomass, cover_trees, soil_ph),
+    cols = c(cover_herbs, biomass, cover_trees, soil_pH),
     names_to = "variable",
     values_to = "value")%>% 
   ggplot(aes(x = forest, y = value, fill=forest)) +
@@ -249,7 +248,6 @@ spe %>%
 In the same way we can calculate community means across more variables. Here we will try the **Ellenberg indicator values** (abbreviated as EIV, measures of species demands for the particular factors, the higher value mean higher demands or affinity to habitats with higher values of these environmental factors). We will apply them just for presences of species, so no weights. Therefore we do not need to care that much for the differences among layers. However, we will keep each species only once (list of unique species for each plot), so we will remove information about layers first and use distinct. Alternative is to add #filter(Layer==6)%\>% if we want to focus on herb-layer only
 
 ```{r}
-#| eval: false
 spe %>%
   left_join(indicator_values) %>%
   select(-c(layer,cover_perc))%>%
@@ -261,7 +259,6 @@ spe %>%
 **Boxplots of Ellenberg-type indicator values** can be produced for example like this:
 
 ```{r}
-#| eval: false
 spe %>% 
   left_join(indicator_values) %>%
   select(-c(layer, cover_perc)) %>%

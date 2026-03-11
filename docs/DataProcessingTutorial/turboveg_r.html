@@ -502,7 +502,7 @@ $ locality   &lt;chr&gt; "Brno, Maloměřice, Hády; 1,7 km od středu městské
 </div>
 <p>And save it for easier access. Always keep releve_nr and coverscale, as you will need them later.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(env, <span class="st">"data/env.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">writecsv</span>(env, <span class="st">"data/env.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>*An alternative option</strong> is to directly import the file exported from the Turboveg database named <strong>tvhabita.dbf</strong>. Since dbf is a specific type of files, we need to use a specialised packages. Here I used <strong>read.dbf</strong> function from the <code>foreign</code> library.</p>
 <div class="cell">
@@ -645,9 +645,9 @@ $ bias_gps   &lt;dbl&gt; 7, 5, 6, 10, 6, 5, 6, 14, 6, 4, 5, 11, 9, 9, 6, 6, 0, 6
 $ locality   &lt;chr&gt; "Brno, Maloměřice, Hády; 1,7 km od středu městské části", "…</code></pre>
 </div>
 </div>
-<p>and save it for later</p>
+<p>and save it for later, for example with <em><code>write_csv</code></em> or with <code>write_excel_csv</code> which keeps the UTF encoding without any further specification (useful for Czech diacritics).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(env, <span class="st">"data/env.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_excel_csv</span>(env, <span class="st">"data/env.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -768,9 +768,9 @@ dbl (1): SPECIES_NR
 <pre><code>Joining with `by = join_by(species_nr)`</code></pre>
 </div>
 </div>
-<p>I can then write the file, make adjustments e.g.&nbsp;in Excel and upload it again. Great thing is that I have an indication of which species are in the dataset, and I do not have to pay attention to the other rows.</p>
+<p>I can then write the file, make adjustments e.g.&nbsp;in Excel and upload it again. Great thing is that I have an indication of which species are in the dataset, and I do not have to pay attention to the other rows. Note that if you prefer names with ë or hybrid marks it is better to save it with UTF-8 encoding which is automatically included in <code>write_excel_csv</code> function.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(nomenclature_check, <span class="st">"data/nomenclature_check.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(nomenclature_check, <span class="st">"data/nomenclature_check.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>upload the new, adjusted file</p>
 <div class="cell">
@@ -920,9 +920,9 @@ Joining with `by = join_by(cover_code, coverscale)`</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(spe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We can again save the final file, to be easily accessible for later</p>
+<p>We can again save the final file, to be easily accessible for later. Function <code>write_excel_csv</code> is useful if your file contains specific symbols like ë, as it primarily uses UTF-8 encoding.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(spe, <span class="st">"data/spe.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_excel_csv</span>(spe, <span class="st">"data/spe.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>

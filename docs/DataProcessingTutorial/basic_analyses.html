@@ -312,38 +312,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We will play a bit with measured variables from our plots and try few useful functions. For more see <a href="https://botzooldataanalysis.github.io/DataManipulationVisualisation/2_data_manipulation.html">study materials</a> and links there. We will first read the data newly, to be sure we know what we are working with. At this point we can actually clean the environment, remove everything.</p>
 <section id="env-dataset" class="level3">
 <h3 class="anchored" data-anchor-id="env-dataset">2.1.1 env dataset</h3>
-<p>First I want to add some more variables that were measured separately. In addition this file is already filtered to a subset I want to use.</p>
+<p>First I want to add some more variables that were measured separately.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>env_extra<span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/env_measured.csv"</span>)<span class="sc">%&gt;%</span>      </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>env_extra<span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/env_measured.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 65 Columns: 22
 ── Column specification ────────────────────────────────────────────────────────
 Delimiter: ","
-chr  (1): ForestTypeName
-dbl (21): Releve_nr, ForestType, Herbs, Juveniles, CoverE1, Biomass, Soil_de...
+chr  (1): forest_type_name
+dbl (21): releve_nr, forest_type, herbs, juveniles, coverE1, biomass, soil_d...
 
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
 </div>
-<p>For the&nbsp;env dataset,&nbsp;I want to import the clean version saved in the previous script, but I will directly filter it to the same subset as in the dataset above. I can do it with semi_join. But I decided to merge both datasets at this point - to keep only the matching rows, but all the information I want. For more on joins, see here.</p>
+<p>For the&nbsp;env dataset,&nbsp;I want to import the clean version saved in the previous script. For more on joins, see here.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>env<span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/env.csv"</span>) <span class="sc">%&gt;%</span>       </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(env_extra <span class="sc">%&gt;%</span>                                 </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>               <span class="fu">select</span> (releve_nr, forest_type, forest_type_name,                                                <span class="at">soil_ph=</span>p_h_k_cl, biomass)<span class="sc">%&gt;%</span>                           </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(env_extra <span class="sc">%&gt;%</span>                                 </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>               <span class="fu">select</span> (releve_nr, forest_type, forest_type_name,                                                soil_pH, biomass)<span class="sc">%&gt;%</span>                           </span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>               <span class="fu">unite</span>(forest, forest_type, forest_type_name))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>New names:
-Rows: 65 Columns: 19
-── Column specification
-──────────────────────────────────────────────────────── Delimiter: "," chr
-(5): coverscale, field_nr, country, author, locality dbl (13): ...1, releve_nr,
-date, altitude, exposition, inclinatio, cov_trees... lgl (1): syntaxon
-ℹ Use `spec()` to retrieve the full column specification for this data. ℹ
-Specify the column types or set `show_col_types = FALSE` to quiet this message.
-Joining with `by = join_by(releve_nr)`
-• `` -&gt; `...1`</code></pre>
+<pre><code>Rows: 65 Columns: 18
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (5): coverscale, field_nr, country, author, locality
+dbl (12): releve_nr, date, altitude, exposition, inclinatio, cov_trees, cov_...
+lgl  (1): syntaxon
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Joining with `by = join_by(releve_nr)`</code></pre>
 </div>
 </div>
 </section>
@@ -374,18 +373,17 @@ Joining with `by = join_by(releve_nr)`</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "CzechVeg_tutorial.zip"               "data.zip"                           
  [3] "ellenberg_type_indicators_cz.csv"    "env.csv"                            
- [5] "env_measured.csv"                    "errors.txt"                         
- [7] "readme.txt"                          "remarks.cdx"                        
- [9] "remarks.dbf"                         "spe.csv"                            
-[11] "spe_juice_input.csv"                 "spe_merged_covers.csv"              
-[13] "spe_merged_covers_across_layers.csv" "species.csv"                        
-[15] "status.csv"                          "table_cover.csv"                    
-[17] "table_nomenclature.csv"              "traits.csv"                         
-[19] "tvabund.cdx"                         "tvabund.csv"                        
-[21] "tvabund.dbf"                         "TvAdmin.cdx"                        
-[23] "TvAdmin.dbf"                         "tvhabita.cdx"                       
-[25] "tvhabita.csv"                        "tvhabita.dbf"                       
-[27] "tvwin.dbf"                          </code></pre>
+ [5] "env_measured.csv"                    "readme.txt"                         
+ [7] "remarks.cdx"                         "remarks.dbf"                        
+ [9] "spe.csv"                             "spe_juice_input.csv"                
+[11] "spe_merged_covers.csv"               "spe_merged_covers_across_layers.csv"
+[13] "species.csv"                         "status.csv"                         
+[15] "table_cover.csv"                     "table_nomenclature.csv"             
+[17] "traits.csv"                          "tvabund.cdx"                        
+[19] "tvabund.csv"                         "tvabund.dbf"                        
+[21] "TvAdmin.cdx"                         "TvAdmin.dbf"                        
+[23] "tvhabita.cdx"                        "tvhabita.csv"                       
+[25] "tvhabita.dbf"                        "tvwin.dbf"                          </code></pre>
 </div>
 </div>
 <p>I will import plant height data, Ellenberg-type indicator values and status (origin and Red List categories). All these data are available in the <a href="https://pladias.cz/">PLADIAS</a> database of the Czech flora and vegetation. I used the datasets from the download section and adjusted the format for easier data handling.</p>
@@ -473,23 +471,23 @@ chr (3): species, origin, redlist
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(forest_type_name <span class="sc">==</span><span class="st">"alluvial forest"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 11 × 22
-   releve_nr forest_type forest_type_name herbs juveniles cover_e1 biomass
-       &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
- 1       101           4 alluvial forest     28         6       90    91.1
- 2       103           4 alluvial forest     35         5       80   114. 
- 3       104           4 alluvial forest     25        11       85   188. 
- 4       110           4 alluvial forest     37         4       95   126. 
- 5       111           4 alluvial forest     26        10       85    84.8
- 6       113           4 alluvial forest     37        10       70    74.5
- 7       125           4 alluvial forest     25         8       95   123. 
- 8       127           4 alluvial forest     53         6        0   176  
- 9       129           4 alluvial forest     31         7       85   100. 
-10       131           4 alluvial forest     59         3       95   163. 
-11       132           4 alluvial forest     60         7       90   287. 
-# ℹ 15 more variables: soil_depth_categ &lt;dbl&gt;, p_h_k_cl &lt;dbl&gt;, slope &lt;dbl&gt;,
-#   altitude &lt;dbl&gt;, canopy_e3 &lt;dbl&gt;, radiation &lt;dbl&gt;, heat &lt;dbl&gt;,
+   releve_nr forest_type forest_type_name herbs juveniles coverE1 biomass
+       &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1       101           4 alluvial forest     28         6      90    91.1
+ 2       103           4 alluvial forest     35         5      80   114. 
+ 3       104           4 alluvial forest     25        11      85   188. 
+ 4       110           4 alluvial forest     37         4      95   126. 
+ 5       111           4 alluvial forest     26        10      85    84.8
+ 6       113           4 alluvial forest     37        10      70    74.5
+ 7       125           4 alluvial forest     25         8      95   123. 
+ 8       127           4 alluvial forest     53         6       0   176  
+ 9       129           4 alluvial forest     31         7      85   100. 
+10       131           4 alluvial forest     59         3      95   163. 
+11       132           4 alluvial forest     60         7      90   287. 
+# ℹ 15 more variables: soil_depth &lt;dbl&gt;, soil_pH &lt;dbl&gt;, slope &lt;dbl&gt;,
+#   altitude &lt;dbl&gt;, coverE3 &lt;dbl&gt;, radiation &lt;dbl&gt;, heat &lt;dbl&gt;,
 #   trans_dir &lt;dbl&gt;, trans_dif &lt;dbl&gt;, trans_tot &lt;dbl&gt;, eiv_light &lt;dbl&gt;,
-#   eiv_moisture &lt;dbl&gt;, eiv_soilreaction &lt;dbl&gt;, eiv_nutrients &lt;dbl&gt;, twi &lt;dbl&gt;</code></pre>
+#   eiv_moisture &lt;dbl&gt;, eiv_soilreaction &lt;dbl&gt;, eiv_nutrients &lt;dbl&gt;, TWI &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <p>or those that are listed</p>
@@ -498,23 +496,23 @@ chr (3): species, origin, redlist
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(forest_type_name <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"alluvial forest"</span>, <span class="st">"ravine forest"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 21 × 22
-   releve_nr forest_type forest_type_name herbs juveniles cover_e1 biomass
-       &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
- 1       101           4 alluvial forest     28         6       90    91.1
- 2       103           4 alluvial forest     35         5       80   114. 
- 3       104           4 alluvial forest     25        11       85   188. 
- 4       105           3 ravine forest       12        10       80    65.5
- 5       106           3 ravine forest       16         0       75    33.6
- 6       108           3 ravine forest       28         7       70    82.3
- 7       110           4 alluvial forest     37         4       95   126. 
- 8       111           4 alluvial forest     26        10       85    84.8
- 9       113           4 alluvial forest     37        10       70    74.5
-10       114           3 ravine forest       12         6       50    71.5
+   releve_nr forest_type forest_type_name herbs juveniles coverE1 biomass
+       &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1       101           4 alluvial forest     28         6      90    91.1
+ 2       103           4 alluvial forest     35         5      80   114. 
+ 3       104           4 alluvial forest     25        11      85   188. 
+ 4       105           3 ravine forest       12        10      80    65.5
+ 5       106           3 ravine forest       16         0      75    33.6
+ 6       108           3 ravine forest       28         7      70    82.3
+ 7       110           4 alluvial forest     37         4      95   126. 
+ 8       111           4 alluvial forest     26        10      85    84.8
+ 9       113           4 alluvial forest     37        10      70    74.5
+10       114           3 ravine forest       12         6      50    71.5
 # ℹ 11 more rows
-# ℹ 15 more variables: soil_depth_categ &lt;dbl&gt;, p_h_k_cl &lt;dbl&gt;, slope &lt;dbl&gt;,
-#   altitude &lt;dbl&gt;, canopy_e3 &lt;dbl&gt;, radiation &lt;dbl&gt;, heat &lt;dbl&gt;,
+# ℹ 15 more variables: soil_depth &lt;dbl&gt;, soil_pH &lt;dbl&gt;, slope &lt;dbl&gt;,
+#   altitude &lt;dbl&gt;, coverE3 &lt;dbl&gt;, radiation &lt;dbl&gt;, heat &lt;dbl&gt;,
 #   trans_dir &lt;dbl&gt;, trans_dif &lt;dbl&gt;, trans_tot &lt;dbl&gt;, eiv_light &lt;dbl&gt;,
-#   eiv_moisture &lt;dbl&gt;, eiv_soilreaction &lt;dbl&gt;, eiv_nutrients &lt;dbl&gt;, twi &lt;dbl&gt;</code></pre>
+#   eiv_moisture &lt;dbl&gt;, eiv_soilreaction &lt;dbl&gt;, eiv_nutrients &lt;dbl&gt;, TWI &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <p>Or I want to filter based on some values. If I have at the same time NAs in the variable, I should specify if I want to keep these rows or not. In the example below I will keep all rows/plots where biomass is higher than 80g/m2 but I will also keep all the NAs, i.e.&nbsp;plots where it was not measured.</p>
@@ -523,29 +521,29 @@ chr (3): species, origin, redlist
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(biomass<span class="sc">&gt;</span><span class="dv">80</span> <span class="sc">|</span><span class="fu">is.na</span>(biomass))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 17 × 22
-   releve_nr forest_type forest_type_name    herbs juveniles cover_e1 biomass
-       &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
- 1       101           4 alluvial forest        28         6       90    91.1
- 2       103           4 alluvial forest        35         5       80   114. 
- 3       104           4 alluvial forest        25        11       85   188. 
- 4       108           3 ravine forest          28         7       70    82.3
- 5       110           4 alluvial forest        37         4       95   126. 
- 6       111           4 alluvial forest        26        10       85    84.8
- 7       120           2 oak hornbeam forest    36         6       75    98.5
- 8       121           2 oak hornbeam forest    30        12       80    84.7
- 9       122           3 ravine forest          29         6       60   102. 
-10       124           2 oak hornbeam forest    34        15       75   102. 
-11       125           4 alluvial forest        25         8       95   123. 
-12       127           4 alluvial forest        53         6        0   176  
-13       128           3 ravine forest          20         4       70   121. 
-14       129           4 alluvial forest        31         7       85   100. 
-15       130           3 ravine forest          18         5       85   238  
-16       131           4 alluvial forest        59         3       95   163. 
-17       132           4 alluvial forest        60         7       90   287. 
-# ℹ 15 more variables: soil_depth_categ &lt;dbl&gt;, p_h_k_cl &lt;dbl&gt;, slope &lt;dbl&gt;,
-#   altitude &lt;dbl&gt;, canopy_e3 &lt;dbl&gt;, radiation &lt;dbl&gt;, heat &lt;dbl&gt;,
+   releve_nr forest_type forest_type_name    herbs juveniles coverE1 biomass
+       &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1       101           4 alluvial forest        28         6      90    91.1
+ 2       103           4 alluvial forest        35         5      80   114. 
+ 3       104           4 alluvial forest        25        11      85   188. 
+ 4       108           3 ravine forest          28         7      70    82.3
+ 5       110           4 alluvial forest        37         4      95   126. 
+ 6       111           4 alluvial forest        26        10      85    84.8
+ 7       120           2 oak hornbeam forest    36         6      75    98.5
+ 8       121           2 oak hornbeam forest    30        12      80    84.7
+ 9       122           3 ravine forest          29         6      60   102. 
+10       124           2 oak hornbeam forest    34        15      75   102. 
+11       125           4 alluvial forest        25         8      95   123. 
+12       127           4 alluvial forest        53         6       0   176  
+13       128           3 ravine forest          20         4      70   121. 
+14       129           4 alluvial forest        31         7      85   100. 
+15       130           3 ravine forest          18         5      85   238  
+16       131           4 alluvial forest        59         3      95   163. 
+17       132           4 alluvial forest        60         7      90   287. 
+# ℹ 15 more variables: soil_depth &lt;dbl&gt;, soil_pH &lt;dbl&gt;, slope &lt;dbl&gt;,
+#   altitude &lt;dbl&gt;, coverE3 &lt;dbl&gt;, radiation &lt;dbl&gt;, heat &lt;dbl&gt;,
 #   trans_dir &lt;dbl&gt;, trans_dif &lt;dbl&gt;, trans_tot &lt;dbl&gt;, eiv_light &lt;dbl&gt;,
-#   eiv_moisture &lt;dbl&gt;, eiv_soilreaction &lt;dbl&gt;, eiv_nutrients &lt;dbl&gt;, twi &lt;dbl&gt;</code></pre>
+#   eiv_moisture &lt;dbl&gt;, eiv_soilreaction &lt;dbl&gt;, eiv_nutrients &lt;dbl&gt;, TWI &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <p>You can also filter plots in a specified range of some value.</p>
@@ -554,32 +552,32 @@ chr (3): species, origin, redlist
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>((biomass <span class="sc">&gt;=</span> <span class="dv">40</span> <span class="sc">&amp;</span> biomass <span class="sc">&lt;=</span> <span class="dv">80</span>) <span class="sc">|</span> <span class="fu">is.na</span>(biomass))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 20 × 22
-   releve_nr forest_type forest_type_name    herbs juveniles cover_e1 biomass
-       &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
- 1         6           1 oak forest             16         3       60    46.4
- 2         7           1 oak forest             17         5       70    49.2
- 3         8           2 oak hornbeam forest    21         1       70    48.7
- 4        10           1 oak forest             14         4       75    79.1
- 5        18           2 oak hornbeam forest    13         3       85    72.2
- 6        86           2 oak hornbeam forest    32         5       40    46.9
- 7        87           2 oak hornbeam forest    34         9       65    42.9
- 8        99           2 oak hornbeam forest    18         6       85    64.8
- 9       102           2 oak hornbeam forest    37        13       65    57.4
-10       105           3 ravine forest          12        10       80    65.5
-11       109           2 oak hornbeam forest    25         9       50    60.7
-12       112           2 oak hornbeam forest    32        14       60    58.4
-13       113           4 alluvial forest        37        10       70    74.5
-14       114           3 ravine forest          12         6       50    71.5
-15       115           3 ravine forest          23         2       70    54.6
-16       116           3 ravine forest          16         3       45    64.5
-17       117           2 oak hornbeam forest    31         7       55    54.7
-18       118           2 oak hornbeam forest     8         5       45    66.2
-19       123           3 ravine forest          34        11       70    53.6
-20       126           2 oak hornbeam forest    27         7       65    72.9
-# ℹ 15 more variables: soil_depth_categ &lt;dbl&gt;, p_h_k_cl &lt;dbl&gt;, slope &lt;dbl&gt;,
-#   altitude &lt;dbl&gt;, canopy_e3 &lt;dbl&gt;, radiation &lt;dbl&gt;, heat &lt;dbl&gt;,
+   releve_nr forest_type forest_type_name    herbs juveniles coverE1 biomass
+       &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1         6           1 oak forest             16         3      60    46.4
+ 2         7           1 oak forest             17         5      70    49.2
+ 3         8           2 oak hornbeam forest    21         1      70    48.7
+ 4        10           1 oak forest             14         4      75    79.1
+ 5        18           2 oak hornbeam forest    13         3      85    72.2
+ 6        86           2 oak hornbeam forest    32         5      40    46.9
+ 7        87           2 oak hornbeam forest    34         9      65    42.9
+ 8        99           2 oak hornbeam forest    18         6      85    64.8
+ 9       102           2 oak hornbeam forest    37        13      65    57.4
+10       105           3 ravine forest          12        10      80    65.5
+11       109           2 oak hornbeam forest    25         9      50    60.7
+12       112           2 oak hornbeam forest    32        14      60    58.4
+13       113           4 alluvial forest        37        10      70    74.5
+14       114           3 ravine forest          12         6      50    71.5
+15       115           3 ravine forest          23         2      70    54.6
+16       116           3 ravine forest          16         3      45    64.5
+17       117           2 oak hornbeam forest    31         7      55    54.7
+18       118           2 oak hornbeam forest     8         5      45    66.2
+19       123           3 ravine forest          34        11      70    53.6
+20       126           2 oak hornbeam forest    27         7      65    72.9
+# ℹ 15 more variables: soil_depth &lt;dbl&gt;, soil_pH &lt;dbl&gt;, slope &lt;dbl&gt;,
+#   altitude &lt;dbl&gt;, coverE3 &lt;dbl&gt;, radiation &lt;dbl&gt;, heat &lt;dbl&gt;,
 #   trans_dir &lt;dbl&gt;, trans_dif &lt;dbl&gt;, trans_tot &lt;dbl&gt;, eiv_light &lt;dbl&gt;,
-#   eiv_moisture &lt;dbl&gt;, eiv_soilreaction &lt;dbl&gt;, eiv_nutrients &lt;dbl&gt;, twi &lt;dbl&gt;</code></pre>
+#   eiv_moisture &lt;dbl&gt;, eiv_soilreaction &lt;dbl&gt;, eiv_nutrients &lt;dbl&gt;, TWI &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <p>Similarly, you can for example <strong>filter plots based on their plot size</strong>. The example below is not working on our dataset, but it comes useful in large EVA exports. Here I keep grassland plots in the range 10-100 m2, forest plots between 100-1000 m2 and I keep the plots without specified plot size.</p>
@@ -603,7 +601,7 @@ chr (3): species, origin, redlist
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>              <span class="fu">select</span>(species, height)) <span class="sc">%&gt;%</span></span>
 <span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(env) <span class="sc">%&gt;%</span></span>
 <span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(forest) <span class="sc">%&gt;%</span></span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">c</span>(height,cov_herbs, biomass, cov_trees,soil_ph ),</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">c</span>(height,cov_herbs, biomass, cov_trees,soil_pH ),</span>
 <span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(</span>
 <span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">min  =</span> <span class="sc">~</span><span class="fu">min</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
 <span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">mean =</span> <span class="sc">~</span><span class="fu">mean</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
@@ -622,16 +620,16 @@ Joining with `by = join_by(releve_nr)`</code></pre>
 4 4_alluvial for…      0.055       0.670       8.5              0           76.2
 # ℹ 10 more variables: cov_herbs_max &lt;dbl&gt;, biomass_min &lt;dbl&gt;,
 #   biomass_mean &lt;dbl&gt;, biomass_max &lt;dbl&gt;, cov_trees_min &lt;dbl&gt;,
-#   cov_trees_mean &lt;dbl&gt;, cov_trees_max &lt;dbl&gt;, soil_ph_min &lt;dbl&gt;,
-#   soil_ph_mean &lt;dbl&gt;, soil_ph_max &lt;dbl&gt;</code></pre>
+#   cov_trees_mean &lt;dbl&gt;, cov_trees_max &lt;dbl&gt;, soil_pH_min &lt;dbl&gt;,
+#   soil_pH_mean &lt;dbl&gt;, soil_pH_max &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>env <span class="sc">%&gt;%</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(forest) <span class="sc">%&gt;%</span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(forest, <span class="at">cover_herbs=</span>cov_herbs, biomass, <span class="at">cover_trees =</span>cov_trees, soil_ph) <span class="sc">%&gt;%</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(forest, <span class="at">cover_herbs=</span>cov_herbs, biomass, <span class="at">cover_trees =</span>cov_trees, soil_pH) <span class="sc">%&gt;%</span></span>
 <span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">c</span>(cover_herbs, biomass, cover_trees, soil_ph),</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">c</span>(cover_herbs, biomass, cover_trees, soil_pH),</span>
 <span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"variable"</span>,</span>
 <span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"value"</span>)<span class="sc">%&gt;%</span> </span>
 <span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> forest, <span class="at">y =</span> value, <span class="at">fill=</span>forest)) <span class="sc">+</span></span>
@@ -793,28 +791,59 @@ Joining with `by = join_by(releve_nr)`</code></pre>
 <span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()<span class="sc">%&gt;%</span></span>
 <span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(releve_nr)<span class="sc">%&gt;%</span></span>
 <span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">starts_with</span>(<span class="st">"eiv"</span>), <span class="sc">~</span> <span class="fu">mean</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(species)`</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 65 × 7
+   releve_nr eiv_light eiv_temperature eiv_moisture eiv_reaction eiv_nutrients
+       &lt;dbl&gt;     &lt;dbl&gt;           &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;         &lt;dbl&gt;
+ 1         1      5.08            5.56         4.64         6.54          4.95
+ 2         2      4.87            5.2          4.8          5             4.33
+ 3         3      4.87            5.13         4.8          5             4.4 
+ 4         4      5.32            5.53         4.47         5.79          4.26
+ 5         5      6.07            5.57         4.14         5.57          3.86
+ 6         6      5.72            5.56         4.5          6.44          5.22
+ 7         7      5.75            5.45         4.45         6.25          4.95
+ 8         8      5.13            5.39         4.70         5.48          4.70
+ 9         9      5.38            5.67         4.48         5.95          4.43
+10        10      6.38            5.88         3.69         6.19          3.88
+# ℹ 55 more rows
+# ℹ 1 more variable: eiv_salinity &lt;dbl&gt;</code></pre>
+</div>
 </div>
 <p><strong>Boxplots of Ellenberg-type indicator values</strong>&nbsp;can be produced for example like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>spe <span class="sc">%&gt;%</span> </span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(indicator_values) <span class="sc">%&gt;%</span></span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(layer, cover_perc)) <span class="sc">%&gt;%</span></span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(releve_nr) <span class="sc">%&gt;%</span></span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">starts_with</span>(<span class="st">"EIV"</span>), <span class="sc">~</span> <span class="fu">mean</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))) <span class="sc">%&gt;%</span></span>
-<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(env <span class="sc">%&gt;%</span> <span class="fu">select</span>(releve_nr, forest))<span class="sc">%&gt;%</span></span>
-<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"EIV"</span>),</span>
-<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"EIV_variable"</span>,</span>
-<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"value"</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> forest, <span class="at">y =</span> value, <span class="at">fill =</span> forest)) <span class="sc">+</span></span>
-<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> EIV_variable, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
-<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
-<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">'none'</span>)<span class="sc">+</span></span>
-<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))<span class="sc">+</span></span>
-<span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span> (<span class="at">y =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>spe <span class="sc">%&gt;%</span> </span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(indicator_values) <span class="sc">%&gt;%</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(layer, cover_perc)) <span class="sc">%&gt;%</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(releve_nr) <span class="sc">%&gt;%</span></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">starts_with</span>(<span class="st">"EIV"</span>), <span class="sc">~</span> <span class="fu">mean</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(env <span class="sc">%&gt;%</span> <span class="fu">select</span>(releve_nr, forest))<span class="sc">%&gt;%</span></span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"EIV"</span>),</span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"EIV_variable"</span>,</span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"value"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> forest, <span class="at">y =</span> value, <span class="at">fill =</span> forest)) <span class="sc">+</span></span>
+<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> EIV_variable, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
+<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">'none'</span>)<span class="sc">+</span></span>
+<span id="cb48-17"><a href="#cb48-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))<span class="sc">+</span></span>
+<span id="cb48-18"><a href="#cb48-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb48-19"><a href="#cb48-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span> (<span class="at">y =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(species)`
+Joining with `by = join_by(releve_nr)`</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="basic_analyses_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 
 

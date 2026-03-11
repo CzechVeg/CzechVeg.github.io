@@ -103,7 +103,7 @@ And save it for easier access. Always keep releve_nr and coverscale, as you will
 
 ```{r}
 #| eval: false
-write_csv(env, "data/env.csv")
+writecsv(env, "data/env.csv")
 ```
 
 **\*An alternative option** is to directly import the file exported from the Turboveg database named **tvhabita.dbf**. Since dbf is a specific type of files, we need to use a specialised packages. Here I used **read.dbf** function from the `foreign` library.
@@ -187,10 +187,10 @@ env <- read_csv("data/tvhabita.csv")%>%
   glimpse()
 ```
 
-and save it for later
+and save it for later, for example with *`write_csv`* or with `write_excel_csv` which keeps the UTF encoding without any further specification (useful for Czech diacritics).
 
 ```{r}
-write_csv(env, "data/env.csv")
+write_excel_csv(env, "data/env.csv")
 ```
 
 ## 1.4 Import spe file = species file in a long format
@@ -269,11 +269,11 @@ nomenclature_check<- nomenclature %>%
               count(species_nr)) 
 ```
 
-I can then write the file, make adjustments e.g. in Excel and upload it again. Great thing is that I have an indication of which species are in the dataset, and I do not have to pay attention to the other rows.
+I can then write the file, make adjustments e.g. in Excel and upload it again. Great thing is that I have an indication of which species are in the dataset, and I do not have to pay attention to the other rows. Note that if you prefer names with ë or hybrid marks it is better to save it with UTF-8 encoding which is automatically included in `write_excel_csv` function.
 
 ```{r}
 #| eval: false
-write.csv(nomenclature_check, "data/nomenclature_check.csv")
+write_csv(nomenclature_check, "data/nomenclature_check.csv")
 ```
 
 upload the new, adjusted file
@@ -344,10 +344,10 @@ To see the result we will use view
 view(spe)
 ```
 
-We can again save the final file, to be easily accessible for later
+We can again save the final file, to be easily accessible for later. Function `write_excel_csv` is useful if your file contains specific symbols like ë, as it primarily uses UTF-8 encoding.
 
 ```{r}
-write.csv(spe, "data/spe.csv")
+write_excel_csv(spe, "data/spe.csv")
 ```
 
 ## 1.5 Merging of species covers across layers

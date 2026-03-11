@@ -477,8 +477,41 @@ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 <p>We will use the import through Database records. Note that sometimes it might be helpful to open the csv file in Excel and save it as csv UTF-8 again. The format seems to be the same but it respects your local settings of the environment.</p>
 <p><img src="images/clipboard-2620833722.png" class="img-fluid"></p>
 <p>Select the file and check if you have defined the positions of individual columns (1,2…) as it is in your file.</p>
-<p><img src="images/clipboard-2210966045.png" class="img-fluid"></p>
-<p>For headers we can use any selection of the header data, and import it as a second step.</p>
+<p><img src="images/clipboard-2210966045.png" class="img-fluid" width="513"></p>
+<p>For headers we can use any selection of the header data, and import it as a second step after saving the file. Be sure to have the file arranged in the same way and to include the Relevé number.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"data/env_measured.csv"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(releve_nr,forest_type, forest_type_name, soil_pH) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(releve_nr) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">"Relevé number"</span><span class="ot">=</span>releve_nr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 65 Columns: 22
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (1): forest_type_name
+dbl (21): releve_nr, forest_type, herbs, juveniles, coverE1, biomass, soil_d...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 65 × 4
+   `Relevé number` forest_type forest_type_name    soil_pH
+             &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;                 &lt;dbl&gt;
+ 1               1           2 oak hornbeam forest    5.28
+ 2               2           1 oak forest             3.24
+ 3               3           1 oak forest             4.01
+ 4               4           1 oak forest             3.77
+ 5               5           1 oak forest             3.5 
+ 6               6           1 oak forest             3.8 
+ 7               7           1 oak forest             3.48
+ 8               8           2 oak hornbeam forest    3.68
+ 9               9           2 oak hornbeam forest    4.24
+10              10           1 oak forest             4.01
+# ℹ 55 more rows</code></pre>
+</div>
+</div>
+<p>Now you can save this file and import it to JUICE as you are used to importing headers.</p>
 
 
 </section>

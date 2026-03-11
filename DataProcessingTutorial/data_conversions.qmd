@@ -91,6 +91,7 @@ spe %>% count(cover_perc)
 Here we are using values of the new Braun-Blaunquet scale transformed to percentages with decimals. We can either use some crosswalk table (see the [table_cover](https://github.com/CzechVeg/CzechVeg.github.io/blob/main/Data/crosswalk_tables/table_cover.csv) and column COVER_PERC_EVA) or change the values directly in the script as below and save the output as a csv file. I recommend using the file with original covers and not the one after merging in R. The same approach as we did here for merging covers (see function in the last section of the [Turboveg to R](https://czechveg.github.io/DataProcessingTutorial/turboveg_r.html#merging-of-species-covers-across-layers)) can be done in JUICE later on and it saves you from rounding complicated values before export.
 
 ```{r}
+#| eval: false
 spe %>% 
   select(releve_nr, species, layer, cover_perc) %>% 
   arrange(releve_nr) %>%
@@ -114,6 +115,15 @@ We will use the import through Database records. Note that sometimes it might be
 
 Select the file and check if you have defined the positions of individual columns (1,2...) as it is in your file.
 
-![](images/clipboard-2210966045.png)
+![](images/clipboard-2210966045.png){width="513"}
 
-For headers we can use any selection of the header data, and import it as a second step.
+For headers we can use any selection of the header data, and import it as a second step after saving the file. Be sure to have the file arranged in the same way and to include the Relevé number.
+
+```{r}
+read_csv("data/env_measured.csv")%>%
+  select(releve_nr,forest_type, forest_type_name, soil_pH) %>% 
+  arrange(releve_nr) %>% 
+  rename("Relevé number"=releve_nr)
+```
+
+Now you can save this file and import it to JUICE as you are used to importing headers.

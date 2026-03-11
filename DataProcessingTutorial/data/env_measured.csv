@@ -1,4 +1,4 @@
-﻿Releve_nr,ForestType,ForestTypeName,Herbs,Juveniles,CoverE1,Biomass,Soil_depth_categ,pH_KCl,Slope,Altitude,Canopy_E3,Radiation,Heat,TransDir     ,TransDif ,TransTot ,EIV_light,EIV_moisture,EIV_soilreaction,EIV_nutrients,TWI
+﻿releve_nr,forest_type,forest_type_name,herbs,juveniles,coverE1,biomass,soil_depth,soil_pH,slope,altitude,coverE3,radiation,heat,trans_dir,trans_dif,trans_tot,eiv_light,eiv_moisture,eiv_soilreaction,eiv_nutrients,TWI
 1,2,oak hornbeam forest,26,12,20,12.8,5,5.28,4,412,80,0.8813,0.8575,3.72,2.83,6.55,5,4.38,6.68,4.31,3.353962045
 2,1,oak forest,13,3,25,9.9,4.5,3.24,24,458,80,0.9329,0.8138,4.05,2.83,6.88,4.71,4.64,4.67,3.69,2.419176751
 3,1,oak forest,14,1,25,15.2,3,4.01,13,414,80,0.9161,0.8503,4.38,2.94,7.31,4.36,4.7,4.8,3.55,2.15958042
