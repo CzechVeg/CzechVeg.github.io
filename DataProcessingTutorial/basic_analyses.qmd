@@ -24,7 +24,7 @@ First I want to add some more variables that were measured separately.
 env_extra<- read_csv("data/env_measured.csv")
 ```
 
-For the env dataset, I want to import the clean version saved in the previous script. I will directly add selected information from the other file. For more on joins, see the[study materials](https://botzooldataanalysis.github.io/DataManipulationVisualisation/5_join_functions.html).
+For the env dataset, I want to import the clean version saved in the previous script. I will directly add selected information from the other file. For more on joins, see the [study materials](https://botzooldataanalysis.github.io/DataManipulationVisualisation/5_join_functions.html).
 
 ```{r}
 env<- read_csv("data/env.csv") %>%       
@@ -60,7 +60,7 @@ I also want to add some information about traits. So I will check what is availa
 list.files("data")
 ```
 
-I will import plant height data, Ellenberg-type indicator values and status (origin and Red List categories). All these data are available in the [PLADIAS](https://pladias.cz/) database of the Czech flora and vegetation. I used the datasets from the download section and adjusted the format for easier data handling.
+I will import some plant height data, Ellenberg-type indicator values and status (origin and Red List categories). All these data are available in the [PLADIAS](https://pladias.cz/) database of the Czech flora and vegetation. I used the datasets from the download section and adjusted the format for easier data handling.
 
 ```{r}
 traits <- read_csv("data/traits.csv")
@@ -76,14 +76,14 @@ status <- read_csv("data/status.csv")
 
 ## 2.2 Basic data handling
 
-**`Select`** extracts columns/variables based on their names or position. Select can be also used in combination with stringr package to identify the pattern in the names: try several options: `starts_with`, `ends_with` or more general one `contains`. With the use of select in your script you can order the variables always in the same way e.g. ID, forest type, species number, productivity, even during import. And you can also rename the variables using select, to get exactly what you need.
+**`Select`** the the columns/variables based on their names or position. Select can also be used in combination with the `stringr` package to identify the pattern in the names: try several options: `starts_with`, `ends_with` or a more general one `contains`. With the use of select in your script you can order the variables always in the same way e.g. ID, forest type, species number, productivity, even during import. And you can also rename the variables using select, to get exactly what you need.
 
 ```{r}
 env_extra %>% 
   select(ID=releve_nr, forest_type=forest_type_name, species_nr=herbs, productivity=biomass) 
 ```
 
-**`Distinct`** is a function that takes your data and remove all the duplicate rows, keeping only the unique ones. There are many cases where you will really appreciate this elegant and easy way. For example, I want a list of unique PlotIDs= releve_nr, unique combinations of two categories etc. Here I want to prepare list of forest types codes and names.
+**`Distinct`** is a function that takes your data and removes all the duplicate rows, keeping only the unique ones. There are many cases where you will really appreciate this elegant and easy way. For example, I want a list of unique PlotIDs= releve_nr, unique combinations of two categories etc. Here I want to prepare a list of forest type codes and names, and as a first step, I sorted the dataset by forest type with `arrange`. Note that arrange can be used also in descending order e.g. arrange (desc(forest_type)).
 
 ```{r}
 env_extra %>%
@@ -98,7 +98,7 @@ env_extra %>%
   filter(forest_type_name =="alluvial forest")
 ```
 
-or those that are listed
+or those that are listed in the brackets
 
 ```{r}
 
@@ -106,7 +106,7 @@ env_extra %>%
   filter(forest_type_name %in% c("alluvial forest", "ravine forest"))
 ```
 
-Or I want to filter based on some values. If I have at the same time NAs in the variable, I should specify if I want to keep these rows or not. In the example below I will keep all rows/plots where biomass is higher than 80g/m2 but I will also keep all the NAs, i.e. plots where it was not measured.
+Or I want to filter based on some values. If I have NAs in the variable at the same time, I should specify if I want to keep these rows or not. In the example below I will keep all rows/plots where biomass is higher than 80g/m2 but I will also keep all the NAs, i.e. plots where it was not measured.
 
 ```{r}
 env_extra %>% 
@@ -121,7 +121,7 @@ env_extra %>%
 
 ```
 
-Similarly, you can for example **filter plots based on their plot size**. The example below is not working on our dataset, but it comes useful in large EVA exports. Here I keep grassland plots in the range 10-100 m2, forest plots between 100-1000 m2 and I keep the plots without specified plot size.
+Similarly, you can for example, **filter plots based on their plot size**. The example below is not working on our dataset, but it comes in useful in large EVA exports. Here I keep grassland plots in the range 10-100 m2, forest plots between 100-1000 m2 and I keep the plots without a specified plot size.
 
 ```{r}
 #| eval: false
@@ -133,25 +133,72 @@ env %>%
   )
 ```
 
-## 2.3 Summarise
+**`Mutate`** Often, you need to prepare new variables, based on the existing variables, filled with some value (number or string) or you need to rewrite the values of a variable. For this, you can use the mutate function.
 
-I will a bit explore the data and ask about which factors influence species richness. Here are just few examples, we will read together the scripts and you will adopt them later to other tasks. First I want to produce a table with **summary statistics** like min, mean, max for two variables plant height, and biomass per forest type. The first one is a trait, so we need to append it to species file and calculate community means, while the other is a variable measured in each plot.
-
-Combine and summarise different variables / explanation will be added
+Here I prepare new variable by summing two columns:
 
 ```{r}
-spe %>% 
-  filter(layer == "6") %>%
-  left_join(traits %>% 
-              select(species, height)) %>%
-  left_join(env) %>%
-  arrange(forest) %>%
-  summarise(across(c(height,cov_herbs, biomass, cov_trees,soil_pH ),
+env_extra %>% 
+  mutate(herblayer_richness = herbs+juveniles) %>% 
+  select(releve_nr, herblayer_richness, herbs, juveniles)
+```
+
+Or I can define new variable based on some conditions with *ifelse* (first I state what happens if the condition is met and what happens with the rest and I can nest more ifelse statements)
+
+```{r}
+env_extra %>% 
+  mutate(productivity = ifelse(biomass<60,"low","high")) %>% 
+  select (releve_nr, forest_type_name, productivity, biomass) %>% 
+  print(n=20)
+  
+```
+
+or with *case_when* I can define a set of conditions and assign the value to each of them
+
+```{r}
+#| eval: false
+env_extra %>% 
+  mutate(productivity = case_when(biomass <= 60 ~ "low", 
+                                  biomass > 60 ~ "high")) 
+```
+
+**`Join functions`** are used either to append new information (left_join, inner_join, full_join) or to filter our dataset (semi_join, anti_join) based on the comparison with another dataset. We always need to have some common variables which have exactly the same name or we have to specify which variables are equivalent in the two datasets. In most cases we will use `left_join` which is used for appending information from another file, without changing the number of rows in the original file. If the information is not available, the value will be NA.
+
+![](images/clipboard-18446331.png)
+
+For more on join functions see [here](https://botzooldataanalysis.github.io/DataManipulationVisualisation/5_join_functions.html).
+
+## 2.3 Summarise
+
+Using the **`group_by()`** function, we can define how the data should be arranged into groups. Then we can proceed with asking questions about these groups. The basic function of summarising information is to count the number of rows.
+
+```{r}
+env_extra %>% 
+  count(forest_type_name)
+```
+
+But we can explore the data much more. For example calculate mean values per vegetation type.
+
+```{r}
+env %>% 
+  group_by(forest) %>%
+  summarise(mean_biomass = mean(biomass))
+```
+
+We might produce a table with **summary statistics** like min, mean, max for several variables per forest type at once, listing both the variables and functions which should be applied.
+
+```{r}
+env_extra %>%
+  arrange(forest_type,forest_type_name) %>%
+  group_by(forest_type,forest_type_name) %>% 
+  summarise(across(c(coverE1, biomass, coverE3, soil_pH),
       list(
         min  = ~min(.x, na.rm = TRUE),
         mean = ~mean(.x, na.rm = TRUE),
-        max  = ~max(.x, na.rm = TRUE))),.by = forest)
+        max  = ~max(.x, na.rm = TRUE))))
 ```
+
+Rather than tables, we can produce graphical outputs, such as boxplots. See our study materials for [basic ](https://botzooldataanalysis.github.io/DataManipulationVisualisation/3_data_visualisation.html)and [advanced ggplot2](https://botzooldataanalysis.github.io/DataManipulationVisualisation/6_advanced_visualisation.html) functions.
 
 ```{r}
 env %>%
@@ -171,7 +218,7 @@ env %>%
   labs (y = NULL)
 ```
 
-I might be interested in **species richness relationship** with several factors. Below is an example of herb-layer species richness and biomass. At first I need to calculate the species richness in the spe file. And as an output I want to plot this with different colours for different forest types but keep the regression line for the whole dataset.
+We might be interested in **species richness relationship** with several factors. Below is an example of herb-layer species richness and biomass. At first I need to calculate the species richness in the spe file. And as an output I want to plot this with different colours for different forest types but keep the regression line for the whole dataset.
 
 ```{r}
 spe %>% 
@@ -266,7 +313,7 @@ spe %>%
   summarise(across(starts_with("eiv"), ~ mean(.x, na.rm = TRUE)))
 ```
 
-**Boxplots of Ellenberg-type indicator values** can be produced for example like this:
+**Boxplots of Ellenberg-type indicator values** can be produced for example like this: You can try again sending parts of the script to console, always adding new part and see what happens.
 
 ```{r}
 spe %>% 
@@ -289,3 +336,7 @@ spe %>%
   labs(x = NULL) +
   labs (y = NULL)
 ```
+
+## 2.6 Visualisation
+
+Visualisation is not part of the tutorial at the moment, but we recommend our study materials for [basic ](https://botzooldataanalysis.github.io/DataManipulationVisualisation/3_data_visualisation.html)and [advanced ggplot2](https://botzooldataanalysis.github.io/DataManipulationVisualisation/6_advanced_visualisation.html) functions.
