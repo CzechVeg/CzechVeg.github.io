@@ -85,6 +85,7 @@ tibble(spe)
 JUICE can handle the species files in long format as well and it is called *database data import*. We can make a selection of the important fields (releve nr, species, layer and cover) and save the file as csv. However, JUICE is primarily working with integers. Therefore, the first step is to check the cover values we have in our dataset.
 
 ```{r}
+spe <- read_csv("data/spe.csv") 
 spe %>% count(cover_perc)
 ```
 

@@ -103,7 +103,7 @@ And save it for easier access. Always keep releve_nr and coverscale, as you will
 
 ```{r}
 #| eval: false
-writecsv(env, "data/env.csv")
+write_excel_csv(env, "data/env.csv")
 ```
 
 **\*An alternative option** is to directly import the file exported from the Turboveg database named **tvhabita.dbf**. Since dbf is a specific type of files, we need to use a specialised packages. Here I used **read.dbf** function from the `foreign` library.
