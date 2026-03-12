@@ -71,7 +71,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-d9589ad4e98504035195c70aa99e1e7d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-0508618caa1d256af916c83e0797e277.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -364,8 +364,7 @@ Joining with `by = join_by(releve_nr)`</code></pre>
 <h3 class="anchored" data-anchor-id="spe-dataset">2.1.2 spe dataset</h3>
 <p>I want to work with the&nbsp;<strong>spe dataset</strong>, and I want to keep information about layers, as I want to focus on the herb-layer.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">read_csv</span> (<span class="st">"data/spe_merged_covers.csv"</span>)<span class="sc">%&gt;%</span>    </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">semi_join</span>(env)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>spe <span class="ot">&lt;-</span> <span class="fu">read_csv</span> (<span class="st">"data/spe_merged_covers.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 2277 Columns: 4
 ── Column specification ────────────────────────────────────────────────────────
@@ -374,8 +373,7 @@ chr (1): species
 dbl (3): releve_nr, layer, cover_perc
 
 ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-Joining with `by = join_by(releve_nr)`</code></pre>
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
 </div>
 </section>
@@ -400,7 +398,7 @@ Joining with `by = join_by(releve_nr)`</code></pre>
 [25] "tvhabita.dbf"                        "tvwin.dbf"                          </code></pre>
 </div>
 </div>
-<p>I will import some plant height data, Ellenberg-type indicator values and status (origin and Red List categories). All these data are available in the <a href="https://pladias.cz/">PLADIAS</a> database of the Czech flora and vegetation. I used the datasets from the download section and adjusted the format for easier data handling.</p>
+<p>I will import some traits e.g.&nbsp;plant height data, Ellenberg-type indicator values and status (origin and Red List categories). All these data are available in the <a href="https://pladias.cz/">PLADIAS</a> database of the Czech flora and vegetation. I used the datasets from the download section and adjusted the format for easier data handling.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>traits <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/traits.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -443,7 +441,7 @@ chr (3): species, origin, redlist
 </section>
 <section id="basic-data-handling" class="level2">
 <h2 class="anchored" data-anchor-id="basic-data-handling">2.2 Basic data handling</h2>
-<p><strong><code>Select</code></strong> the the columns/variables based on their names or position. Select can also be used in combination with the <code>stringr</code> package to identify the pattern in the names: try several options: <code>starts_with</code>, <code>ends_with</code> or a more general one <code>contains</code>. With the use of select in your script you can order the variables always in the same way e.g.&nbsp;ID, forest type, species number, productivity, even during import. And you can also rename the variables using select, to get exactly what you need.</p>
+<p><strong><code>Select</code></strong> the columns/variables based on their names or position. Select can also be used in combination with the <code>stringr</code> package to identify the pattern in the names: try several options: <code>starts_with</code>, <code>ends_with</code> or a more general one <code>contains</code>. With the use of select in your script you can order the variables always in the same way e.g.&nbsp;ID, forest type, species number, productivity, even during import. And you can also rename the variables using select, to get exactly what you need.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>env_extra <span class="sc">%&gt;%</span> </span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">ID=</span>releve_nr, <span class="at">forest_type=</span>forest_type_name, <span class="at">species_nr=</span>herbs, <span class="at">productivity=</span>biomass) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -626,7 +624,7 @@ chr (3): species, origin, redlist
 # ℹ 55 more rows</code></pre>
 </div>
 </div>
-<p>Or I can define new variable based on some conditions with <em>ifelse</em> (first I state what happens if the condition is met and what happens with the rest and I can nest more ifelse statements)</p>
+<p>Or I can define new variable based on some conditions with <em>ifelse</em> (first I state what happens if the condition is met (here “low”), then what happens with the rest (“high”) and I can nest more ifelse statements)</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>env_extra <span class="sc">%&gt;%</span> </span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">productivity =</span> <span class="fu">ifelse</span>(biomass<span class="sc">&lt;</span><span class="dv">60</span>,<span class="st">"low"</span>,<span class="st">"high"</span>)) <span class="sc">%&gt;%</span> </span>
@@ -665,13 +663,13 @@ chr (3): species, origin, redlist
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">productivity =</span> <span class="fu">case_when</span>(biomass <span class="sc">&lt;=</span> <span class="dv">60</span> <span class="sc">~</span> <span class="st">"low"</span>, </span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>                                  biomass <span class="sc">&gt;</span> <span class="dv">60</span> <span class="sc">~</span> <span class="st">"high"</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong><code>Join functions</code></strong> are used either to append new information (left_join, inner_join, full_join) or to filter our dataset (semi_join, anti_join) based on the comparison with another dataset. We always need to have some common variables which have exactly the same name or we have to specify which variables are equivalent in the two datasets. In most cases we will use <code>left_join</code> which is used for appending information from another file, without changing the number of rows in the original file. If the information is not available, the value will be NA.</p>
+<p><strong><code>Join functions</code></strong> are used either to append new information (left_join, inner_join, full_join) or to filter our dataset (semi_join, anti_join) based on the comparison with another dataset. We always need to have some common variables which have exactly the same name or we have to specify using <em>by</em> which variables are equivalent in the two datasets e.g.&nbsp;<code>left_join(traits, by = c("species"= "taxon")</code>. In most cases we will use <code>left_join</code> which is used for appending information from another file, without changing the number of rows in the original file. If the information is not available, the value will be NA.</p>
 <p><img src="images/clipboard-18446331.png" class="img-fluid"></p>
 <p>For more on join functions see <a href="https://botzooldataanalysis.github.io/DataManipulationVisualisation/5_join_functions.html">here</a>.</p>
 </section>
 <section id="summarise" class="level2">
 <h2 class="anchored" data-anchor-id="summarise">2.3 Summarise</h2>
-<p>Using the&nbsp;<strong><code>group_by()</code></strong>&nbsp;function, we can define how the data should be arranged into groups. Then we can proceed with asking questions about these groups. The basic function of summarising information is to count the number of rows.</p>
+<p>Using the&nbsp;<strong><code>group_by()</code></strong>&nbsp;function, we can define how the data should be arranged into groups. Then we can proceed with asking questions about these groups. The basic function of summarising information is to <code>count</code> the number of rows, and we do not have to even specify the grouping variable separately, only within count. Count returns numbers stored as <em>n</em>, but we can also directly rename it e.g.&nbsp;count (forest_type_name, name= “frequency”).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>env_extra <span class="sc">%&gt;%</span> </span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(forest_type_name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
