@@ -3,7 +3,7 @@ title: "CzechVeg-Open"
 format: html
 ---
 
-CzechVeg-Open is a publicly available, full version of the Czech Vegetation Database, containing all vegetation-plot records. The taxonomy and nomenclature of plant taxa are not fully harmonized. The data description is available [here](https://czechveg.github.io/Data/data_description.html).
+CzechVeg-Open is a publicly available, full version of the Czech Vegetation Database that contains all vegetation-plot records. The data description is available [here](https://czechveg.github.io/Data/data_description.html).
 
 CzechVeg-Open is available in two formats: the Turboveg 2 format, which requires the [Turboveg 2](https://czechveg.github.io/Data/turboveg.html) program, and the CSV format (see the [Data processing tutorial](https://czechveg.github.io/DataProcessingTutorial/data_processing_tutorial.html)).
 
@@ -13,7 +13,7 @@ CzechVeg-Open is available in two formats: the Turboveg 2 format, which requires
 -   Size: 117,739 vegetation plots
 -   DOI: [https:/doi.org/10.5281/zenodo.18289905](https://doi.org/10.5281/zenodo.18289905){.uri}
 -   Licence: Creative Commons Attribution 4.0 International ([CC-BY](https://creativecommons.org/licenses/by/4.0/))
--   Download
+-   Download:
     -   [Vegetation-plot species data in CSV format](https://zenodo.org/records/18289905/files/CzechVeg-Open_species_v1-0_2026-03-10.csv?download=1)
     -   [Vegetation-plot header data in CSV format](https://zenodo.org/records/18289905/files/CzechVeg-Open_headers_v1-0_2026-03-10.csv?download=1)
     -   [Vegetation-plot data in Turboveg 2 format](https://zenodo.org/records/18289905/files/TurbovegDbBackup_CzechVeg-Open_v1-0_2026-03-10.zip?download=1)
