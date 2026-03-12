@@ -31,7 +31,7 @@ Species data include unique identifiers for vegetation plots and corresponding s
 
 **Taxon name used in the CzechVeg-ESy expert system (CZECHVEG_ESY_NAME).** This taxonomy groups some taxonomically challenging taxa into higher units, such as aggregates. It is used in the expert system CzechVeg-ESy (Chytrý et al. 2020) for automatic vegetation classification according to Vegetation of the Czech Republic (Chytrý 2007–2013). Note that subspecies are abbreviated as "ssp." and genus-level taxa are supplemented by "species" as in the original file.
 
--   Chytrý M. (ed.) (2007–2013) *Vegetace České republiky 1–4. Vegetation of the Czech Republic 1–4*. Academia, Praha.
+-   Chytrý M. (ed.) (2007–2013) *Vegetace České republiky 1–4. Vegetation of the Czech Republic 1–4*. Academia, Praha. <https://botzool.cz/vegsci/vegetationCR>
 -   Chytrý M., Tichý L., Boublík K., Černý T., Douda J., Hájek M., Hájková P., Hédl R., Kočí M., Krahulec F., Kučera T., Landucci F., Láníková D., Lososová Z., Navrátilová J., Petřík P., Preislerová Z., Řezníčková M., Roleček J., Sádlo J., Šumberová K., Vítková M. & Zelený D. (2020) *CzechVeg-ESy: Expert system for automatic classification of vegetation plots from the Czech Republic*. Zenodo. <https://doi.org/10.5281/zenodo.3605561>
 
 **Taxon name following the Czech Expert system (CZECHVEG_ESY_NAME_SUBSP).** This is the same as above, but uses "subsp." and does not add "species" to taxa determined at the genus level.
@@ -103,7 +103,7 @@ In addition to basic variables, the Czech Vegetation Database also contains vari
 
 **Syntaxon (SYNTAXON).** Vegetation unit (syntaxon) to which the vegetation plot was subjectively assigned by its author or a database administrator. The dataset in Turboveg 2 format (DBF) contains the syntaxon code. The CSV format also includes the full syntaxon name in the field **SYNTAXON_NAME**. Translation of codes to names is available in the [crosswalk table](https://github.com/CzechVeg/CzechVeg.github.io/tree/main/Data/crosswalk_tables/table_syntaxon.csv). The vegetation classification follows Chytrý (2007–2013).
 
--   Chytrý M. (ed.) (2007–2013) *Vegetace České republiky 1–4. Vegetation of the Czech Republic 1–4*. Academia, Praha.
+-   Chytrý M. (ed.) (2007–2013) *Vegetace České republiky 1–4. Vegetation of the Czech Republic 1–4*. Academia, Praha. <https://botzool.cz/vegsci/vegetationCR>
 
 **CzechVeg-ESy code (ESY_CODE).** Code of the vegetation unit according to the Vegetation of the Czech Republic (Chytrý 2007–2013), assigned based on vegetation classification by the expert system CzechVeg-Esy, version v1-2020-01-12 (<https://doi.org/10.5281/zenodo.3605562>). This field is empty for plots that were not unambiguously classified by the expert system.
 
