@@ -338,4 +338,4 @@ spe %>%
 
 ## 2.6 Visualisation
 
-Visualisation is not part of the tutorial at the moment, but we recommend our study materials for [basic](https://botzooldataanalysis.github.io/DataManipulationVisualisation/3_data_visualisation.html)and [advanced ggplot2](https://botzooldataanalysis.github.io/DataManipulationVisualisation/6_advanced_visualisation.html) functions.
+Visualisation is not part of the tutorial at the moment, but we recommend our study materials for [basic](https://botzooldataanalysis.github.io/DataManipulationVisualisation/3_data_visualisation.html) and [advanced ggplot2](https://botzooldataanalysis.github.io/DataManipulationVisualisation/6_advanced_visualisation.html) functions.

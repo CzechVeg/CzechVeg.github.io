@@ -71,7 +71,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-d9589ad4e98504035195c70aa99e1e7d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-0508618caa1d256af916c83e0797e277.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -1068,7 +1068,7 @@ Joining with `by = join_by(releve_nr, species)`</code></pre>
 </div>
 </div>
 <p>The percentage cover is estimated visually relative to the total area. In the field it is estimated indepently of other plants, because we know that the plants overlap within vertical space. If we use normal sum function, we can easily get total cover per plot above 100%. Although we can separate the information into vegetation layers, it is still rather coarse division. Especially in grasslands where the main diversity is in just one, often very dense, layer.</p>
-<p>Therefore we will use the approach suggested by H.S. Fischer in the paper <em>On combination of species from different vegetation layers</em> (AVS 2014), where he suggested summing up covers considering overlap among species, so that the overall maximum value is 100 and all the values are adjusted relative to this treshold. We will prepare function called <code>combine_cover</code></p>
+<p>Therefore we will use the approach suggested by H.S. Fischer in the paper <em>On combination of species from different vegetation layers</em> (AVS 2015), where he suggested summing up covers considering overlap among species, so that the overall maximum value is 100 and all the values are adjusted relative to this treshold. We will prepare function called <code>combine_cover</code></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>combine_cover <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
 <span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> (<span class="fu">length</span>(x)<span class="sc">&gt;</span><span class="dv">1</span>){</span>
