@@ -16,7 +16,7 @@ The database is registered in the *Global Index of Vegetation-Plot Databases* ([
 
 The database is coordinated at the [Vegetation Science Group](https://botzool.cz/vegsci/), [Department of Botany and Zoology](https://botzool.sci.muni.cz/en), Faculty of Science, Masaryk University, Brno, Czech Republic. The current database administrator is Ilona Knollová ([ikuzel\@sci.muni.cz](mailto:ikuzel@sci.muni.cz)).
 
-In November 2025, the database contained 117,739 vegetation plots from the Czech Republic, sampled between 1922 and 2025. These plots represent all vegetation types found in the country, with grassland and forest plots being the most numerous, followed by plots from wetlands, ruderal, and weed vegetation.
+In March 2026, the database contained 117,739 vegetation plots from the Czech Republic, sampled between 1922 and 2025. These plots represent all vegetation types found in the country, with grassland and forest plots being the most numerous, followed by plots from wetlands, ruderal, and weed vegetation.
 
 ## 2 Related resources
 
@@ -51,6 +51,6 @@ Chytrý, M., Axmanová, I., Divíšek, J., Friesová, K., Palpurina, S., Řezní
 
 ## 5 Funding
 
-This website was launched in January 2026. Its development was supported through the Open Science Clusters' Action for Research and Society ([OSCARS](https://oscars-project.eu/)) Horizon Europe project under grant agreement No. 101129751, subproject "[EVA-FAIR](https://oscars-project.eu/projects/eva-fair-implementing-fair-principles-european-vegetation-archive-data) - Implementing FAIR principles in the European Vegetation Archive data".
+This website was launched in March 2026. Its development was supported through the Open Science Clusters' Action for Research and Society ([OSCARS](https://oscars-project.eu/)) Horizon Europe project under grant agreement No. 101129751, subproject "[EVA-FAIR](https://oscars-project.eu/projects/eva-fair-implementing-fair-principles-european-vegetation-archive-data) - Implementing FAIR principles in the European Vegetation Archive data".
 
 ![](images/clipboard-4264386568.jpeg)
