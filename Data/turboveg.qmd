@@ -20,15 +20,15 @@ After the Turboveg installation, the program should be updated to the current ve
 
 The standard Turboveg list of the Czech flora (common with the standard list of Slovak flora) should be downloaded here:
 
--   [species.zip](files/species.zip) (version 28 November 2024)
+-   [https://github.com/CzechVeg/CzechVeg.github.io/blob/main/About/files/species.zip](files/species.zip) (version 10 March 2026)
 
-Extract this file. After extraction, you will receive a folder named Czechia_Slovakia_2015, which should be copied to the folder /TURBOWIN/species on your computer. In the Turboveg program, assign the species list to each specific database using *Database/Modify attributes*. Translation of the Turboveg checklist to currently used taxonomy can be found in the [crosswalk table](https://github.com/CzechVeg/CzechVeg.github.io/tree/main/Data/crosswalk_tables/table_nomenclature.csv).
+Extract this file. After extraction, you will receive a folder named Czechia_Slovakia_2015, which should be copied to the folder /TURBOWIN/species on your computer. In the Turboveg program, assign the species list to each specific database using *Database/Modify attributes*. Translation of the Turboveg checklist to the currently used taxonomy can be found in the [crosswalk table](https://github.com/CzechVeg/CzechVeg.github.io/tree/main/Data/crosswalk_tables/table_nomenclature.csv).
 
 ### 2.3 Installation and update of the common database directories
 
 The standard directories for specific header-data variables should be downloaded from here:
 
--   [popup.zip](files/popup.zip) (version 16 December 2024)
+-   [popup.zip](https://github.com/CzechVeg/CzechVeg.github.io/blob/main/About/files/popup.zip) (version 10 March 2026)
 
 Extract this file to the folder /TURBOWIN/popup (old files should be rewritten). If there are problems with the syntaxon list, follow the instructions [here](files/Prevod_Moravec_VegetaceCR.pdf).
 
