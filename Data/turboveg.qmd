@@ -36,7 +36,7 @@ Extract this file to the folder /TURBOWIN/popup (old files should be rewritten).
 
 Before storing the vegetation-plot data entered into Turboveg in the Czech Vegetation Database, each plot must have a unique number. To guarantee that your plots have unique numbers, contact Ilona Knollová ([ikuzel\@sci.muni.cz](mailto:ikuzel@sci.muni.cz)), who may assign a range of plot numbers to you. The list of numbers assigned to individual collaborators is [here](files/rozsahy.pdf). Collaborators who have not been assigned to a range of plot numbers should code their plots starting from no. 1. Their plots will be renumbered by the coordinator once they are sent to the central database. If collaborators with assigned plot numbers enter plots from published sources, the bibliographic references should have numbers from the same numerical range.
 
-Turboveg manual for beginners (in Czech) is [here](https://github.com/CzechVeg/CzechVeg.github.io/tree/main/Data/turboveg_files/Turboveg-manual.pdf). You can download an [empty database template](https://github.com/CzechVeg/CzechVeg.github.io/tree/main/Data/turboveg_files/vzorova-databaze.zip) with standard header data fields used in the Czech Vegetation Database. Restore this template to the folder /TURBOWIN/data and rename it.
+Turboveg manual for beginners (in Czech) is [here](https://github.com/CzechVeg/CzechVeg.github.io/tree/main/Data/turboveg_files/Turboveg_manual.pdf). You can download an [empty database template](https://github.com/CzechVeg/CzechVeg.github.io/tree/main/Data/turboveg_files/vzorova_databaze.zip) with standard header data fields used in the Czech Vegetation Database. Restore this template to the folder /TURBOWIN/data and rename it.
 
 ## 4 Taxonomic and nomenclatural standards
 
