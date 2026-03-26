@@ -30,7 +30,7 @@ The standard directories for specific header-data variables should be downloaded
 
 -   [popup.zip](https://github.com/CzechVeg/CzechVeg.github.io/tree/main/Data/turboveg_files/popup.zip) (version 10 March 2026)
 
-Extract this file to the folder /TURBOWIN/popup (old files should be rewritten). If there are problems with the syntaxon list, follow the instructions [here](files/Prevod_Moravec_VegetaceCR.pdf).
+Extract this file to the folder /TURBOWIN/popup (old files should be rewritten). If there are problems with the syntaxon list, follow the instructions [here](https://github.com/CzechVeg/CzechVeg.github.io/tree/main/Data/turboveg_files/Prevod_Moravec_VegetaceCR.pdf).
 
 ## 3 Instructions
 
