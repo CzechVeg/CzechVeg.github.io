@@ -28,13 +28,13 @@ Extract this file. After extraction, you will receive a folder named Czechia_Slo
 
 The standard directories for specific header-data variables should be downloaded from here:
 
--   [popup.zip](https://github.com/CzechVeg/CzechVeg.github.io/tree/main/Data/turboveg_files/popup.zip) (version 10 March 2026)
+-   [popup.zip](https://github.com/CzechVeg/CzechVeg.github.io/blob/main/About/files/species.zip) (version 10 March 2026)
 
 Extract this file to the folder /TURBOWIN/popup (old files should be rewritten). If there are problems with the syntaxon list, follow the instructions [here](https://github.com/CzechVeg/CzechVeg.github.io/tree/main/Data/turboveg_files/Prevod_Moravec_VegetaceCR.pdf).
 
 ## 3 Instructions
 
-Before storing the vegetation-plot data entered into Turboveg in the Czech Vegetation Database, each plot must have a unique number. To guarantee that your plots have unique numbers, contact Ilona Knollová ([ikuzel\@sci.muni.cz](mailto:ikuzel@sci.muni.cz)), who may assign a range of plot numbers to you. The list of numbers assigned to individual collaborators is [here](files/rozsahy.pdf). Collaborators who have not been assigned to a range of plot numbers should code their plots starting from no. 1. Their plots will be renumbered by the coordinator once they are sent to the central database. If collaborators with assigned plot numbers enter plots from published sources, the bibliographic references should have numbers from the same numerical range.
+Before storing the vegetation-plot data entered into Turboveg in the Czech Vegetation Database, each plot must have a unique number. To guarantee that your plots have unique numbers, contact Ilona Knollová ([ikuzel\@sci.muni.cz](mailto:ikuzel@sci.muni.cz)), who may assign a range of plot numbers to you. The list of numbers assigned to individual collaborators is [here](https://github.com/CzechVeg/CzechVeg.github.io/blob/main/About/files/rozsahy.pdf). Collaborators who have not been assigned to a range of plot numbers should code their plots starting from no. 1. Their plots will be renumbered by the coordinator once they are sent to the central database. If collaborators with assigned plot numbers enter plots from published sources, the bibliographic references should have numbers from the same numerical range.
 
 Turboveg manual for beginners (in Czech) is [here](https://github.com/CzechVeg/CzechVeg.github.io/tree/main/Data/turboveg_files/Turboveg_manual.pdf). You can download an [empty database template](https://github.com/CzechVeg/CzechVeg.github.io/tree/main/Data/turboveg_files/vzorova_databaze.zip) with standard header data fields used in the Czech Vegetation Database. Restore this template to the folder /TURBOWIN/data and rename it.
 
