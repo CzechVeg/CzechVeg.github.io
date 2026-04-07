@@ -8,7 +8,7 @@ The Czech Vegetation Database is stored and managed in the [Turboveg 2](https://
 
 ## 1 Installation
 
-To obtain the version of Turboveg optimized for Czech data, please contact Ilona Knollová ([ikuzel\@sci.muni.cz](mailto:ikuzel@sci.muni.cz)) or Milan Chytrý ([chytry\@sci.muni.cz](mailto:chytry@sci.muni.cz)). This version is not available for international users who work with data from other countries. If these users are interested in working with Turboveg, they should contact database coordinators in their countries or Stephan Hennnekens.
+The version of Turboveg optimized for Czech data is available [here](https://www.sci.muni.cz/botany/tv). Enter login: turboveg, password: betulapendula, and follow the instructions.
 
 ## 2 Updates
 
