@@ -349,7 +349,7 @@
     "href": "DataProcessingTutorial/basic_analyses.html#visualisation",
     "title": "Basic data analyses",
     "section": "2.6 Visualisation",
-    "text": "2.6 Visualisation\nVisualisation is not part of the tutorial at the moment, but we recommend our study materials for basic and advanced ggplot2 functions.",
+    "text": "2.6 Visualisation\nVisualisation is not part of the tutorial at the moment, but we recommend our study materials for basic and advanced ggplot2 functions. However, we plan to include more examples in the future releases.",
     "crumbs": [
       "Data processing tutorial",
       "Basic data analyses"
