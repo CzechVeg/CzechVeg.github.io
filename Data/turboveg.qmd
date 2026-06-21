@@ -30,7 +30,7 @@ Extract this file. After extraction, you will receive a folder named Czechia_Slo
 
 The standard directories for specific header-data variables should be downloaded from here:
 
--   [popup.zip](https://github.com/CzechVeg/CzechVeg.github.io/blob/main/About/files/species.zip) (version 10 March 2026)
+-   [popup.zip](https://github.com/CzechVeg/CzechVeg.github.io/blob/main/About/files/popup.zip) (version 10 March 2026)
 
 Extract this file into the folder /Turbowin/popup (old files should be overwritten). If there are problems with the syntaxon list, follow the instructions [here](https://github.com/CzechVeg/CzechVeg.github.io/tree/main/Data/turboveg_files/Prevod_Moravec_VegetaceCR.pdf).
 
