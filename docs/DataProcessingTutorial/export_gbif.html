@@ -272,7 +272,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#translating-header-and-species-data-to-the-gbif-format" id="toc-translating-header-and-species-data-to-the-gbif-format" class="nav-link" data-scroll-target="#translating-header-and-species-data-to-the-gbif-format">Translating header and species data to the GBIF format</a>
   <ul class="collapse">
   <li><a href="#events" id="toc-events" class="nav-link" data-scroll-target="#events">Events</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#occurrences" id="toc-occurrences" class="nav-link" data-scroll-target="#occurrences">Occurrences</a></li>
   </ul></li>
+  <li><a href="#export-files-for-gbif" id="toc-export-files-for-gbif" class="nav-link" data-scroll-target="#export-files-for-gbif">Export files for GBIF</a></li>
   </ul>
 </nav>
     </div>
@@ -401,22 +404,14 @@ The matching results are linked back to the original species list. For the occur
 <p>Column names for the <em>event_gbif</em> object to which header data will be transferred:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>event.gbif_colnames <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"eventID"</span>, <span class="st">"countryCode"</span>, <span class="st">"footprintWKT"</span>, <span class="st">"geodeticDatum"</span>, <span class="st">"decimalLongitude"</span>,</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"decimalLatitude"</span>, <span class="st">"coordinateUncertaintyInMeters"</span>, <span class="st">"eventDate"</span>,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"samplingProtocol"</span>, <span class="st">"sampleSizeValue"</span>, <span class="st">"sampleSizeUnit"</span>, <span class="st">"syntaxonName"</span>,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"maximumElevationInMeters"</span>, <span class="st">"aspect"</span>, <span class="st">"inclinationInDegrees"</span>, <span class="st">"coverTotalInPercentage"</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"coverTreesInPercentage"</span>, <span class="st">"coverShrubsInPercentage"</span>, <span class="st">"coverHerbsInPercentage"</span>,</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"coverMossesInPercentage"</span>, <span class="st">"coverLichensInPercentage"</span>, <span class="st">"coverAlgaeInPercentage"</span>,</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"coverLitterInPercentage"</span>, <span class="st">"coverWaterInPercentage"</span>, <span class="st">"coverRockInPercentage"</span>,</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"mossesIdentified"</span>, <span class="st">"lichensIdentified"</span>, <span class="st">"treeLayerHeightInMeters"</span>, <span class="st">"shrubLayerHeightInMeters"</span>, <span class="st">"herbLayerHeightInCentimeters"</span>, <span class="st">"verbatimLocality"</span>, <span class="st">"habitat"</span>,</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"RELEVE_NR"</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>event.gbif_nrow <span class="ot">&lt;-</span> <span class="fu">nrow</span>(dbf_list<span class="sc">$</span>tvhabita)</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>event.gbif_ncol <span class="ot">&lt;-</span> <span class="fu">length</span>(event.gbif_colnames)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>event_gbif <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">matrix</span>(<span class="at">nrow =</span> event.gbif_nrow, <span class="at">ncol =</span> event.gbif_ncol))</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(event_gbif) <span class="ot">&lt;-</span> event.gbif_colnames</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"eventID"</span>,<span class="st">"countryCode"</span>,<span class="st">"footprintWKT"</span>,<span class="st">"geodeticDatum"</span>,<span class="st">"decimalLongitude"</span>,<span class="st">"decimalLatitude"</span>,<span class="st">"coordinateUncertaintyInMeters"</span>,<span class="st">"eventDate"</span>,<span class="st">"samplingProtocol"</span>,<span class="st">"sampleSizeValue"</span>,<span class="st">"sampleSizeUnit"</span>,<span class="st">"syntaxonName"</span>,<span class="st">"maximumElevationInMeters"</span>,<span class="st">"aspect"</span>,<span class="st">"inclinationInDegrees"</span>,<span class="st">"coverTotalInPercentage"</span>,<span class="st">"coverTreesInPercentage"</span>,<span class="st">"coverShrubsInPercentage"</span>,<span class="st">"coverHerbsInPercentage"</span>,<span class="st">"coverMossesInPercentage"</span>,<span class="st">"coverLichensInPercentage"</span>,<span class="st">"coverAlgaeInPercentage"</span>,<span class="st">"coverLitterInPercentage"</span>,<span class="st">"coverWaterInPercentage"</span>,<span class="st">"coverRockInPercentage"</span>,<span class="st">"mossesIdentified"</span>,<span class="st">"lichensIdentified"</span>,<span class="st">"treeLayerHeightInMeters"</span>,<span class="st">"shrubLayerHeightInMeters"</span>,<span class="st">"herbLayerHeightInCentimeters"</span>,<span class="st">"verbatimLocality"</span>,<span class="st">"habitat"</span>,<span class="st">"RELEVE_NR"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>event.gbif_nrow <span class="ot">&lt;-</span> <span class="fu">nrow</span>(dbf_list<span class="sc">$</span>tvhabita)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>event.gbif_ncol <span class="ot">&lt;-</span> <span class="fu">length</span>(event.gbif_colnames)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>event_gbif <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">matrix</span>(<span class="at">nrow =</span> event.gbif_nrow, <span class="at">ncol =</span> event.gbif_ncol))</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(event_gbif) <span class="ot">&lt;-</span> event.gbif_colnames</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><a href="https://www.gbif.org/cs/data-quality-requirements-sampling-events#dcEventID">Event ID</a> should be a unique identifier for each sampling event. We therefore constructed it by combining the Global Index of Vegetation Databases ID of CzechVeg DB (EU-CZ-001) with Turboveg relevé numbers (which is the persistent identifier used in the CzechVeg DB).</p>
 <div class="cell">
@@ -556,9 +551,202 @@ The matching results are linked back to the original species list. For the occur
 <span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a>event_gbif<span class="sc">$</span>habitat <span class="ot">&lt;-</span> event_gbif<span class="sc">$</span>code_name</span>
 <span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a>event_gbif<span class="sc">$</span>code_name <span class="ot">&lt;-</span> <span class="cn">NULL</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-
-
 </section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Bibliographic references just for vegetation plots where they are indicated in the database</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>tvreferenc <span class="ot">&lt;-</span> dbf_list<span class="sc">$</span>tvrefenc[,<span class="fu">c</span>(<span class="st">"REFERENCE"</span>,<span class="st">"AUTHOR"</span>,<span class="st">"YEAR"</span>,<span class="st">"TITLE"</span>,<span class="st">"PUBLISHED"</span>)] <span class="sc">%&gt;%</span> <span class="fu">unique</span>()</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>reference.yes <span class="ot">&lt;-</span> dbf_list<span class="sc">$</span>tvhabita [<span class="sc">!</span><span class="fu">is.na</span>(dbf_list<span class="sc">$</span>tvhabita<span class="sc">$</span>REFERENCE),]</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>reference.yes <span class="ot">&lt;-</span> <span class="fu">left_join</span> (reference.yes, event_gbif [<span class="fu">c</span>(<span class="st">"RELEVE_NR"</span>,<span class="st">"eventID"</span>)], <span class="at">by =</span> <span class="st">"RELEVE_NR"</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>reference.yes <span class="ot">&lt;-</span> reference.yes [,<span class="fu">c</span>(<span class="st">"REFERENCE"</span>,<span class="st">"eventID"</span>)]</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>references_gbif <span class="ot">&lt;-</span> <span class="fu">left_join</span> (reference.yes, tvreferenc, <span class="at">by =</span> <span class="st">"REFERENCE"</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(references_gbif)[<span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"creator"</span>,  <span class="st">"date"</span>, <span class="st">"title"</span>,    <span class="st">"source"</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>references_gbif<span class="sc">$</span>REFERENCE <span class="ot">&lt;-</span> <span class="cn">NULL</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="occurrences" class="level2">
+<h2 class="anchored" data-anchor-id="occurrences">Occurrences</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>occur.gbif_colnames <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"eventID"</span>,<span class="st">"occurrenceID"</span>,<span class="st">"basisOfRecord"</span>,<span class="st">"originalNameUsageID"</span>,<span class="st">"verbatimIdentification"</span>,<span class="st">"scientificName"</span>,<span class="st">"scientificNameAuthorship"</span>,<span class="st">"acceptedNameUsage"</span>,<span class="st">"status"</span>,<span class="st">"verbatimTaxonRank"</span>,<span class="st">"rank"</span>,<span class="st">"kingdom"</span>,<span class="st">"phylum"</span>,<span class="st">"class"</span>,<span class="st">"order"</span>,<span class="st">"family"</span>,<span class="st">"genus"</span>,<span class="st">"species"</span>,<span class="st">"infragenericEpithet"</span>,<span class="st">"infraspecificEpithet"</span>,<span class="st">"vegetationLayer"</span>,<span class="st">"organismQuantity"</span>,<span class="st">"organismQuantityType"</span>,<span class="st">"dynamicProperties"</span>,<span class="st">"recordedBy"</span>,<span class="st">"recordedByID"</span>,<span class="st">"SPECIES_NR"</span>,<span class="st">"RELEVE_NR"</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>occur.gbif_nrow <span class="ot">&lt;-</span> <span class="fu">nrow</span>(dbf_list<span class="sc">$</span>tvabund)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>occur.gbif_ncol <span class="ot">&lt;-</span> <span class="fu">length</span>(occur.gbif_colnames)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>occur_gbif <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">matrix</span>(<span class="at">nrow =</span> occur.gbif_nrow, <span class="at">ncol =</span> occur.gbif_ncol))</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(occur_gbif) <span class="ot">&lt;-</span> occur.gbif_colnames</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>tvabund_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span> (dbf_list<span class="sc">$</span>tvabund)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>tvabund_df <span class="ot">&lt;-</span> <span class="fu">left_join</span> (tvabund_df, event_gbif[,<span class="fu">c</span>(<span class="st">"RELEVE_NR"</span>,<span class="st">"eventID"</span>)], <span class="at">by =</span> <span class="st">"RELEVE_NR"</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>occur_gbif<span class="sc">$</span>SPECIES_NR <span class="ot">&lt;-</span> tvabund_df<span class="sc">$</span>SPECIES_NR</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>occur_gbif<span class="sc">$</span>RELEVE_NR <span class="ot">&lt;-</span> tvabund_df<span class="sc">$</span>RELEVE_NR</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="do">## occurrence ID = eventID + speciesID + layerID</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>occur_gbif<span class="sc">$</span>eventID <span class="ot">&lt;-</span> tvabund_df<span class="sc">$</span>eventID</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>occur_gbif<span class="sc">$</span>occurrenceID <span class="ot">&lt;-</span> <span class="fu">paste</span>(tvabund_df<span class="sc">$</span>eventID, tvabund_df<span class="sc">$</span>SPECIES_NR, tvabund_df<span class="sc">$</span>LAYER, <span class="at">sep =</span> <span class="st">"/"</span>)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>occur_gbif<span class="sc">$</span>basisOfRecord <span class="ot">&lt;-</span> <span class="st">"HumanObservation"</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>tvabund_df <span class="ot">&lt;-</span> <span class="fu">left_join</span>(tvabund_df, spec.converter[,<span class="fu">c</span>(<span class="st">"SPECIES_NR"</span>,<span class="st">"verbatimIdentification"</span>,<span class="st">"scientificName"</span>,<span class="st">"scientificNameAuthorship"</span>,<span class="st">"acceptedNameUsage"</span>,<span class="st">"rank"</span>,<span class="st">"status"</span>,<span class="st">"RankGbif"</span>,<span class="st">"kingdom"</span>,<span class="st">"phylum"</span>,<span class="st">"class"</span>,<span class="st">"order"</span>,<span class="st">"family"</span>,<span class="st">"genus"</span>,<span class="st">"species"</span>,<span class="st">"infragenericEpithet"</span>,<span class="st">"infraspecificEpithet"</span>)], <span class="at">by =</span> <span class="st">"SPECIES_NR"</span>)</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>tvabund_df <span class="ot">&lt;-</span> tvabund_df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(verbatimIdentification,scientificName,scientificNameAuthorship,acceptedNameUsage,status,rank,kingdom,phylum,class,order,family,genus,species,infragenericEpithet,infraspecificEpithet),<span class="sc">~</span> .x <span class="sc">%&gt;%</span> <span class="fu">as.character</span>() </span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>                                           <span class="sc">%&gt;%</span> <span class="fu">na_if</span>(<span class="st">"NA"</span>) </span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>                                           <span class="sc">%&gt;%</span> <span class="fu">replace_na</span>(<span class="st">""</span>)))</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>occur_gbif<span class="sc">$</span>originalNameUsageID <span class="ot">&lt;-</span> occur_gbif<span class="sc">$</span>SPECIES_NR</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>occur_gbif<span class="sc">$</span>verbatimIdentification <span class="ot">&lt;-</span> tvabund_df<span class="sc">$</span>verbatimIdentification </span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>occur_gbif<span class="sc">$</span>scientificName <span class="ot">&lt;-</span> tvabund_df<span class="sc">$</span>scientificName</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>occur_gbif<span class="sc">$</span>scientificNameAuthorship <span class="ot">&lt;-</span> tvabund_df<span class="sc">$</span>scientificNameAuthorship</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>occur_gbif<span class="sc">$</span>acceptedNameUsage <span class="ot">&lt;-</span> tvabund_df<span class="sc">$</span>acceptedNameUsage</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>occur_gbif<span class="sc">$</span>status <span class="ot">&lt;-</span> tvabund_df<span class="sc">$</span>status</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>occur_gbif<span class="sc">$</span>verbatimTaxonRank <span class="ot">&lt;-</span> tvabund_df<span class="sc">$</span>rank</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>occur_gbif<span class="sc">$</span>rank <span class="ot">&lt;-</span> tvabund_df<span class="sc">$</span>RankGbif</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>occur_gbif<span class="sc">$</span>kingdom <span class="ot">&lt;-</span> tvabund_df<span class="sc">$</span>kingdom</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>occur_gbif<span class="sc">$</span>phylum <span class="ot">&lt;-</span> tvabund_df<span class="sc">$</span>phylum</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>occur_gbif<span class="sc">$</span>class <span class="ot">&lt;-</span> tvabund_df<span class="sc">$</span>class</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>occur_gbif<span class="sc">$</span>order <span class="ot">&lt;-</span> tvabund_df<span class="sc">$</span>order</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>occur_gbif<span class="sc">$</span>family <span class="ot">&lt;-</span> tvabund_df<span class="sc">$</span>family</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>occur_gbif<span class="sc">$</span>genus <span class="ot">&lt;-</span> tvabund_df<span class="sc">$</span>genus</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>occur_gbif<span class="sc">$</span>species <span class="ot">&lt;-</span> tvabund_df<span class="sc">$</span>species</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>occur_gbif<span class="sc">$</span>infragenericEpithet <span class="ot">&lt;-</span> tvabund_df<span class="sc">$</span>infragenericEpithet</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>occur_gbif<span class="sc">$</span>infraspecificEpithet <span class="ot">&lt;-</span> tvabund_df<span class="sc">$</span>infraspecificEpithet</span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a><span class="do">## Vegetation layers</span></span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>vegetationLayer_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span> (<span class="at">LAYER =</span> <span class="fu">sort</span>(<span class="fu">unique</span> (dbf_list<span class="sc">$</span>tvabund<span class="sc">$</span>LAYER)),</span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">vegetationLayer =</span> <span class="fu">c</span>(<span class="st">""</span>,<span class="st">"tree"</span>,<span class="st">"tree"</span>,<span class="st">"tree"</span>,<span class="st">"shrub"</span>,<span class="st">"shrub"</span>,<span class="st">"herbaceous"</span>,<span class="st">"juvenile"</span>,<span class="st">"seedling"</span>,<span class="st">"cryptogam"</span>))</span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>tvabund_df <span class="ot">&lt;-</span> <span class="fu">left_join</span>(tvabund_df,vegetationLayer_df,<span class="at">by =</span> <span class="st">"LAYER"</span>)</span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>occur_gbif<span class="sc">$</span>vegetationLayer <span class="ot">&lt;-</span> tvabund_df<span class="sc">$</span>vegetationLayer</span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a><span class="do">## Translate original scale values to percentage</span></span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>tvabund_df <span class="ot">&lt;-</span> <span class="fu">left_join</span>(tvabund_df,event_gbif[,<span class="fu">c</span>(<span class="st">"RELEVE_NR"</span>,<span class="st">"samplingProtocol2"</span>)],<span class="at">by =</span> <span class="st">"RELEVE_NR"</span>)</span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>TVSCALE_df <span class="ot">&lt;-</span> dbf_list<span class="sc">$</span>TVSCALE</span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>TVSCALE_df<span class="sc">$</span>SCALE_NAME <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">"Braun/Blanquet"</span>, <span class="st">"Braun-Blanquet"</span>, TVSCALE_df<span class="sc">$</span>SCALE_NAME, <span class="at">fixed =</span> T)</span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>TVSCALE_df<span class="sc">$</span>SCALE_NAME <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">"Percentual scale"</span>, <span class="st">"Percentual"</span>, TVSCALE_df<span class="sc">$</span>SCALE_NAME, <span class="at">fixed =</span> T)</span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>TVSCALE_df_long <span class="ot">&lt;-</span> TVSCALE_df[,<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">5</span>)]</span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(TVSCALE_df_long)[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"orig"</span>,<span class="st">"perc"</span>)</span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(<span class="dv">4</span>, <span class="fu">ncol</span>(TVSCALE_df) <span class="sc">-</span> <span class="dv">2</span>, <span class="at">by =</span> <span class="dv">2</span>)) </span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>  to.rbind <span class="ot">&lt;-</span> TVSCALE_df[, <span class="fu">c</span>(<span class="dv">2</span>, i <span class="sc">+</span> <span class="dv">2</span>, i <span class="sc">+</span> <span class="dv">3</span>)]</span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colnames</span>(to.rbind)[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"orig"</span>,<span class="st">"perc"</span>)</span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a>  TVSCALE_df_long <span class="ot">&lt;-</span> <span class="fu">rbind</span>(TVSCALE_df_long, to.rbind)</span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a>TVSCALE_df_long <span class="ot">&lt;-</span> TVSCALE_df_long[<span class="fu">complete.cases</span>(TVSCALE_df_long),]</span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>TVSCALE_df_long<span class="sc">$</span>SCALE_NAME_value_orig <span class="ot">&lt;-</span> <span class="fu">paste</span>(TVSCALE_df_long<span class="sc">$</span>SCALE_NAME, TVSCALE_df_long<span class="sc">$</span>orig, <span class="at">sep =</span> <span class="st">"_"</span>)</span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a>TVSCALE_df_long <span class="ot">&lt;-</span> <span class="fu">unique</span>(TVSCALE_df_long)</span>
+<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a>TVSCALE_df_long<span class="sc">$</span>perc [TVSCALE_df_long<span class="sc">$</span>SCALE_NAME <span class="sc">%in%</span> <span class="st">"Presence/Absence"</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a>tvabund_df<span class="sc">$</span>SCALE_NAME_value_orig <span class="ot">&lt;-</span> <span class="fu">paste</span>(tvabund_df<span class="sc">$</span>samplingProtocol2, tvabund_df<span class="sc">$</span>COVER_CODE, <span class="at">sep =</span> <span class="st">"_"</span>)</span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a>tvabund_df <span class="ot">&lt;-</span> <span class="fu">left_join</span>(tvabund_df, TVSCALE_df_long [,<span class="fu">c</span>(<span class="st">"SCALE_NAME_value_orig"</span>, <span class="st">"perc"</span>)], <span class="at">by =</span> <span class="st">"SCALE_NAME_value_orig"</span>)</span>
+<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a>perc.values.default <span class="ot">&lt;-</span> <span class="fu">which</span> (tvabund_df<span class="sc">$</span>samplingProtocol <span class="sc">%in%</span> <span class="st">"Percentage (%)"</span> <span class="sc">&amp;</span> <span class="sc">!</span>(tvabund_df<span class="sc">$</span>SCALE_NAME_value_orig <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Percentage (%)_9x"</span>,<span class="st">"Percentage (%)_9X"</span>)))</span>
+<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a>tvabund_df<span class="sc">$</span>perc [perc.values.default] <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(tvabund_df<span class="sc">$</span>COVER_CODE [perc.values.default])</span>
+<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a>tvabund_df<span class="sc">$</span>perc[<span class="fu">is.na</span>(tvabund_df<span class="sc">$</span>perc)] <span class="ot">&lt;-</span> <span class="st">""</span></span>
+<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a>occur_gbif<span class="sc">$</span>organismQuantity <span class="ot">&lt;-</span> tvabund_df<span class="sc">$</span>perc</span>
+<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a>occur_gbif<span class="sc">$</span>organismQuantityType [<span class="fu">which</span> (occur_gbif<span class="sc">$</span>organismQuantity <span class="sc">%in%</span> <span class="st">""</span>)] <span class="ot">&lt;-</span> <span class="st">"presence only"</span></span>
+<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a>occur_gbif<span class="sc">$</span>organismQuantityType [<span class="fu">which</span> (<span class="sc">!</span>(occur_gbif<span class="sc">$</span>organismQuantity <span class="sc">%in%</span> <span class="st">""</span>))] <span class="ot">&lt;-</span> <span class="st">"percentageCoverage"</span></span>
+<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a><span class="do">## DynamicProperties ~ original scale value</span></span>
+<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a>tvabund_df<span class="sc">$</span>dynamicProperties <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"{'coverScale':'"</span>,tvabund_df<span class="sc">$</span>samplingProtocol2,<span class="st">"'"</span>,<span class="st">",'coverScaleCode':'"</span>,tvabund_df<span class="sc">$</span>COVER_CODE,<span class="st">"'"</span>,<span class="st">",'VegetationLayer':'"</span>,tvabund_df<span class="sc">$</span>vegetationLayer,<span class="st">"'}"</span>)</span>
+<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a>occur_gbif<span class="sc">$</span>dynamicProperties <span class="ot">&lt;-</span> tvabund_df<span class="sc">$</span>dynamicProperties</span>
+<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-93"><a href="#cb7-93" aria-hidden="true" tabindex="-1"></a><span class="do">## Author of the record</span></span>
+<span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a>author_df <span class="ot">&lt;-</span> dbf_list<span class="sc">$</span>tvhabita [,<span class="fu">c</span>(<span class="st">"RELEVE_NR"</span>,<span class="st">"AUTHOR"</span>)]</span>
+<span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a>author_df<span class="sc">$</span>AUTHOR <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(author_df<span class="sc">$</span>AUTHOR)</span>
+<span id="cb7-96"><a href="#cb7-96" aria-hidden="true" tabindex="-1"></a>dbf_list<span class="sc">$</span>tvauthor<span class="sc">$</span>AUTH_CODE <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(dbf_list<span class="sc">$</span>tvauthor<span class="sc">$</span>AUTH_CODE)</span>
+<span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-98"><a href="#cb7-98" aria-hidden="true" tabindex="-1"></a>author_df <span class="ot">&lt;-</span> <span class="fu">left_join</span>(author_df, dbf_list<span class="sc">$</span>tvauthor, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"AUTHOR"</span> <span class="ot">=</span> <span class="st">"AUTH_CODE"</span>))</span>
+<span id="cb7-99"><a href="#cb7-99" aria-hidden="true" tabindex="-1"></a>tvabund_df <span class="ot">&lt;-</span> <span class="fu">left_join</span>(tvabund_df, author_df, <span class="at">by =</span> <span class="st">"RELEVE_NR"</span>)</span>
+<span id="cb7-100"><a href="#cb7-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-101"><a href="#cb7-101" aria-hidden="true" tabindex="-1"></a><span class="do">## Rearranging names</span></span>
+<span id="cb7-102"><a href="#cb7-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-103"><a href="#cb7-103" aria-hidden="true" tabindex="-1"></a><span class="co"># Some names need to be rearranged to match the GBIF format requirements</span></span>
+<span id="cb7-104"><a href="#cb7-104" aria-hidden="true" tabindex="-1"></a>tvabund_df <span class="ot">&lt;-</span> tvabund_df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">n_words =</span> <span class="fu">str_count</span>(AUTH_NAME, <span class="st">"</span><span class="sc">\\</span><span class="st">S+"</span>),</span>
+<span id="cb7-105"><a href="#cb7-105" aria-hidden="true" tabindex="-1"></a>    <span class="at">has_extra_parts =</span> n_words <span class="sc">&gt;</span> <span class="dv">2</span>)</span>
+<span id="cb7-106"><a href="#cb7-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-107"><a href="#cb7-107" aria-hidden="true" tabindex="-1"></a>tvabund_df<span class="sc">$</span>pre_names_order <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(tvabund_df)</span>
+<span id="cb7-108"><a href="#cb7-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-109"><a href="#cb7-109" aria-hidden="true" tabindex="-1"></a>AUTH_NAME_special <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">AUTH_NAME =</span> <span class="fu">unique</span> (tvabund_df<span class="sc">$</span>AUTH_NAME [tvabund_df<span class="sc">$</span>has_extra_parts <span class="sc">==</span> T]))</span>
+<span id="cb7-110"><a href="#cb7-110" aria-hidden="true" tabindex="-1"></a>AUTH_NAME_special<span class="sc">$</span>has_eq <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="st">"="</span>, AUTH_NAME_special<span class="sc">$</span>AUTH_NAME)</span>
+<span id="cb7-111"><a href="#cb7-111" aria-hidden="true" tabindex="-1"></a>AUTH_NAME_special<span class="sc">$</span>name_corrected <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb7-112"><a href="#cb7-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-113"><a href="#cb7-113" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(AUTH_NAME_special<span class="sc">$</span>AUTH_NAME[AUTH_NAME_special<span class="sc">$</span>has_eq])</span>
+<span id="cb7-114"><a href="#cb7-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-115"><a href="#cb7-115" aria-hidden="true" tabindex="-1"></a>parts  <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(x, <span class="st">" = "</span>)</span>
+<span id="cb7-116"><a href="#cb7-116" aria-hidden="true" tabindex="-1"></a>left   <span class="ot">&lt;-</span> <span class="fu">sapply</span>(parts, <span class="st">`</span><span class="at">[</span><span class="st">`</span>, <span class="dv">1</span>) <span class="co"># left surname</span></span>
+<span id="cb7-117"><a href="#cb7-117" aria-hidden="true" tabindex="-1"></a>right  <span class="ot">&lt;-</span> <span class="fu">sapply</span>(parts, <span class="st">`</span><span class="at">[</span><span class="st">`</span>, <span class="dv">2</span>)</span>
+<span id="cb7-118"><a href="#cb7-118" aria-hidden="true" tabindex="-1"></a>fname  <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">strsplit</span>(right, <span class="st">" "</span>), <span class="st">`</span><span class="at">[</span><span class="st">`</span>, <span class="dv">2</span>) <span class="co"># first name on the right</span></span>
+<span id="cb7-119"><a href="#cb7-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-120"><a href="#cb7-120" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">paste</span>(fname, left)</span>
+<span id="cb7-121"><a href="#cb7-121" aria-hidden="true" tabindex="-1"></a>result[result <span class="sc">%in%</span> <span class="st">" Halúzová"</span>] <span class="ot">&lt;-</span> <span class="st">"Jana Halúzová"</span></span>
+<span id="cb7-122"><a href="#cb7-122" aria-hidden="true" tabindex="-1"></a>result[result <span class="sc">%in%</span> <span class="st">"Jana Tkačíková"</span>] <span class="ot">&lt;-</span> <span class="st">"Jana Tkáčiková"</span></span>
+<span id="cb7-123"><a href="#cb7-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-124"><a href="#cb7-124" aria-hidden="true" tabindex="-1"></a>AUTH_NAME_special<span class="sc">$</span>name_corrected[AUTH_NAME_special<span class="sc">$</span>has_eq] <span class="ot">&lt;-</span> result</span>
+<span id="cb7-125"><a href="#cb7-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-126"><a href="#cb7-126" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(AUTH_NAME_special<span class="sc">$</span>AUTH_NAME[<span class="sc">!</span>AUTH_NAME_special<span class="sc">$</span>has_eq])</span>
+<span id="cb7-127"><a href="#cb7-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-128"><a href="#cb7-128" aria-hidden="true" tabindex="-1"></a>parts  <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(x, <span class="st">" "</span>)</span>
+<span id="cb7-129"><a href="#cb7-129" aria-hidden="true" tabindex="-1"></a>left   <span class="ot">&lt;-</span> <span class="fu">sapply</span>(parts, <span class="st">`</span><span class="at">[</span><span class="st">`</span>, <span class="dv">1</span>) <span class="co"># left surname</span></span>
+<span id="cb7-130"><a href="#cb7-130" aria-hidden="true" tabindex="-1"></a>middle  <span class="ot">&lt;-</span> <span class="fu">sapply</span>(parts, <span class="st">`</span><span class="at">[</span><span class="st">`</span>, <span class="dv">2</span>)</span>
+<span id="cb7-131"><a href="#cb7-131" aria-hidden="true" tabindex="-1"></a>right  <span class="ot">&lt;-</span> <span class="fu">sapply</span>(parts, <span class="st">`</span><span class="at">[</span><span class="st">`</span>, <span class="dv">3</span>)</span>
+<span id="cb7-132"><a href="#cb7-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-133"><a href="#cb7-133" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">paste</span>(middle, right, left)</span>
+<span id="cb7-134"><a href="#cb7-134" aria-hidden="true" tabindex="-1"></a>result[result <span class="sc">%in%</span> <span class="st">"NA NA NA"</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb7-135"><a href="#cb7-135" aria-hidden="true" tabindex="-1"></a>result[result <span class="sc">%in%</span> <span class="st">"Lubomír - Tichý"</span>] <span class="ot">&lt;-</span> <span class="st">"Lubomír Tichý"</span></span>
+<span id="cb7-136"><a href="#cb7-136" aria-hidden="true" tabindex="-1"></a>result[result <span class="sc">%in%</span> <span class="st">"Kabátová Klára Nunvářová"</span>] <span class="ot">&lt;-</span> <span class="st">"Klára Kabátová Nunvářová"</span></span>
+<span id="cb7-137"><a href="#cb7-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-138"><a href="#cb7-138" aria-hidden="true" tabindex="-1"></a>AUTH_NAME_special<span class="sc">$</span>name_corrected[<span class="sc">!</span>AUTH_NAME_special<span class="sc">$</span>has_eq] <span class="ot">&lt;-</span> result</span>
+<span id="cb7-139"><a href="#cb7-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-140"><a href="#cb7-140" aria-hidden="true" tabindex="-1"></a>tvabund_df_special_names <span class="ot">&lt;-</span> tvabund_df [<span class="fu">which</span> (tvabund_df<span class="sc">$</span>AUTH_NAME <span class="sc">%in%</span> AUTH_NAME_special<span class="sc">$</span>AUTH_NAME),]</span>
+<span id="cb7-141"><a href="#cb7-141" aria-hidden="true" tabindex="-1"></a>tvabund_df <span class="ot">&lt;-</span> tvabund_df [<span class="sc">-</span><span class="fu">which</span> (tvabund_df<span class="sc">$</span>AUTH_NAME <span class="sc">%in%</span> AUTH_NAME_special<span class="sc">$</span>AUTH_NAME),]</span>
+<span id="cb7-142"><a href="#cb7-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-143"><a href="#cb7-143" aria-hidden="true" tabindex="-1"></a>tvabund_df_special_names <span class="ot">&lt;-</span> <span class="fu">left_join</span>(tvabund_df_special_names, AUTH_NAME_special[,<span class="fu">c</span>(<span class="st">"AUTH_NAME"</span>,<span class="st">"name_corrected"</span>)], <span class="at">by =</span> <span class="st">"AUTH_NAME"</span>)</span>
+<span id="cb7-144"><a href="#cb7-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-145"><a href="#cb7-145" aria-hidden="true" tabindex="-1"></a>parts  <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(tvabund_df<span class="sc">$</span>AUTH_NAME, <span class="st">" "</span>) </span>
+<span id="cb7-146"><a href="#cb7-146" aria-hidden="true" tabindex="-1"></a>left   <span class="ot">&lt;-</span> <span class="fu">sapply</span>(parts, <span class="st">`</span><span class="at">[</span><span class="st">`</span>, <span class="dv">1</span>)</span>
+<span id="cb7-147"><a href="#cb7-147" aria-hidden="true" tabindex="-1"></a>right  <span class="ot">&lt;-</span> <span class="fu">sapply</span>(parts, <span class="st">`</span><span class="at">[</span><span class="st">`</span>, <span class="dv">2</span>)</span>
+<span id="cb7-148"><a href="#cb7-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-149"><a href="#cb7-149" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">paste</span>(right, left)</span>
+<span id="cb7-150"><a href="#cb7-150" aria-hidden="true" tabindex="-1"></a>tvabund_df<span class="sc">$</span>name_corrected <span class="ot">&lt;-</span> result</span>
+<span id="cb7-151"><a href="#cb7-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-152"><a href="#cb7-152" aria-hidden="true" tabindex="-1"></a>tvabund_df<span class="sc">$</span>name_corrected [<span class="fu">grepl</span>(<span class="st">"Neuhäuslová"</span>, tvabund_df<span class="sc">$</span>AUTH_NAME, <span class="at">fixed =</span> T)] <span class="ot">&lt;-</span> <span class="st">"Zdenka Neuhäuslová"</span></span>
+<span id="cb7-153"><a href="#cb7-153" aria-hidden="true" tabindex="-1"></a>tvabund_df<span class="sc">$</span>name_corrected [<span class="fu">grepl</span>(<span class="st">"Anonym"</span>, tvabund_df<span class="sc">$</span>AUTH_NAME, <span class="at">fixed =</span> T)] <span class="ot">&lt;-</span> <span class="st">"anonymous"</span></span>
+<span id="cb7-154"><a href="#cb7-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-155"><a href="#cb7-155" aria-hidden="true" tabindex="-1"></a>tvabund_df <span class="ot">&lt;-</span> <span class="fu">rbind</span>(tvabund_df,tvabund_df_special_names)</span>
+<span id="cb7-156"><a href="#cb7-156" aria-hidden="true" tabindex="-1"></a>tvabund_df <span class="ot">&lt;-</span> tvabund_df[<span class="fu">order</span>(tvabund_df<span class="sc">$</span>pre_names_order),]</span>
+<span id="cb7-157"><a href="#cb7-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-158"><a href="#cb7-158" aria-hidden="true" tabindex="-1"></a>occur_gbif<span class="sc">$</span>recordedBy <span class="ot">&lt;-</span> tvabund_df<span class="sc">$</span>name_corrected</span>
+<span id="cb7-159"><a href="#cb7-159" aria-hidden="true" tabindex="-1"></a>occur_gbif<span class="sc">$</span>recordedByID <span class="ot">&lt;-</span> tvabund_df<span class="sc">$</span>AUTHOR</span>
+<span id="cb7-160"><a href="#cb7-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-161"><a href="#cb7-161" aria-hidden="true" tabindex="-1"></a><span class="do">## Delete auxiliary columns</span></span>
+<span id="cb7-162"><a href="#cb7-162" aria-hidden="true" tabindex="-1"></a>occur_gbif[,<span class="fu">c</span>(<span class="st">"SPECIES_NR"</span>,<span class="st">"RELEVE_NR"</span>)] <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb7-163"><a href="#cb7-163" aria-hidden="true" tabindex="-1"></a>event_gbif[,<span class="fu">c</span>(<span class="st">"RELEVE_NR"</span>,<span class="st">"samplingProtocol2"</span>)] <span class="ot">&lt;-</span> <span class="cn">NULL</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="export-files-for-gbif" class="level1">
+<h1>Export files for GBIF</h1>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(event_gbif, <span class="st">"event_tutor_gbif_2026-08-31.txt"</span>, <span class="at">sep =</span> <span class="st">'</span><span class="sc">\t</span><span class="st">'</span>, <span class="at">row.names =</span> F, <span class="at">fileEncoding =</span> <span class="st">"UTF-8"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(references_gbif, <span class="st">"references_tutor_gbif_2026-08-31.txt"</span>, <span class="at">sep =</span> <span class="st">'</span><span class="sc">\t</span><span class="st">'</span>, <span class="at">row.names =</span> F, <span class="at">fileEncoding =</span> <span class="st">"UTF-8"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(occur_gbif, <span class="st">"occurrences_tutor_gbif_2026-08-31.txt"</span>, <span class="at">sep =</span> <span class="st">'</span><span class="sc">\t</span><span class="st">'</span>, <span class="at">row.names =</span> F, <span class="at">fileEncoding =</span> <span class="st">"UTF-8"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+
+
 </section>
 
 </main> <!-- /main -->
