@@ -49,3 +49,7 @@ External files:
 \
 *\*The objects above that we directly export from Turboveg2 can be uploaded from external files as well in any format. For example, if you have an external file containing literature references corresponding with your Turboveg2 database, prepare a tvreferenc.xlsx with columns REFERENCE (id), AUTHOR, YEAR (of publishing), TITLE, PUBLISHED (publicati* *on).\
 \*\*In the Czech Vegetation Database, coordinates are stored in DDMMSS.SS format. For example, the coordinates 49°10′41.960″N, 16°34′10.738″E are stored as 491041.96 and 163410.74, respectively. Therefore, we use the coordinates from a shapefile exported from Turboveg 2. Alternatively, the coordinates can be converted to decimal degrees in R (https://czechveg.github.io/DataProcessingTutorial/turboveg_r.html#coordinates). For databases in which coordinates are stored in decimal-degree format, the values in the Longitude and Latitude fields can be used directly.*
+
+# Preprocessing of taxonomic nomenclature
+
+To ensure that the taxonomic nomenclature in our data matches that used by GBIF (as closely as possible), we used the following steps to preprocess the taxonomic nomenclature and prepare the external file that is later uploaded as **spec.converter**.
