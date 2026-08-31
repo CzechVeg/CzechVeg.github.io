@@ -15,6 +15,8 @@ Because each vegetation database has its own specifics, this tutorial is not int
 You can download the training database (1000 vegetation plots from the CzechVeg DB) and practise following the procedure below.
 
 ```{r}
+#| label: Load packages
+#| eval: false
 ## Required packages
 library (foreign)
 library (dplyr)
@@ -26,10 +28,24 @@ library (tidyr)
 
 # Input files
 
-From Turboveg2\*:
+From Turboveg2\*:\
+\
+-   **tvabund** (dbf) = species data\
+-   **tvhabita** (dbf) = header data\
+\
+-   **species** (dbf) = Turboveg2 species list\
+-   **SYNTAXA** (dbf) = list of syntaxa\
+-   **tvauthor** (dbf) = list of authors\
+-   **tvrefenc** (dbf) = list of bibliographic references\
+-   **TVSCALE** (dbf) = cover scales\
+\
+-   **tv.shp**\*\* (shp) = shapefile containing point locations of the input data
 
--   **tvabund** (dbf) = species data
+External files:
 
--   **tvhabita** (dbf) = header data
-
--   **species** (dbf) = Turboveg2 species list
+-   **spec.converter** (xlsx) = list of species scientific names from the input data, supplemented with scientific name authorships and other taxonomic classification variables; as obtained after preprocessing taxonomic nomenclature using the [Species Matching tool](https://www.gbif.org/tools/species-lookup) provided by GBIF\
+-   **EUNIS** (csv) = file containing classification of the input vegetation plots to EUNIS habitat units; as obtained from Turboveg3 (description of EUNIS expert classification <https://zenodo.org/records/16895007>)\
+-   **eunis.names** (xlsx) = list of codes and names of EUNIS habitats\
+\
+*\*The objects above that we directly export from Turboveg2 can be uploaded from external files as well in any format. For example, if you have an external file containing literature references corresponding with your Turboveg2 database, prepare a tvreferenc.xlsx with columns REFERENCE (id), AUTHOR, YEAR (of publishing), TITLE, PUBLISHED (publicati* *on).\
+\*\*In the Czech Vegetation Database, coordinates are stored in DDMMSS.SS format. For example, the coordinates 49°10′41.960″N, 16°34′10.738″E are stored as 491041.96 and 163410.74, respectively. Therefore, we use the coordinates from a shapefile exported from Turboveg 2. Alternatively, the coordinates can be converted to decimal degrees in R (https://czechveg.github.io/DataProcessingTutorial/turboveg_r.html#coordinates). For databases in which coordinates are stored in decimal-degree format, the values in the Longitude and Latitude fields can be used directly.*
