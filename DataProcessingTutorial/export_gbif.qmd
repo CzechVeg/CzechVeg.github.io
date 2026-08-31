@@ -43,7 +43,7 @@ From Turboveg2\*:\
 
 External files:
 
--   **spec.converter** (xlsx) = list of species scientific names from the input data, supplemented with scientific name authorships and other taxonomic classification variables; as obtained after preprocessing taxonomic nomenclature using the [Species Matching tool](https://www.gbif.org/tools/species-lookup) provided by GBIF\
+-   **spec.converter** (xlsx) = list of species scientific names from the input data, supplemented with scientific name authorships and other taxonomic classification variables; as obtained after preprocessing taxonomic nomenclature using the [Species Matching Tool](https://www.gbif.org/tools/species-lookup) provided by GBIF\
 -   **EUNIS** (csv) = file containing classification of the input vegetation plots to EUNIS habitat units; as obtained from Turboveg3 (description of EUNIS expert classification <https://zenodo.org/records/16895007>)\
 -   **eunis.names** (xlsx) = list of codes and names of EUNIS habitats\
 \
@@ -52,4 +52,24 @@ External files:
 
 # Preprocessing of taxonomic nomenclature
 
-To ensure that the taxonomic nomenclature in our data matches that used by GBIF (as closely as possible), we used the following steps to preprocess the taxonomic nomenclature and prepare the external file that is later uploaded as **spec.converter**.
+To ensure that the taxonomic nomenclature in our data matches that used by GBIF as closely as possible, we followed the steps below to preprocess the taxonomic names and prepare the external file that is later uploaded as **spec.converter**.
+
+1.  Preparing a list of unique names \
+    We extract all unique species names from our data and prepare a file containing the following fields: scientificName (with or without the author citation); kingdom (optional); and ID (optional). The resulting file is named GBIF_testdata_uniqueSL_forMatchingTool.txt. We use the [Czech species list](https://czechveg.github.io/Data/turboveg.html#installation-and-update-of-the-czech-species-list) from Turboveg 2. The nomenclature is then further [standardized](https://czechveg.github.io/DataProcessingTutorial/turboveg_r.html#nomenclature) according to the nomenclature presented in the latest edition of The Key to the Flora of the Czech Republic. This nomenclature, named here after the main editor, Kaplan, is used as the scientificName field in Step 2.
+2.  Matching names using the GBIF Species Matching Tool\
+    The list of unique species names can be uploaded to the [Species Matching Tool](https://www.gbif.org/tools/species-lookup), which attempts to normalize each name in the file. For larger files, species matching can also be performed through the GBIF API. In June 2026, GBIF started to use the [Catalogue of Life Extended Release](https://data-blog.gbif.org/post/catalogue-of-life-taxonomic-backbone/) (COL), ) as its official taxonomic backbone.
+3.  Reviewing taxonomic issues and flags\
+    After the species list has been uploaded and matched against COL, the initial results may contain various taxonomic issues and flags (described [here](https://techdocs.gbif.org/en/data-use/occurrence-issues-and-flags#taxonomic-issues)). The automatically generated matches can be reviewed and edited. Each uncertain or incorrectly matched name should be checked and normalized manually where necessary. The file **GBIF_testspecies_withoutkingdom.csv** can be used to test the GBIF Species Matching Tool; upload the file both with and without the kingdom field to compare the results.
+
+![](images/gbif_spec_matching_fig1.png)
+
+4.  Handling species groups and hybrids \
+    The GBIF taxonomic backbone is not able to match certain types of names, such as species aggregates (agg.), broad species concepts (s. lat.), or hybrids. In such cases, the names may be matched only to the species or genus level. Matching may be more successful when the name is present in COL.
+5.  Linking the matching results to the original data \
+    The matching results are linked back to the original species list. For the occurrence data, the relevant fields are then selected and renamed according to the Darwin Core terms (see the procedure below). The complete set of columns is retained in **GBIF_testdata_uniqueSL_clean.xlsx** (to be uploaded as spec.converter).
+
+![](images/gbif_spec_matching_fig2.png)
+
+![](images/gbif_spec_matching_fig3.png)
+
+# Read input files to R
