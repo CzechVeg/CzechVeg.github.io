@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,6 +10,9 @@
 
 <title>Export to GBIF – Czech Vegetation Database</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -20,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -36,10 +74,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e53b8d1e9b4270cd86bfb5ab1b538118.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-0508618caa1d256af916c83e0797e277.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-104f2622452aeaad4c018a66f4effed7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -95,7 +133,8 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-center sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../CVD_logo_EN_col_V.png" alt="Botzool Logo" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../CVD_logo_EN_col_V.png" alt="Botzool Logo" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../CVD_logo_EN_col_V.png" alt="Botzool Logo" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -226,7 +265,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"></a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#input-files" id="toc-input-files" class="nav-link" data-scroll-target="#input-files">Input files</a></li>
+  <li><a href="#preprocessing-of-taxonomic-nomenclature" id="toc-preprocessing-of-taxonomic-nomenclature" class="nav-link" data-scroll-target="#preprocessing-of-taxonomic-nomenclature">Preprocessing of taxonomic nomenclature</a></li>
   </ul>
 </nav>
     </div>
@@ -258,9 +299,47 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section"></h2>
-<p>Coming soon</p>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>This tutorial describes how to export vegetation plots from the Czech Vegetation Database to GBIF as a <a href="https://www.gbif.org/sampling-event-data">sampling event dataset</a>.</p>
+<p>The main inputs are the original .dbf files as generated by the <a href="https://czechveg.github.io/Data/turboveg.html">Turboveg2 program</a>, in which the database is stored. The output will consist of three .txt files – events, occurrences and references – containing data in a form ready for mapping to the GBIF Sampling Event Core through the Integrated Publishing Toolkit (IPT; <a href="https://www.gbif.org/ipt" class="uri">https://www.gbif.org/ipt</a>).</p>
+<p>Because each vegetation database has its own specifics, this tutorial is not intended to serve as a universal, step-by-step manual applicable to every database. It rather provides an example workflow that can be adapted to the particular characteristics of each database.</p>
+<p>You can download the training database (1000 vegetation plots from the CzechVeg DB) and practise following the procedure below.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Required packages</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span> (foreign)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span> (dplyr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span> (readxl)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span> (sf)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span> (stringr)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span> (tidyr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="input-files" class="level1">
+<h1>Input files</h1>
+<p>From Turboveg2*:<br>
+<br>
+-&nbsp;&nbsp; <strong>tvabund</strong> (dbf) = species data<br>
+-&nbsp;&nbsp; <strong>tvhabita</strong> (dbf) = header data<br>
+<br>
+-&nbsp;&nbsp; <strong>species</strong> (dbf) = Turboveg2 species list<br>
+-&nbsp;&nbsp; <strong>SYNTAXA</strong> (dbf) = list of syntaxa<br>
+-&nbsp;&nbsp; <strong>tvauthor</strong> (dbf) = list of authors<br>
+-&nbsp;&nbsp; <strong>tvrefenc</strong> (dbf) = list of bibliographic references<br>
+-&nbsp;&nbsp; <strong>TVSCALE</strong> (dbf) = cover scales<br>
+<br>
+-&nbsp;&nbsp; <strong>tv.shp</strong>** (shp) = shapefile containing point locations of the input data</p>
+<p>External files:</p>
+<p>-&nbsp;&nbsp; <strong>spec.converter</strong> (xlsx) = list of species scientific names from the input data, supplemented with scientific name authorships and other taxonomic classification variables; as obtained after preprocessing taxonomic nomenclature using the <a href="https://www.gbif.org/tools/species-lookup">Species Matching tool</a> provided by GBIF<br>
+-&nbsp;&nbsp; <strong>EUNIS</strong> (csv) = file containing classification of the input vegetation plots to EUNIS habitat units; as obtained from Turboveg3 (description of EUNIS expert classification <a href="https://zenodo.org/records/16895007" class="uri">https://zenodo.org/records/16895007</a>)<br>
+-&nbsp;&nbsp; <strong>eunis.names</strong> (xlsx) = list of codes and names of EUNIS habitats<br>
+<br>
+<em>*The objects above that we directly export from Turboveg2 can be uploaded from external files as well in any format. For example, if you have an external file containing literature references corresponding with your Turboveg2 database, prepare a tvreferenc.xlsx with columns REFERENCE (id), AUTHOR, YEAR (of publishing), TITLE, PUBLISHED (publicati</em> <em>on).<br>
+**In the Czech Vegetation Database, coordinates are stored in DDMMSS.SS format. For example, the coordinates 49°10′41.960″N, 16°34′10.738″E are stored as 491041.96 and 163410.74, respectively. Therefore, we use the coordinates from a shapefile exported from Turboveg 2. Alternatively, the coordinates can be converted to decimal degrees in R (https://czechveg.github.io/DataProcessingTutorial/turboveg_r.html#coordinates). For databases in which coordinates are stored in decimal-degree format, the values in the Longitude and Latitude fields can be used directly.</em></p>
+</section>
+<section id="preprocessing-of-taxonomic-nomenclature" class="level1">
+<h1>Preprocessing of taxonomic nomenclature</h1>
+<p>To ensure that the taxonomic nomenclature in our data matches that used by GBIF (as closely as possible), we used the following steps to preprocess the taxonomic nomenclature and prepare the external file that is later uploaded as <strong>spec.converter</strong>.</p>
 
 
 </section>
@@ -317,13 +396,14 @@ ul.task-list li input[type="checkbox"] {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
