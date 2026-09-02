@@ -122,9 +122,9 @@ Now, we are ready to run the resampling. We will use the following criteria to r
 
 - `sim.method = "simpson"` We use the Simpson similarity index, which is independent of differences in species richness, to calculate similarity in species composition.
 
-- `remove = "lower var.value"` This argument sets which plot from a conflicting pair will be removed. `"lower var.value"` removes the plot with the lower value in the column defined by the `var.value` parameter. `NA` values are allowed and these plots are removed first.
+- `remove = "lower value"` This argument sets which plot from a conflicting pair will be removed. `"lower value"` removes the plot with the lower value in the column defined by the `decision.variable` parameter. `NA` values are allowed and these plots are removed first.
 
-- `var.value = "YEAR"` We use the year of sampling to remove the older plot from each conflicting pair. If both plots were recorded in the same year, a random plot will be removed.
+- `decision.variable = "YEAR"` We use the year of sampling to remove the older plot from each conflicting pair. If both plots were recorded in the same year, a random plot will be removed.
 
 - `strata = "env_strata"` This argument specifies the column in `header_data` that contains environmental stratification. Plots will be resampled separately within each stratum.
 
@@ -142,8 +142,8 @@ res <- resample_plots(coord = header_data,
                       sim.threshold = 0.6,
                       inclusive = FALSE,
                       sim.method = "simpson",
-                      remove = "lower var.value",
-                      var.value = "YEAR", 
+                      remove = "lower value",
+                      decision.variable = "YEAR", 
                       strata = "env_strata", 
                       seed = 1234)
 ```
