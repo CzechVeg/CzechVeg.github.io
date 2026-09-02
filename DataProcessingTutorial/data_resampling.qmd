@@ -12,19 +12,22 @@ Now, we will go through all the steps of the resampling procedure so that every 
 
 ![](images/CzechVeg_allPlots.png)
 
-For resampling, we will use the `resample` function developed specifically for vegetation-plot data. This function uses geographic proximity and species composition similarity of vegetation plots to reduce sampling density in areas where many plots are located close to each other and record compositionally similar vegetation. It is also possible to include environmental (or other) strata to perform the resampling within predefined environmentally similar groups of plots. The function first identifies the most similar pair of plots within the specified distance (and stratum, if used), removes one of them based on a selected rule, and repeats this process until no pairs that violate the specified distance and similarity thresholds remain in the dataset. A detailed technical description of the workflow is available [here](https://github.com/jdivisek/FilteringReleves).
+For resampling, we will use the [**Resampler**](https://github.com/jdivisek/Resampler) R package, developed specifically for vegetation-plot data. It contains a single function `resample_plots`, which uses the geographic proximity and species composition similarity of vegetation plots to reduce sampling density in areas where many plots are located close to each other and record compositionally similar vegetation. It is also possible to include environmental (or other) strata to perform the resampling within predefined environmentally similar groups of plots. The function first identifies the most similar pair of plots within the specified distance (and stratum, if used), removes one of them based on a selected rule, and repeats this process until no pairs that violate the specified distance and similarity thresholds remain in the dataset. A detailed technical description of the workflow is available [here](https://github.com/jdivisek/FilteringReleves).
 
-First, let’s load required libraries.
+First, let’s install and load the package.
 
 ```{r}
-#| label: Load packages
+#| label: Install and load package
 #| eval: false
-library(terra) #Transformation of coordinates
-library(data.table) #Required by resample function
-library(spdep) #Required by resample function
-library(Matrix) #Required by resample function
-library(vegan) #Required by resample function
-library(igraph) #Required by resample function
+# Install remotes if you don't have it yet
+if (!requireNamespace("remotes", quietly = TRUE)) {
+  install.packages("remotes")
+}
+
+# Install and load Resampler
+library(remotes)
+remotes::install_github("jdivisek/Resampler")
+library(Resampler)
 ```
 
 # Data
@@ -33,13 +36,13 @@ To run stratified resampling of the CzechVeg-Open, we need two files:
 
 **1) Header data with relevé ID, geographical coordinates and other optional variables**
 
-The first object required by the `resample` function (`coord`) must be a `data.table` containing at least three columns including plot IDs and the longitude and latitude (or X and Y) coordinates of vegetation plots. Optionally, this `data.table` may include additional columns with environmental strata and a variable used to decide which vegetation plot will be removed from each pair of plots that are closer and more compositionally similar than specified thresholds. In our case, we will use 282 environmental strata defined based on principal component analysis (PCA) of 18 environmental factors (details can be found [here](https://czechvegetationdatabase.github.io/DataProcessingTutorial/data_stratification.html)). However, in the full CzechVeg-Open dataset we provide also alternative environmental stratifications of the country that are based on published literature and can be used as an alternative to our PCA-based strata. Finally, we will use also the year of sampling to prefer younger plots in the resampling procedure. This variable may contain `NA` values and the corresponding plots are removed first. So, let’s read the the header data and create `data.table`:
+The first object required by the `resample_plots` function (`coord`) must be a `data.table` containing at least three columns including plot IDs and the longitude and latitude (or X and Y) coordinates of vegetation plots. Optionally, this `data.table` may include additional columns with environmental strata and a variable used to decide which vegetation plot will be removed from each pair of plots that are closer and more compositionally similar than specified thresholds. In our case, we will use 282 environmental strata defined based on principal component analysis (PCA) of 18 environmental factors (details can be found [here](https://czechvegetationdatabase.github.io/DataProcessingTutorial/data_stratification.html)). However, in the full CzechVeg-Open dataset we provide also alternative environmental stratifications of the country that are based on published literature and can be used as an alternative to our PCA-based strata. Finally, we will use also the year of sampling to prefer younger plots in the resampling procedure. This variable may contain `NA` values and the corresponding plots are removed first. So, let’s read the the header data and create `data.table`:
 
 ```{r}
 #| label: Load data
 #| eval: false
-coord <- read.csv("header_data.csv", header = TRUE)
-head(coord)
+header_data <- read.csv("header_data.csv", header = TRUE)
+head(header_data)
 ```
 
 ![](images/head_coord.png){width="425"}
@@ -49,15 +52,15 @@ As the first column with plot IDs must have a specific name, we need to rename i
 ```{r}
 #| label: Renaming
 #| eval: false
-colnames(coord)[1] <- "PlotObservationID"
+colnames(header_data)[1] <- "PlotObservationID"
 ```
 
-Although the `resample` function can handle geographical coordinates in degrees (with `longlat = TRUE`) it is highly recommended to provide coordinates in meters. To achieve this, we need to project coordinates expressed in WGS 84 (EPSG: 4326) to metric WGS 84 / UTM zone 33N (EPSG: 32633) coordinate system. We will replace original coordinates in the `coord` object. The easiest way to is to use `terra::project()` function which can handle a matrix of coordinates and its thus not necessary to create a spatial object.
+Although the `resample_plots` function can handle geographical coordinates in degrees (with `longlat = TRUE`) it is highly recommended to provide coordinates in meters. To achieve this, we need to project coordinates expressed in WGS 84 (EPSG: 4326) to metric WGS 84 / UTM zone 33N (EPSG: 32633) coordinate system. We will replace original coordinates in the `header_data` object. The easiest way to is to use `terra::project()` function which can handle a matrix of coordinates and its thus not necessary to create a spatial object.
 
 ```{r}
 #| label: Projecting coordinates
 #| eval: false
-coord[, 2:3] <- terra::project(as.matrix(coord[, 2:3]), from = "epsg:4326", to = "epsg:32633")
+header_data[, 2:3] <- terra::project(as.matrix(header_data[, 2:3]), from = "epsg:4326", to = "epsg:32633")
 ```
 
 Note that for projecting coordinates of plots from other countries, appropriate projected coordinate system must be used.
@@ -67,21 +70,21 @@ And now, we can create a `data.table`:
 ```{r}
 #| label: data.table
 #| eval: false
-coord <- data.table(coord)
-coord
+header_data <- data.table(header_data)
+header_data
 ```
 
 ![](images/head_coord_data.table.png){width="543"}
 
 **2) Species data in long format with relevé ID, taxon names and their covers**
 
-The second object required by the `resample` function must be a `data.table` in long format containing relevé IDs, taxon names, and their percentage covers in each vegetation plot. All plot IDs must match those in the header data and vice versa. No `NA` values are allowed in any column.
+The second object required by the `resample_plots` function must be a `data.table` in long format containing relevé IDs, taxon names, and their percentage covers in each vegetation plot. All plot IDs must match those in the `header_data` and vice versa. No `NA` values are allowed in any column.
 
 ```{r}
 #| label: Reading species data
 #| eval: false
-spe <- read.csv("species_data.csv", header = TRUE)
-head(spe)
+species_data <- read.csv("species_data.csv", header = TRUE)
+head(species_data)
 ```
 
 ![](images/head_spe.png){width="404"}
@@ -91,68 +94,63 @@ All columns must have specific names: `PlotObservationID`, `Taxon_name` and `cov
 ```{r}
 #| label: Renaming columns
 #| eval: false
-colnames(spe) <- c("PlotObservationID", "Taxon_name", "cover")
+colnames(species_data) <- c("PlotObservationID", "Taxon_name", "cover")
 ```
 
 And the object must be a `data.table`.
 
 ```{r}
-#| label: spe to data.table
+#| label: species_data to data.table
 #| eval: false
-spe <- data.table(spe)
-spe
+species_data <- data.table(species_data)
+species_data
 ```
 
 ![](images/head_spe_data.table.png){width="626"}
 
 # Resampling
 
-Now, we are ready to run the resampling. First, let’t load the function:
+Now, we are ready to run the resampling. We will use the following criteria to remove the closest and most compositionally similar plots in each stratum:
 
-```{r}
-#| label: Load function
-#| eval: false
-source("https://raw.githubusercontent.com/jdivisek/FilteringReleves/refs/heads/main/ResampleFunction.R")
-```
+- `longlat = FALSE` This argument must be set to `FALSE`, because we use coordinates in the WGS 84 / UTM zone 33N coordinate system.
 
-We will use the following criteria to remove the closest and most compositionally similar plots in each stratum:
+- `dist.threshold = 1000` With this setting, the function will consider plots closer than 1,000 m as neighbors. Within this neighborhood, it will search for conflicting pairs that exceed the similarity threshold. Note that the value set depends on the coordinate system used. Please, see the detailed description [here](https://github.com/jdivisek/FilteringReleves).
 
--   `longlat = FALSE` This argument must be set to `FALSE`, because we use coordinates in the WGS 84 / UTM zone 33N coordinate system.
+- `sim.threshold = 0.6` Pairs of neighboring plots with similarity exceeding this value will be resampled.
 
--   `dist.threshold = 1000` With this setting, the function will consider plots closer than 1,000 m as neighbors. Within this neighborhood, it will search for conflicting pairs that exceed the similarity threshold. Note that the value set depends on the coordinate system used. Please, see the detailed description [here](https://github.com/jdivisek/FilteringReleves).
+- `inclusive = FALSE` Strict inequality is used for `sim.threshold`, i.e. only plots with similarity greater than 0.6 are considered for resampling.
 
--   `sim.threshold = 0.6` Pairs of neighboring plots with similarity exceeding this value will be resampled.
+- `sim.method = "simpson"` We use the Simpson similarity index, which is independent of differences in species richness, to calculate similarity in species composition.
 
--   `sim.method = "simpson"` We use the Simpson similarity index, which is independent of differences in species richness, to calculate similarity in species composition.
+- `remove = "lower var.value"` This argument sets which plot from a conflicting pair will be removed. `"lower var.value"` removes the plot with the lower value in the column defined by the `var.value` parameter. `NA` values are allowed and these plots are removed first.
 
--   `remove = "lower var.value"` This argument sets which plot from a conflicting pair will be removed. `"lower var.value"` removes the plot with the lower value in the column defined by the `var.value` parameter. `NA` values are allowed and these plots are removed first.
+- `var.value = "YEAR"` We use the year of sampling to remove the older plot from each conflicting pair. If both plots were recorded in the same year, a random plot will be removed.
 
--   `var.value = "YEAR"` We use the year of sampling to remove the older plot from each conflicting pair. If both plots were recorded in the same year, a random plot will be removed.
+- `strata = "env_strata"` This argument specifies the column in `header_data` that contains environmental stratification. Plots will be resampled separately within each stratum.
 
--   `strata = "env_strata"` This argument specifies the column in `coord` that contains environmental stratification. Plots will be resampled separately within each stratum.
-
--   `seed = 1234` The seed value for the random number generator, which ensures reproducibility of results.
+- `seed = 1234` The seed value for the random number generator, which ensures reproducibility of results.
 
 After setting this criteria, we can run resampling:
 
 ```{r}
 #| label: Run resampling
 #| eval: false
-res <- resample(coord = coord,
-                spec = spe, 
-                longlat = FALSE, 
-                dist.threshold = 1000, 
-                sim.threshold = 0.6,
-                sim.method = "simpson",
-                remove = "lower var.value",
-                var.value = "YEAR", 
-                strata = "env_strata", 
-                seed = 1234)
+res <- resample_plots(coord = header_data,
+                      spec = species_data, 
+                      longlat = FALSE, 
+                      dist.threshold = 1000, 
+                      sim.threshold = 0.6,
+                      inclusive = FALSE,
+                      sim.method = "simpson",
+                      remove = "lower var.value",
+                      var.value = "YEAR", 
+                      strata = "env_strata", 
+                      seed = 1234)
 ```
 
-![](images/resampling.png){width="682"}
+![](images/resampling_with_Resampler.png)
 
-On a laptop with 32 GB RAM and an Intel Core i7-11850H 2.5 GHz processor, resampling 116,148 plots took less than 3 minutes. As a result, we obtained a `data.table` with PlotObservationIDs and coordinates for **61,282 plots** that are either more than 1,000 m apart or less similar than 0.6 within each environmental stratum.
+As we can see, the resampling was performed for 9443 spatially contiguous groups of plots within 282 environmental strata. On a laptop with 32 GB RAM and an Intel Core i7-11850H 2.5 GHz processor, it took 3 minutes. As a result, we obtained a `data.table` with PlotObservationIDs and coordinates for **61,282** **plots** (out of 116,148) that are either more than 1,000 m apart or less similar than 0.6 within each environmental stratum.
 
 ```{r}
 #| label: Show result
