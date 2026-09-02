@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Data – Czech Vegetation Database</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -35,10 +38,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-d9589ad4e98504035195c70aa99e1e7d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e53b8d1e9b4270cd86bfb5ab1b538118.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-0508618caa1d256af916c83e0797e277.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-104f2622452aeaad4c018a66f4effed7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -94,7 +97,8 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-center sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../CVD_logo_EN_col_V.png" alt="Botzool Logo" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../CVD_logo_EN_col_V.png" alt="Botzool Logo" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../CVD_logo_EN_col_V.png" alt="Botzool Logo" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -246,7 +250,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>The Czech Vegetation Database adheres to the FAIR Guiding Principles for scientific data management and stewardship (<a href="https://doi.org/10.1038/sdata.2016.18">Wilkinson et al.&nbsp;2016</a>). It is an open resource available under the <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY</a> license, allowing data to be shared and adapted, provided the source is cited and any changes are indicated.</p>
-<p>Data can be obtained from this website, either as the full database (<a href="https://czechvegetationdatabase.github.io/Data/czech_veg_open.html">CzechVeg-Open</a>) or as a spatially and environmentally stratified subset (<a href="https://czechvegetationdatabase.github.io/Data/czech_veg_open_strat.html">CzechVeg-Open-Strat</a>), which is suitable for analyses at the national scale. The same datasets, with DOI and versioning, are available in the <a href="https://zenodo.org/">Zenodo</a> repository.</p>
+<p>Data can be obtained from this website, either as the full database (<a href="https://czechveg.github.io/Data/czech_veg_open.html">CzechVeg-Open</a>) or as a spatially and environmentally stratified subset (<a href="https://czechveg/Data/czech_veg_openstrat.html">CzechVeg-OpenStrat</a>), which is suitable for analyses at the national scale. The same datasets, with DOI and versioning, are available in the <a href="https://doi.org/10.5281/zenodo.18289905">Zenodo</a> repository.</p>
 <p>Data from the Czech Vegetation Database are also available in international vegetation-plot databases. For analyses at supranational scales, data should be requested through these databases:</p>
 <ul>
 <li><a href="http://euroveg.org/eva-database">EVA</a> <strong>–</strong> European Vegetation Archive, for analyses at the international scale within Europe</li>
@@ -261,7 +265,7 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Recommended citation for the Czech Vegetation Database</strong></p>
 <ul>
 <li><p>Chytrý M., Axmanová I., Divíšek J., Friesová K., Palpurina S., Řezníčková M., Večeřa M. &amp; Knollová I. (In preparation): Czech Vegetation Database: an open resource of vegetation-plot data.</p></li>
-<li><p>The article above should be cited whenever data from the Czech Vegetation Database are used, together with a reference to the website <a href="https://czechvegetationdatabase.github.io/">czechvegetationdatabase.github.io</a>.</p></li>
+<li><p>The article above should be cited whenever data from the Czech Vegetation Database are used, together with a reference to the website <a href="https://czechveg.github.io/">czechveg.github.io</a>.</p></li>
 <li><p>Additionally, the version used and its DOI, as recorded in Zenodo, should be cited.</p></li>
 <li><p>If only a small part of the database was used, with vegetation plots originating from a few published sources, or if a few published sources make up a large proportion of the plots, the original sources should also be cited, or the original authors should be mentioned for unpublished sources.</p></li>
 </ul>
@@ -320,13 +324,14 @@ ul.task-list li input[type="checkbox"] {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

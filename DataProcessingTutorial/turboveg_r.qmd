@@ -430,7 +430,7 @@ spe %>%
 
 The percentage cover is estimated visually relative to the total area. In the field it is estimated indepently of other plants, because we know that the plants overlap within vertical space. If we use normal sum function, we can easily get total cover per plot above 100%. Although we can separate the information into vegetation layers, it is still rather coarse division. Especially in grasslands where the main diversity is in just one, often very dense, layer.
 
-Therefore we will use the approach suggested by H.S. Fischer in the paper *On combination of species from different vegetation layers* (AVS 2014), where he suggested summing up covers considering overlap among species, so that the overall maximum value is 100 and all the values are adjusted relative to this treshold. We will prepare function called `combine_cover`
+Therefore we will use the approach suggested by H.S. Fischer in the paper *On combination of species from different vegetation layers* (AVS 2015), where he suggested summing up covers considering overlap among species, so that the overall maximum value is 100 and all the values are adjusted relative to this treshold. We will prepare function called `combine_cover`
 
 ```{r}
 combine_cover <- function(x){

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,6 +10,9 @@
 
 <title>Turboveg – Czech Vegetation Database</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -36,10 +39,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-d9589ad4e98504035195c70aa99e1e7d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e53b8d1e9b4270cd86bfb5ab1b538118.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-0508618caa1d256af916c83e0797e277.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-104f2622452aeaad4c018a66f4effed7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -95,7 +98,8 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-center sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../CVD_logo_EN_col_V.png" alt="Botzool Logo" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../CVD_logo_EN_col_V.png" alt="Botzool Logo" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../CVD_logo_EN_col_V.png" alt="Botzool Logo" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -226,15 +230,15 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#installation" id="toc-installation" class="nav-link active" data-scroll-target="#installation">1 Installation</a></li>
-  <li><a href="#updates" id="toc-updates" class="nav-link" data-scroll-target="#updates">2 Updates</a>
+  <li><a href="#program-installation" id="toc-program-installation" class="nav-link active" data-scroll-target="#program-installation">1 Program installation</a>
   <ul class="collapse">
-  <li><a href="#program-update" id="toc-program-update" class="nav-link" data-scroll-target="#program-update">2.1 Program update</a></li>
-  <li><a href="#installation-and-update-of-the-czech-species-list" id="toc-installation-and-update-of-the-czech-species-list" class="nav-link" data-scroll-target="#installation-and-update-of-the-czech-species-list">2.2 Installation and update of the Czech species list</a></li>
-  <li><a href="#installation-and-update-of-the-common-database-directories" id="toc-installation-and-update-of-the-common-database-directories" class="nav-link" data-scroll-target="#installation-and-update-of-the-common-database-directories">2.3 Installation and update of the common database directories</a></li>
+  <li><a href="#installation-files" id="toc-installation-files" class="nav-link" data-scroll-target="#installation-files">1.1 Installation files</a></li>
+  <li><a href="#installation-and-update-of-the-czech-species-list" id="toc-installation-and-update-of-the-czech-species-list" class="nav-link" data-scroll-target="#installation-and-update-of-the-czech-species-list">1.2 Installation and update of the Czech species list</a></li>
+  <li><a href="#installation-and-update-of-the-common-database-directories" id="toc-installation-and-update-of-the-common-database-directories" class="nav-link" data-scroll-target="#installation-and-update-of-the-common-database-directories">1.3 Installation and update of the common database directories</a></li>
+  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting">1.4. Troubleshooting</a></li>
   </ul></li>
-  <li><a href="#instructions" id="toc-instructions" class="nav-link" data-scroll-target="#instructions">3 Instructions</a></li>
-  <li><a href="#taxonomic-and-nomenclatural-standards" id="toc-taxonomic-and-nomenclatural-standards" class="nav-link" data-scroll-target="#taxonomic-and-nomenclatural-standards">4 Taxonomic and nomenclatural standards</a></li>
+  <li><a href="#storing-the-data-in-turboveg" id="toc-storing-the-data-in-turboveg" class="nav-link" data-scroll-target="#storing-the-data-in-turboveg">2 Storing the data in Turboveg</a></li>
+  <li><a href="#taxonomic-and-nomenclatural-standards" id="toc-taxonomic-and-nomenclatural-standards" class="nav-link" data-scroll-target="#taxonomic-and-nomenclatural-standards">3 Taxonomic and nomenclatural standards</a></li>
   </ul>
 </nav>
     </div>
@@ -266,42 +270,47 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>The Czech Vegetation Database is stored and managed in the <a href="https://www.synbiosys.alterra.nl/turboveg/">Turboveg 2</a> program, which was developed specifically for managing vegetation-plot databases by Stephan Hennekens (<a href="http://onlinelibrary.wiley.com/doi/10.2307/3237010/pdf">Hennekens &amp; Schaminée 2001</a>). This program and the database format it supports have become widespread across Europe and beyond. We encourage all data contributors to the Czech Vegetation Database to use this program to digitize their vegetation-plot data.</p>
-<section id="installation" class="level2">
-<h2 class="anchored" data-anchor-id="installation">1 Installation</h2>
-<p>To obtain the version of Turboveg optimized for Czech data, please contact Ilona Knollová (<a href="mailto:ikuzel@sci.muni.cz">ikuzel@sci.muni.cz</a>) or Milan Chytrý (<a href="mailto:chytry@sci.muni.cz">chytry@sci.muni.cz</a>). This version is not available for international users who work with data from other countries. If these users are interested in working with Turboveg, they should contact database coordinators in their countries or Stephan Hennnekens.</p>
-</section>
-<section id="updates" class="level2">
-<h2 class="anchored" data-anchor-id="updates">2 Updates</h2>
-<section id="program-update" class="level3">
-<h3 class="anchored" data-anchor-id="program-update">2.1 Program update</h3>
-<p>After the Turboveg installation, the program should be updated to the current version from the <a href="https://www.synbiosys.alterra.nl/turboveg/">Turboveg website</a> (select „International, single user version“).</p>
+<p>The Czech Vegetation Database is stored and managed in the <a href="https://www.synbiosys.alterra.nl/turboveg/">Turboveg 2</a> program, which was developed specifically for managing vegetation-plot databases by Stephan Hennekens (<a href="http://onlinelibrary.wiley.com/doi/10.2307/3237010/pdf">Hennekens &amp; Schaminée 2001</a>). This program and the database format it supports have become widespread across Europe and beyond. Turboveg 2 was kindly provided by its author to the Czech botanical community at no cost, and we encourage all data contributors to the Czech Vegetation Database to use this program to digitize their vegetation-plot data.</p>
+<section id="program-installation" class="level2">
+<h2 class="anchored" data-anchor-id="program-installation">1 Program installation</h2>
+<section id="installation-files" class="level3">
+<h3 class="anchored" data-anchor-id="installation-files">1.1 Installation files</h3>
+<p>First, download the installation file <a href="https://github.com/CzechVeg/CzechVeg.github.io/blob/main/Data/turboveg_files/TvsetupCzechia.exe">TvsetupCzechia.exe</a> of the Czech Turboveg 2 version and install it.</p>
+<p>Second, update the program to the current version by installing the UpdIntS.exe file, which can be downloaded from the <a href="https://www.synbiosys.alterra.nl/turboveg/">Turboveg website</a> (go to “Updates” and select „International, single user version“).</p>
+<p>On some computers, the program may require a registration number and name. If so, enter:<br>
+Registration number: 1003904<br>
+Registration name: Milan Chytry</p>
 </section>
 <section id="installation-and-update-of-the-czech-species-list" class="level3">
-<h3 class="anchored" data-anchor-id="installation-and-update-of-the-czech-species-list">2.2 Installation and update of the Czech species list</h3>
+<h3 class="anchored" data-anchor-id="installation-and-update-of-the-czech-species-list">1.2 Installation and update of the Czech species list</h3>
 <p>The standard Turboveg list of the Czech flora (common with the standard list of Slovak flora) should be downloaded here:</p>
 <ul>
-<li><a href="files/species.zip">species.zip</a> (version 28 November 2024)</li>
+<li><a href="https://github.com/CzechVeg/CzechVeg.github.io/tree/main/Data/turboveg_files/species.zip">species.zip</a> (version 10 March 2026)</li>
 </ul>
-<p>Extract this file. After extraction, you will receive a folder named Czechia_Slovakia_2015, which should be copied to the folder /TURBOWIN/species on your computer. In the Turboveg program, assign the species list to each specific database using <em>Database/Modify attributes</em>. Translation of the Turboveg checklist to currently used taxonomy can be found in the <a href="https://github.com/CzechVeg/CzechVeg.github.io/tree/main/Data/crosswalk_tables/table_nomenclature.csv">crosswalk table</a>.</p>
+<p>Extract this file. After extraction, you will receive a folder named Czechia_Slovakia_2015, which should be copied to the folder /Turbowin/species on your computer. In the Turboveg program, assign the species list to each specific database using Database/Modify attributes. The translation of the Turboveg checklist into the currently used taxonomy is available in the <a href="https://github.com/CzechVeg/CzechVeg.github.io/tree/main/Data/crosswalk_tables/table_nomenclature.csv">crosswalk table</a>.</p>
 </section>
 <section id="installation-and-update-of-the-common-database-directories" class="level3">
-<h3 class="anchored" data-anchor-id="installation-and-update-of-the-common-database-directories">2.3 Installation and update of the common database directories</h3>
+<h3 class="anchored" data-anchor-id="installation-and-update-of-the-common-database-directories">1.3 Installation and update of the common database directories</h3>
 <p>The standard directories for specific header-data variables should be downloaded from here:</p>
 <ul>
-<li><a href="files/popup.zip">popup.zip</a> (version 16 December 2024)</li>
+<li><a href="https://github.com/CzechVeg/CzechVeg.github.io/blob/main/About/files/popup.zip">popup.zip</a> (version 10 March 2026)</li>
 </ul>
-<p>Extract this file to the folder /TURBOWIN/popup (old files should be rewritten). If there are problems with the syntaxon list, follow the instructions <a href="files/Prevod_Moravec_VegetaceCR.pdf">here</a>.</p>
+<p>Extract this file into the folder /Turbowin/popup (old files should be overwritten). If there are problems with the syntaxon list, follow the instructions <a href="https://github.com/CzechVeg/CzechVeg.github.io/tree/main/Data/turboveg_files/Prevod_Moravec_VegetaceCR.pdf">here</a>.</p>
+</section>
+<section id="troubleshooting" class="level3">
+<h3 class="anchored" data-anchor-id="troubleshooting">1.4. Troubleshooting</h3>
+<p>If Turboveg does not work after installation, we recommend installing a program update.</p>
+<p>If Turboveg stops working after an update, we recommend re-unpacking the species.zip and popup.zip files. If it still does not start, we recommend deleting the program configuration file tvwin.ini from the Windows folder.</p>
 </section>
 </section>
-<section id="instructions" class="level2">
-<h2 class="anchored" data-anchor-id="instructions">3 Instructions</h2>
-<p>Before storing the vegetation-plot data entered into Turboveg in the Czech Vegetation Database, each plot must have a unique number. To guarantee that your plots have unique numbers, contact Ilona Knollová (<a href="mailto:ikuzel@sci.muni.cz">ikuzel@sci.muni.cz</a>), who may assign a range of plot numbers to you. The list of numbers assigned to individual collaborators is <a href="files/rozsahy.pdf">here</a>. Collaborators who have not been assigned to a range of plot numbers should code their plots starting from no. 1. Their plots will be renumbered by the coordinator once they are sent to the central database. If collaborators with assigned plot numbers enter plots from published sources, the bibliographic references should have numbers from the same numerical range.</p>
-<p>Turboveg manual for beginners (in Czech) is <a href="files/Turboveg-manual.pdf">here</a>. You can download an <a href="files/vzorova-databaze.zip">empty database template</a> with standard header data fields used in the Czech Vegetation Database. Restore this template to the folder /TURBOWIN/data and rename it.</p>
+<section id="storing-the-data-in-turboveg" class="level2">
+<h2 class="anchored" data-anchor-id="storing-the-data-in-turboveg">2 Storing the data in Turboveg</h2>
+<p>Before storing the vegetation-plot data entered into Turboveg in the Czech Vegetation Database, each plot must have a unique number. To guarantee that your plots have unique numbers, contact Ilona Knollová (<a href="mailto:ikuzel@sci.muni.cz">ikuzel@sci.muni.cz</a>), who may assign a range of plot numbers to you. The list of numbers assigned to individual collaborators is <a href="https://github.com/CzechVeg/CzechVeg.github.io/blob/main/About/files/rozsahy.pdf">here</a>. Collaborators who have not been assigned to a range of plot numbers should code their plots starting from no. 1. Their plots will be renumbered by the coordinator once they are sent to the central database. If collaborators with assigned plot numbers enter plots from published sources, the bibliographic references should have numbers from the same numerical range.</p>
+<p>Turboveg manual for beginners (in Czech) is <a href="https://github.com/CzechVeg/CzechVeg.github.io/tree/main/Data/turboveg_files/Turboveg_manual.pdf">here</a>. You can download an <a href="https://github.com/CzechVeg/CzechVeg.github.io/tree/main/Data/turboveg_files/vzorova_databaze.zip">empty database template</a> with standard header data fields used in the Czech Vegetation Database. Restore this template to the folder /TURBOWIN/data and rename it.</p>
 </section>
 <section id="taxonomic-and-nomenclatural-standards" class="level2">
-<h2 class="anchored" data-anchor-id="taxonomic-and-nomenclatural-standards">4 Taxonomic and nomenclatural standards</h2>
-<p>To ensure compatibility among different datasets, the Czech Vegetation Database uses standardized species lists included in the Czech version of Turboveg.</p>
+<h2 class="anchored" data-anchor-id="taxonomic-and-nomenclatural-standards">3 Taxonomic and nomenclatural standards</h2>
+<p>To ensure compatibility across datasets, the Czech Vegetation Database uses standardized species lists from the Czech version of Turboveg.</p>
 <p>The list of vascular plant species (including some other infraspecific and infrageneric taxa) was prepared by the late Professor Harald Niklfeld and Dr.&nbsp;Walter Gutermann (University of Vienna) in 1996 based on an updated version of Liste der Gefäßpflanzen Mitteleuropas (Ehrendorfer 1973). This species list contains plant species occurring in Czechia, Slovakia, and Austria. In 2015, Jiří Danihelka updated this species list to reflect additions to the Czech flora published in Danihelka et al.&nbsp;(2012), while keeping compatibility with the previous list. This species list is currently used by both the Czech Vegetation Database and the <a href="https://cbrb.sav.sk/cdf/">Central Database of Phytosociological Relevés</a> in Slovakia.</p>
 <p>The lists of bryophytes and lichens follow Frahm et al.&nbsp;(1995) and Pišút et al.&nbsp;(1993), respectively.</p>
 <p><strong>References</strong></p>
@@ -367,13 +376,14 @@ ul.task-list li input[type="checkbox"] {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

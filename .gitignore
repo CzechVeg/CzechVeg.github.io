@@ -6,7 +6,4 @@
 Postup publikace R GitHub.txt
 
 **/*.quarto_ipynb
-.Rdata
-.httr-oauth
-.DS_Store
-.quarto
+.positai

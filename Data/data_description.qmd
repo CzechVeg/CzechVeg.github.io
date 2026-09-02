@@ -20,7 +20,7 @@ Species data include unique identifiers for vegetation plots and corresponding s
 
 **Original taxon name in the Turboveg 2 database (TURBOVEG_NAME)**. This name corresponds to the Czechia-Slovakia species checklist used in the Turboveg 2 database.
 
-**Taxon name in the currently accepted nomenclature (KAPLAN_PLUS_NAME).** For vascular plants, this name corresponds to the [Pladias Database of Czech Flora and Vegetation](https://www.pladias.cz/), which adopts the taxonomy and nomenclature accepted in the second edition of the Key to the Flora of the Czech Republic (Kaplan et al. 2019), with a few additions. For bryophytes and lichens, it follows the DaLiBor database. Where not available, the concept is harmonised with the GBIF taxonomy.
+**Taxon name in the currently accepted nomenclature (KAPLAN_PLUS_NAME).** For vascular plants, this name corresponds to the [Pladias Database of Czech Flora and Vegetation](https://www.pladias.cz/), which adopts the taxonomy and nomenclature accepted in the second edition of the Key to the Flora of the Czech Republic (Kaplan et al. 2019), with a few additions. For bryophytes and lichens, it follows the DaLiBor database. Where not available, the concept is harmonized with the [GBIF Backbone Taxonomy](https://www.gbif.org/dataset/d7dddbf4-2cf0-4f39-9b2a-bb099caae36c).
 
 -   Kaplan Z., Danihelka J., Chrtek J., Kirschner J., Kubát K., Štech M. & Štěpánek J. (eds) (2019) *Klíč ke květeně České republiky \[Key to the Flora of the Czech Republic\]*. Ed. 2. Academia, Praha.
 -   Man M., Malíček J., Kalčík V., Novotný P., Chobot K. & Wild J. (2022) DaLiBor: Database of Lichens and Bryophytes of the Czech Republic. *Preslia* 94: 579–605. <https://doi.org/10.23855/preslia.2022.579>
@@ -101,7 +101,7 @@ In addition to basic variables, the Czech Vegetation Database also contains vari
 
 **Date (DATE).** Date of vegetation plot sampling, recorded in the format YYYYMMDD. The CSV format also includes **YEAR**.
 
-**Syntaxon (SYNTAXON).** Vegetation unit (syntaxon) to which the vegetation plot was subjectively assigned by its author or a database administrator. The dataset in Turboveg 2 format (DBF) contains the syntaxon code. The CSV format also includes the full syntaxon name in the field **SYNTAXON_NAME**. Translation of codes to names is available in the [crosswalk table](https://github.com/CzechVeg/CzechVeg.github.io/tree/main/Data/crosswalk_tables/table_syntaxon.csv). The vegetation classification follows Chytrý (2007–2013).
+**Syntaxon (SYNTAXON).** Vegetation unit (syntaxon) to which the vegetation plot was subjectively assigned by its author or a database administrator. The dataset in Turboveg 2 format (DBF) contains the syntaxon code. The CSV format also includes the full syntaxon name in the field **SYNTAXON_NAME**. Translation of codes to names is available in the [crosswalk table](https://github.com/CzechVeg/CzechVeg.github.io/blob/main/Data/crosswalk_tables/table_syntaxa.csv). The vegetation classification follows Chytrý (2007–2013).
 
 -   Chytrý M. (ed.) (2007–2013) *Vegetace České republiky 1–4. Vegetation of the Czech Republic 1–4*. Academia, Praha. <https://botzool.cz/vegsci/vegetationCR>
 
@@ -185,7 +185,7 @@ In addition to basic variables, the Czech Vegetation Database also contains vari
 
 -   Moravec J., Balátová-Tuláčková E., Blažková D., Hadač E., Hejný S., Husák Š., Jeník J., Kolbek J., Krahulec F., Kropáč Z., Neuhäusl R., Rybníček K., Řehořek V. & Vicherek J. (1995): Rostlinná společenstva České republiky a jejich ohrožení \[Plant communities of the Czech Republic and their threats\]. Ed. 2. *Severočeskou přírodou*, Příloha 1995: 1–206.
 
-The dataset in Turboveg 2 format (DBF) contains the syntaxon code. The CSV format also includes the full syntaxon name in the field **SYNTAXON_OLD_NAME**. The translation is available in the [crosswalk table](https://github.com/CzechVeg/CzechVeg.github.io/tree/main/Data/crosswalk_tables/table_syntaxonOLD.csv).
+The dataset in Turboveg 2 format (DBF) contains the syntaxon code. The CSV format also includes the full syntaxon name in the field **SYNTAXON_OLD_NAME**. The translation is available in the [crosswalk table](https://github.com/CzechVeg/CzechVeg.github.io/blob/main/Data/crosswalk_tables/table_syntaxaOLD.csv).
 
 ### 2.3 Rarely or never used header-data variables
 
