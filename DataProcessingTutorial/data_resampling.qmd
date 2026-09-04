@@ -163,3 +163,7 @@ res
 As shown below, the density of plots in intensively sampled areas decreased considerably. This dataset is provided as [**CzechVeg-Open-Strat**](https://czechveg.github.io/Data/czech_veg_openstrat.html).
 
 ![](images/CzechVeg_allPlots_vs_strat.png)
+
+# Sample project
+
+If you want to try resampling with a smaller dataset, you can download the zip file of the [R project](https://github.com/CzechVeg/CzechVeg.github.io/blob/main/DataProcessingTutorial/data/CzechVeg_ResamplingExample.zip), which includes the codes and two sample datasets: a smaller one with 4,788 plots and a larger one with 15,980 plots from two different regions of the Czech Republic.
