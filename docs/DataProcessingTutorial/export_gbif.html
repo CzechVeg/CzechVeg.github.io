@@ -358,10 +358,11 @@ After the species list has been uploaded and matched against COL, the initial re
 </ol>
 <p><img src="images/gbif_spec_matching_fig1.png" class="img-fluid"></p>
 <ol start="4" type="1">
-<li><em>Handling species groups and hybrids</em><br>
-The GBIF taxonomic backbone is not able to match correctly certain types of names, such as species aggregates (agg.), broad species concepts (s. lat.), or some hybrids. In such cases, the names may (and should) be matched only to the species or genus level. Matching may be more successful when the name is present in COL.</li>
-<li><em>Linking the matching results to the original data</em><br>
-The matching results are linked back to the original species list. For the occurrence data, the relevant fields are then selected and renamed according to the Darwin Core terms (see the procedure below). The complete set of columns for the training 1000 vegetation plots, including some additional fields we added, is retained in <strong>GBIF_testdata_uniqueSL_clean.xlsx</strong> (to be uploaded as spec.converter below). The raw outputs from the testspecies matching and editing within the tool (GBIF_testspecies_MatchedEdited.csv and GBIF_testspecies_authorship_MatchedEdited.csv) are included in the training data. Note that from these .csv files, the final list of taxon names (that could be linked to the corresponding vegetation data and mapped to GBIF) must be assembled manually using the species and genus fields in this case. The verbatimScientificName field contains the names submitted to the matching tool.</li>
+<li><p><em>Handling species groups and hybrids</em><br>
+The GBIF taxonomic backbone is not able to match correctly certain types of names, such as species aggregates (agg.), broad species concepts (s. lat.), or some hybrids. In such cases, the names may (and should) be matched only to the species or genus level. Matching may be more successful when the name is present in COL.</p></li>
+<li><p><em>Linking the matching results to the original data</em><br>
+The matching results are linked back to the original species list. For the occurrence data, the relevant fields are then selected and renamed according to the Darwin Core terms (see the procedure below). The complete set of columns for the training 1000 vegetation plots, including some additional fields we added, is retained in <strong>GBIF_testdata_uniqueSL_clean.xlsx</strong> (to be uploaded as spec.converter below). The raw outputs from the testspecies matching and editing within the tool (GBIF_testspecies_MatchedEdited.csv and GBIF_testspecies_authorship_MatchedEdited.csv) are included in the training data.</p>
+<p>It is worth including the other taxonomic ranks and also the scientific name authorship obtained from the matching tool, in our species data. This ensures that our data are correctly matched to GBIF nomenclature. The verbatimIdentification field contains the original names used in our data (including for example agg.).</p></li>
 </ol>
 <p><img src="images/gbif_spec_matching_fig2.png" class="img-fluid"></p>
 <p><img src="images/gbif_spec_matching_fig3.png" class="img-fluid"></p>
