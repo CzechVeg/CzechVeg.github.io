@@ -269,7 +269,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#input-files" id="toc-input-files" class="nav-link" data-scroll-target="#input-files">Input files</a></li>
   <li><a href="#preprocessing-of-taxonomic-nomenclature" id="toc-preprocessing-of-taxonomic-nomenclature" class="nav-link" data-scroll-target="#preprocessing-of-taxonomic-nomenclature">Preprocessing of taxonomic nomenclature</a></li>
   <li><a href="#read-input-files-to-r" id="toc-read-input-files-to-r" class="nav-link" data-scroll-target="#read-input-files-to-r">Read input files to R</a></li>
-  <li><a href="#translating-header-and-species-data-to-the-gbif-format" id="toc-translating-header-and-species-data-to-the-gbif-format" class="nav-link" data-scroll-target="#translating-header-and-species-data-to-the-gbif-format">Translating header and species data to the GBIF format</a>
+  <li><a href="#translating-header-species-and-literature-references-to-the-gbif-format" id="toc-translating-header-species-and-literature-references-to-the-gbif-format" class="nav-link" data-scroll-target="#translating-header-species-and-literature-references-to-the-gbif-format">Translating header, species and literature references to the GBIF format</a>
   <ul class="collapse">
   <li><a href="#events" id="toc-events" class="nav-link" data-scroll-target="#events">Events</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
@@ -388,7 +388,7 @@ The matching results are linked back to the original species list. For the occur
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="do">## Read other files</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>spec.converter <span class="ot">&lt;-</span> <span class="fu">read_excel</span> (<span class="fu">paste0</span>(<span class="fu">getwd</span>(),<span class="st">"/GBIF/input_files/GBIF_nomenclature_CZ_20260621IKuprMV.xlsx"</span>)) <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>()</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>spec.converter <span class="ot">&lt;-</span> <span class="fu">read_excel</span> (<span class="fu">paste0</span>(<span class="fu">getwd</span>(),<span class="st">"/GBIF/input_files/GBIF_testdata_uniqueSL_clean.xlsx"</span>)) <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>()</span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>shp_dir <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">getwd</span>(), <span class="st">"GBIF/input_files"</span>, <span class="st">"shp"</span>)</span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>shp_file <span class="ot">&lt;-</span> <span class="fu">list.files</span>(shp_dir, <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">.shp$"</span>, <span class="at">full.names =</span> T)</span>
@@ -398,8 +398,8 @@ The matching results are linked back to the original species list. For the occur
 <span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>eunis.names <span class="ot">&lt;-</span> <span class="fu">read_excel</span> (<span class="fu">paste0</span>(<span class="fu">getwd</span>(),<span class="st">"/GBIF/input_files/EUNIS-habitats-codes-and-names-2025-09.xlsx"</span>)) <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="translating-header-and-species-data-to-the-gbif-format" class="level1">
-<h1>Translating header and species data to the GBIF format</h1>
+<section id="translating-header-species-and-literature-references-to-the-gbif-format" class="level1">
+<h1>Translating header, species and literature references to the GBIF format</h1>
 <section id="events" class="level2">
 <h2 class="anchored" data-anchor-id="events">Events</h2>
 <p>Column names for the <em>event_gbif</em> object to which header data will be transferred:</p>

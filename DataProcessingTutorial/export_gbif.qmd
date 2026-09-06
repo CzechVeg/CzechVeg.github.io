@@ -100,7 +100,7 @@ dbf_list <- lapply(dbf_list, function(df) {
 })
 
 ## Read other files
-spec.converter <- read_excel (paste0(getwd(),"/GBIF/input_files/GBIF_nomenclature_CZ_20260621IKuprMV.xlsx")) %>% as.data.frame()
+spec.converter <- read_excel (paste0(getwd(),"/GBIF/input_files/GBIF_testdata_uniqueSL_clean.xlsx")) %>% as.data.frame()
 
 shp_dir <- file.path(getwd(), "GBIF/input_files", "shp")
 shp_file <- list.files(shp_dir, pattern = "\\.shp$", full.names = T)
@@ -110,7 +110,7 @@ EUNIS <- read.delim (paste0(getwd(),"/GBIF/input_files/CzechVeg_TV3_EUNIS_202608
 eunis.names <- read_excel (paste0(getwd(),"/GBIF/input_files/EUNIS-habitats-codes-and-names-2025-09.xlsx")) %>% as.data.frame()
 ```
 
-# Translating header and species data to the GBIF format
+# Translating header, species and literature references to the GBIF format
 
 ## Events
 
