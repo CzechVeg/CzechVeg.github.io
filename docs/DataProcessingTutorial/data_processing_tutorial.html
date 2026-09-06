@@ -2,16 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.36">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Data processing tutorial – Czech Vegetation Database</title>
 <style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -73,10 +70,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e53b8d1e9b4270cd86bfb5ab1b538118.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-104f2622452aeaad4c018a66f4effed7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-0508618caa1d256af916c83e0797e277.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -132,8 +129,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-center sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../CVD_logo_EN_col_V.png" alt="Botzool Logo" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="../CVD_logo_EN_col_V.png" alt="Botzool Logo" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <img src="../CVD_logo_EN_col_V.png" alt="Botzool Logo" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -259,8 +255,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#example-data" id="toc-example-data" class="nav-link active" data-scroll-target="#example-data">Example data</a></li>
+  <li><a href="#useful-tips" id="toc-useful-tips" class="nav-link" data-scroll-target="#useful-tips">Useful tips</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -288,7 +291,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="images/clipboard-2427925261.png" class="img-fluid"></p>
 <p>We are using the tidyverse approach and tidy data rules. If you are interested in more details and links to additional literature, check our <strong>study materials</strong> <a href="https://botzooldataanalysis.github.io/DataManipulationVisualisation/1_introduction.html"><strong>here</strong></a>.</p>
 <p>For data processing, we recommend using a <strong>project in <a href="https://posit.co/download/rstudio-desktop/">Rstudio</a></strong>. The advantage of using projects, is that you can directly use the same structure with exactly the same paths as provided in this tutorial. For this, add a subfolder “data” directly in the main folder to store all the data files.</p>
-<p>We show all the basic data processing (Turboveg to R, Basic analyses, Data format conversions) using an example of forest understory data from the Czech Vegetation Database. If you want to train in the same way as is described in the tutorials, you can download zip files with data here <a href="https://github.com/CzechVeg/CzechVeg.github.io/tree/main/DataProcessingTutorial/data/data.zip"><code>Link to Github folder</code></a>or with the whole project here <a href="https://github.com/CzechVeg/CzechVeg.github.io/tree/main/DataProcessingTutorial/data/CzechVeg_tutorial.zip"><code>Link to Github folder</code></a>.</p>
+<section id="example-data" class="level2">
+<h2 class="anchored" data-anchor-id="example-data">Example data</h2>
+<p>We show all the basic data processing in chapters <a href="https://czechveg.github.io/DataProcessingTutorial/turboveg_r.html">Turboveg to R</a>, <a href="https://czechveg.github.io/DataProcessingTutorial/basic_analyses.html">Basic analyses</a>, <a href="https://czechveg.github.io/DataProcessingTutorial/data_conversions.html">Data format conversions</a> using an example of forest understory data from the Czech Vegetation Database. If you want to train in the same way as is described in the tutorials you can use this link to our GitHub folder, where you can download the <strong>example R project</strong> <a href="https://github.com/CzechVeg/CzechVeg.github.io/tree/main/DataProcessingTutorial/data/CzechVeg_tutorial.zip">tutorial_forest_data</a> or alternatively just the data <a href="https://github.com/CzechVeg/CzechVeg.github.io/tree/main/DataProcessingTutorial/data/data.zip">data_forests</a>.</p>
+<p>For <a href="https://czechveg.github.io/DataProcessingTutorial/data_resampling.html">Data resampling</a> tutorial see the details in another chapter. Again you can download the <strong>example R project</strong> with data and script <a href="https://github.com/CzechVeg/CzechVeg.github.io/blob/main/DataProcessingTutorial/data/CzechVeg_ResamplingExample.zip">here</a>.</p>
+<p>For the GBIF data preparation see the tutorial in the <a href="https://czechveg.github.io/DataProcessingTutorial/export_gbif.html">Export to GBIF</a> chapter and download the <strong>example R project</strong> <a href="https://github.com/CzechVeg/CzechVeg.github.io/tree/main/DataProcessingTutorial/data/CzechVeg_GBIF_training_data.zip">here</a>.</p>
+</section>
+<section id="useful-tips" class="level2">
+<h2 class="anchored" data-anchor-id="useful-tips">Useful tips</h2>
 <p>In individual subchapters, you can find instructions and individual parts of the code, which you can copy and insert them into your own script (<strong><em>use</em></strong> <strong><em>the</em></strong> <strong><em>copy icon in the upper right corner to copy individual code chunks</em></strong>).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -298,10 +308,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Please note that we do not provide the whole script, but we encourage you to copy the code chunks from the examples here and use them to build your own script, adjusted to your needs.</p>
 <p>At the beginning of your work, load the listed libraries (example for the chapter “Turboveg to R” is below). If needed, first install missing libraries by function <code>install.packages("packageName")</code>. Another option is to copy the libraries into your script, close it and re-open it. Rstudio will automatically ask whether you want to install these libraries.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreign)   <span class="co">#for reading dbf files </span></span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreign)   <span class="co">#for reading dbf files </span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co">#for data handling, pipes and visualisation </span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)    <span class="co">#for data import directly from Excel </span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)   <span class="co">#for unified, easy-to-handle format of variable names</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)   <span class="co">#for unified, easy-to-handle format of variable names</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We use <strong>pipes</strong> <code>%&gt;%</code> throughout the scripts. Pipes allow the output of a previous command to be used as input to another command instead of using nested functions. It means that a pipe binds individual steps into a sequence, which reads from left to right. You can insert it into your code by pressing <code>Ctrl+Shift+M</code>.</p>
 <p>To play a bit with the pipes, you can take part of the script, send it to the console with <code>Ctrl+Enter</code> and just try if and how it works without assigning it to the final object, as in the picture below.</p>
@@ -312,6 +322,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -365,14 +376,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
         }
-      }
-      return codeEl.innerText;
+        return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

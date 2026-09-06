@@ -152,7 +152,7 @@ env <- env_dbf %>%
 
 ### 1.3.2 Coordinates
 
-In the Turboveg 2 databases, the geographical coordinates are stored in a format with DDMMSS.SS. To show the plots in the map or perform any spatial calculations, you will need to transform the coordinates to decimal degrees.
+In many of the Turboveg 2 databases, the geographical coordinates are stored in a format with DDMMSS.SS. To show the plots in the map or perform any spatial calculations, you will need to transform the coordinates to decimal degrees.
 
 ![](images/clipboard-2767520514.png){width="298"}
 
@@ -252,7 +252,7 @@ Second, I can add a concept that groups several taxa into higher units, e.g. tax
 
 Last but not least. I can directly add much more information into such a table. For example invasion status, growth form or anything else. Here we have an indication of whether the species is nonvascular.
 
-I might want to check how the species are translated using my translation file and select just these matching rows. Either create a variable called selection indicating if the species is in the subset or not.
+I might want to check how the species are translated using my translation file and select just these matching rows. Either create a variable called selection, indicating if the species is in the subset or not.
 
 ```{r}
 nomenclature_check<- nomenclature %>% 
