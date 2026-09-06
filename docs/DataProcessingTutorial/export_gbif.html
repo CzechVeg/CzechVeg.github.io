@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,6 +10,9 @@
 
 <title>Export to GBIF – Czech Vegetation Database</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -71,10 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e53b8d1e9b4270cd86bfb5ab1b538118.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-0508618caa1d256af916c83e0797e277.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-104f2622452aeaad4c018a66f4effed7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -130,7 +133,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-center sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../CVD_logo_EN_col_V.png" alt="Botzool Logo" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../CVD_logo_EN_col_V.png" alt="Botzool Logo" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../CVD_logo_EN_col_V.png" alt="Botzool Logo" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -310,12 +314,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Because each vegetation database has its own specifics, this tutorial is not intended to serve as a universal, step-by-step manual. It rather provides an example workflow that can be adapted to the specific characteristics of different databases.</p>
 <p>You can <a href="https://github.com/CzechVeg/CzechVeg.github.io/tree/main/DataProcessingTutorial/data/CzechVeg_GBIF_training_data.zip">download</a> the training data, which contains 1000 vegetation plots from the CzechVeg DB, together with the R script and other files. You can then modify the script as needed and practise the procedure described below.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Required packages</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Required packages</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span> (dplyr)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span> (readxl)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span> (sf)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span> (stringr)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span> (tidyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span> (tidyr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="input-files" class="level1">
@@ -366,7 +370,7 @@ The matching results are linked back to the original species list. For the occur
 <h1>Read input files to R</h1>
 <p>After downloading the training data and running the R project, all files to be read to R, except the shapefile, are prepared in the GBIF\input_files folder within the R working directory. If a shapefile is used, its component files (including at least the .dbf, .prj, .shp, and .shx files) are stored in the GBIF\input_files\shp subfolder.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Read DBF files into a list</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Read DBF files into a list</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>dbf_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">path =</span> <span class="fu">paste0</span>(<span class="fu">getwd</span>(),<span class="st">"/GBIF/input_files"</span>), <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">.dbf$"</span>, <span class="at">full.names =</span> T, <span class="at">ignore.case =</span> T)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>dbf_list <span class="ot">&lt;-</span> <span class="fu">lapply</span>(dbf_files, <span class="cf">function</span>(f) {</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_read</span>(f, <span class="at">quiet =</span> T) <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>()</span>
@@ -390,7 +394,7 @@ The matching results are linked back to the original species list. For the occur
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>tv.shp <span class="ot">&lt;-</span> <span class="fu">st_read</span>(shp_file)</span>
 <span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>EUNIS <span class="ot">&lt;-</span> <span class="fu">read.delim</span> (<span class="fu">paste0</span>(<span class="fu">getwd</span>(),<span class="st">"/GBIF/input_files/CzechVeg_TV3_EUNIS_20260810.csv"</span>), <span class="at">sep =</span> <span class="st">'</span><span class="sc">\t</span><span class="st">'</span>)</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>eunis.names <span class="ot">&lt;-</span> <span class="fu">read_excel</span> (<span class="fu">paste0</span>(<span class="fu">getwd</span>(),<span class="st">"/GBIF/input_files/EUNIS-habitats-codes-and-names-2025-09.xlsx"</span>)) <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>eunis.names <span class="ot">&lt;-</span> <span class="fu">read_excel</span> (<span class="fu">paste0</span>(<span class="fu">getwd</span>(),<span class="st">"/GBIF/input_files/EUNIS-habitats-codes-and-names-2025-09.xlsx"</span>)) <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="translating-header-and-species-data-to-the-gbif-format" class="level1">
@@ -399,7 +403,7 @@ The matching results are linked back to the original species list. For the occur
 <h2 class="anchored" data-anchor-id="events">Events</h2>
 <p>Column names for the <em>event_gbif</em> object to which header data will be transferred:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>event.gbif_colnames <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>event.gbif_colnames <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"eventID"</span>,<span class="st">"countryCode"</span>,<span class="st">"footprintWKT"</span>,<span class="st">"geodeticDatum"</span>,<span class="st">"decimalLongitude"</span>,<span class="st">"decimalLatitude"</span>,<span class="st">"coordinateUncertaintyInMeters"</span>,<span class="st">"eventDate"</span>,<span class="st">"samplingProtocol"</span>,<span class="st">"sampleSizeValue"</span>,<span class="st">"sampleSizeUnit"</span>,<span class="st">"syntaxonName"</span>,<span class="st">"maximumElevationInMeters"</span>,<span class="st">"aspect"</span>,<span class="st">"inclinationInDegrees"</span>,<span class="st">"coverTotalInPercentage"</span>,<span class="st">"coverTreesInPercentage"</span>,<span class="st">"coverShrubsInPercentage"</span>,<span class="st">"coverHerbsInPercentage"</span>,<span class="st">"coverMossesInPercentage"</span>,<span class="st">"coverLichensInPercentage"</span>,<span class="st">"coverAlgaeInPercentage"</span>,<span class="st">"coverLitterInPercentage"</span>,<span class="st">"coverWaterInPercentage"</span>,<span class="st">"coverRockInPercentage"</span>,<span class="st">"mossesIdentified"</span>,<span class="st">"lichensIdentified"</span>,<span class="st">"treeLayerHeightInMeters"</span>,<span class="st">"shrubLayerHeightInMeters"</span>,<span class="st">"herbLayerHeightInCentimeters"</span>,<span class="st">"verbatimLocality"</span>,<span class="st">"habitat"</span>,<span class="st">"RELEVE_NR"</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -407,16 +411,16 @@ The matching results are linked back to the original species list. For the occur
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>event.gbif_ncol <span class="ot">&lt;-</span> <span class="fu">length</span>(event.gbif_colnames)</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>event_gbif <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">matrix</span>(<span class="at">nrow =</span> event.gbif_nrow, <span class="at">ncol =</span> event.gbif_ncol))</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(event_gbif) <span class="ot">&lt;-</span> event.gbif_colnames</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(event_gbif) <span class="ot">&lt;-</span> event.gbif_colnames</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><a href="https://www.gbif.org/cs/data-quality-requirements-sampling-events#dcEventID">Event ID</a> should be a unique identifier for each sampling event. We therefore constructed it by combining the Global Index of Vegetation Databases ID of CzechVeg DB (EU-CZ-001) with Turboveg relevé numbers (which is the persistent identifier used in the CzechVeg DB).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>event_gbif<span class="sc">$</span>eventID <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"EU-CZ-001-"</span>, dbf_list<span class="sc">$</span>tvhabita<span class="sc">$</span>RELEVE_NR)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>event_gbif<span class="sc">$</span>RELEVE_NR <span class="ot">&lt;-</span> dbf_list<span class="sc">$</span>tvhabita<span class="sc">$</span>RELEVE_NR <span class="co"># original relevé number (= vegetation plot identifier) which will be useful here in next steps</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>event_gbif<span class="sc">$</span>eventID <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"EU-CZ-001-"</span>, dbf_list<span class="sc">$</span>tvhabita<span class="sc">$</span>RELEVE_NR)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>event_gbif<span class="sc">$</span>RELEVE_NR <span class="ot">&lt;-</span> dbf_list<span class="sc">$</span>tvhabita<span class="sc">$</span>RELEVE_NR <span class="co"># original relevé number (= vegetation plot identifier) which will be useful here in next steps</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Now, individual columns of <em>event_gbif</em> will be filled to match the GBIF format requirments:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Coordinates</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Coordinates</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>event_gbif<span class="sc">$</span>countryCode <span class="ot">&lt;-</span> dbf_list<span class="sc">$</span>tvhabita<span class="sc">$</span>COUNTRY</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>coords <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(tv.shp)</span>
@@ -545,13 +549,13 @@ The matching results are linked back to the original species list. For the occur
 <span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a>event_gbif <span class="ot">&lt;-</span> <span class="fu">left_join</span>(event_gbif, EUNIS[,<span class="fu">c</span>(<span class="st">"TV2.relevé.number"</span>,<span class="st">"code_name"</span>)],<span class="at">by =</span> <span class="fu">c</span>(<span class="st">"RELEVE_NR"</span> <span class="ot">=</span> <span class="st">"TV2.relevé.number"</span>))</span>
 <span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a>event_gbif<span class="sc">$</span>habitat <span class="ot">&lt;-</span> event_gbif<span class="sc">$</span>code_name</span>
-<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a>event_gbif<span class="sc">$</span>code_name <span class="ot">&lt;-</span> <span class="cn">NULL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a>event_gbif<span class="sc">$</span>code_name <span class="ot">&lt;-</span> <span class="cn">NULL</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Bibliographic references just for vegetation plots where they are indicated in the database</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Bibliographic references just for vegetation plots where they are indicated in the database</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>tvreferenc <span class="ot">&lt;-</span> dbf_list<span class="sc">$</span>tvrefenc[,<span class="fu">c</span>(<span class="st">"REFERENCE"</span>,<span class="st">"AUTHOR"</span>,<span class="st">"YEAR"</span>,<span class="st">"TITLE"</span>,<span class="st">"PUBLISHED"</span>)] <span class="sc">%&gt;%</span> <span class="fu">unique</span>()</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>reference.yes <span class="ot">&lt;-</span> dbf_list<span class="sc">$</span>tvhabita [<span class="sc">!</span><span class="fu">is.na</span>(dbf_list<span class="sc">$</span>tvhabita<span class="sc">$</span>REFERENCE),]</span>
@@ -560,13 +564,13 @@ The matching results are linked back to the original species list. For the occur
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>references_gbif <span class="ot">&lt;-</span> <span class="fu">left_join</span> (reference.yes, tvreferenc, <span class="at">by =</span> <span class="st">"REFERENCE"</span>)</span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(references_gbif)[<span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"creator"</span>,  <span class="st">"date"</span>, <span class="st">"title"</span>,    <span class="st">"source"</span>)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>references_gbif<span class="sc">$</span>REFERENCE <span class="ot">&lt;-</span> <span class="cn">NULL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>references_gbif<span class="sc">$</span>REFERENCE <span class="ot">&lt;-</span> <span class="cn">NULL</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="occurrences" class="level2">
 <h2 class="anchored" data-anchor-id="occurrences">Occurrences</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>occur.gbif_colnames <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>occur.gbif_colnames <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"eventID"</span>,<span class="st">"occurrenceID"</span>,<span class="st">"basisOfRecord"</span>,<span class="st">"originalNameUsageID"</span>,<span class="st">"verbatimIdentification"</span>,<span class="st">"scientificName"</span>,<span class="st">"scientificNameAuthorship"</span>,<span class="st">"acceptedNameUsage"</span>,<span class="st">"status"</span>,<span class="st">"verbatimTaxonRank"</span>,<span class="st">"rank"</span>,<span class="st">"kingdom"</span>,<span class="st">"phylum"</span>,<span class="st">"class"</span>,<span class="st">"order"</span>,<span class="st">"family"</span>,<span class="st">"genus"</span>,<span class="st">"species"</span>,<span class="st">"infragenericEpithet"</span>,<span class="st">"infraspecificEpithet"</span>,<span class="st">"vegetationLayer"</span>,<span class="st">"organismQuantity"</span>,<span class="st">"organismQuantityType"</span>,<span class="st">"dynamicProperties"</span>,<span class="st">"recordedBy"</span>,<span class="st">"recordedByID"</span>,<span class="st">"SPECIES_NR"</span>,<span class="st">"RELEVE_NR"</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -728,7 +732,7 @@ The matching results are linked back to the original species list. For the occur
 <span id="cb7-160"><a href="#cb7-160" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-161"><a href="#cb7-161" aria-hidden="true" tabindex="-1"></a><span class="do">## Delete auxiliary columns</span></span>
 <span id="cb7-162"><a href="#cb7-162" aria-hidden="true" tabindex="-1"></a>occur_gbif[,<span class="fu">c</span>(<span class="st">"SPECIES_NR"</span>,<span class="st">"RELEVE_NR"</span>)] <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb7-163"><a href="#cb7-163" aria-hidden="true" tabindex="-1"></a>event_gbif[,<span class="fu">c</span>(<span class="st">"RELEVE_NR"</span>,<span class="st">"samplingProtocol2"</span>)] <span class="ot">&lt;-</span> <span class="cn">NULL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-163"><a href="#cb7-163" aria-hidden="true" tabindex="-1"></a>event_gbif[,<span class="fu">c</span>(<span class="st">"RELEVE_NR"</span>,<span class="st">"samplingProtocol2"</span>)] <span class="ot">&lt;-</span> <span class="cn">NULL</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 </section>
@@ -736,11 +740,11 @@ The matching results are linked back to the original species list. For the occur
 <h1>Export files for GBIF</h1>
 <p>The vegetation database stored within .txt files that are exported below is ready for publishing on GBIF through the IPT.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(event_gbif, <span class="st">"event_tutor_gbif_2026-08-31.txt"</span>, <span class="at">sep =</span> <span class="st">'</span><span class="sc">\t</span><span class="st">'</span>, <span class="at">row.names =</span> F, <span class="at">fileEncoding =</span> <span class="st">"UTF-8"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(event_gbif, <span class="st">"event_tutor_gbif_2026-08-31.txt"</span>, <span class="at">sep =</span> <span class="st">'</span><span class="sc">\t</span><span class="st">'</span>, <span class="at">row.names =</span> F, <span class="at">fileEncoding =</span> <span class="st">"UTF-8"</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(references_gbif, <span class="st">"references_tutor_gbif_2026-08-31.txt"</span>, <span class="at">sep =</span> <span class="st">'</span><span class="sc">\t</span><span class="st">'</span>, <span class="at">row.names =</span> F, <span class="at">fileEncoding =</span> <span class="st">"UTF-8"</span>)</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(occur_gbif, <span class="st">"occurrences_tutor_gbif_2026-08-31.txt"</span>, <span class="at">sep =</span> <span class="st">'</span><span class="sc">\t</span><span class="st">'</span>, <span class="at">row.names =</span> F, <span class="at">fileEncoding =</span> <span class="st">"UTF-8"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(occur_gbif, <span class="st">"occurrences_tutor_gbif_2026-08-31.txt"</span>, <span class="at">sep =</span> <span class="st">'</span><span class="sc">\t</span><span class="st">'</span>, <span class="at">row.names =</span> F, <span class="at">fileEncoding =</span> <span class="st">"UTF-8"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 
@@ -798,13 +802,14 @@ The matching results are linked back to the original species list. For the occur
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
