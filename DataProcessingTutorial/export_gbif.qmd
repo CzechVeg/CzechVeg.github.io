@@ -40,6 +40,8 @@ From Turboveg2\*:\
 \
 -   **tv.shp**\*\* (shp) = shapefile containing point locations of the input data
 
+![](images/CzechVeg_turboveg2_structure.png)
+
 External files:
 
 -   **spec.converter** (xlsx) = list of species scientific names from the input data, supplemented with scientific name authorships and other taxonomic classification variables; as obtained after preprocessing taxonomic nomenclature using the [Species Matching Tool](https://www.gbif.org/tools/species-lookup) provided by GBIF\
