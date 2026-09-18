@@ -41,9 +41,7 @@ spe %>%
 
 We have the condensed name with underscores, but there are still more variables in the table. We can either remove them or merge them to be included in the final wide format. Here we will go a bit against tidy rules and add the information about the vegetation layer directly to the variable Species using **unite** function from the package `tidyr` which merges strings from two or more columns into a new one: **A+B =A_B**. Default separator is again underscore, unless you specify it differently by *sep=XX* argument.
 
-![](images/clipboard-3109823273.png)
-
-Argument *na.rm* indicates what to do if in one of the combined columns there is no value but NA. We have set this argument to TRUE to remove the NA. If you keep it FALSE it can happen that in some data the new string will be a_NA or NA_b, or even NA_NA (see line 4 of our example).
+![](images/clipboard-1752338144.png)Argument *na.rm* indicates what to do if in one of the combined columns there is no value but NA. We have set this argument to TRUE to remove the NA. If you keep it FALSE it can happen that in some data the new string will be a_NA or NA_b, or even NA_NA (see line 4 of our example).
 
 *Remove* argument set to TRUE will remove the original columns which we used to combine the new one (in the example above you will have only z). In our case we will keep original columns for visual checking and we will use select function in the next step to remove them.
 
