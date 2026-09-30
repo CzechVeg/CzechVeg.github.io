@@ -44,7 +44,7 @@
     "href": "index.html#recommended-citation",
     "title": "Czech Vegetation Database",
     "section": "4 Recommended citation",
-    "text": "4 Recommended citation\nChytrý, M., Axmanová, I., Divíšek, J., Friesová, K., Palpurina, S., Řezníčková, M., Večeřa, M. & Knollová, I. (2026) Czech Vegetation Database. https://czechveg.github.io",
+    "text": "4 Recommended citation\nChytrý M., Axmanová I., Divíšek J., Friesová K., Palpurina S., Řezníčková M., Večeřa M. & Knollová I. (2026) Czech Vegetation Database: an open source of vegetation-plot data for research and applications. Preslia 98: 187–207. https://doi.org/10.23855/preslia.2026.187\nLegacy citations\nChytrý M. & Michalcová D. (2012) Czech National Phytosociological Database. Biodiversity and Ecology 4: 345. https://doi.org/10.7809/b-e.00136\nChytrý M. & Rafajová M. (2003) Czech National Phytosociological Database: basic statistics of the available vegetation-plot data. Preslia 75: 1–15. https://www.preslia.cz/article/387",
     "crumbs": [
       "About"
     ]
@@ -54,7 +54,7 @@
     "href": "index.html#funding",
     "title": "Czech Vegetation Database",
     "section": "5 Funding",
-    "text": "5 Funding\nThis website was launched in March 2026. Its development was supported through the Open Science Clusters’ Action for Research and Society (OSCARS) Horizon Europe project under grant agreement No. 101129751, subproject “EVA-FAIR - Implementing FAIR principles in the European Vegetation Archive data”.",
+    "text": "5 Funding\nThis website was launched in March 2026. Its development was supported through the Open Science Clusters’ Action for Research and Society (OSCARS) Horizon Europe project under grant agreement No. 101129751, subproject “EVA-FAIR – Implementing FAIR principles in the European Vegetation Archive data”.",
     "crumbs": [
       "About"
     ]
