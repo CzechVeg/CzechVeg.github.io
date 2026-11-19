@@ -392,7 +392,7 @@
     "href": "DataProcessingTutorial/data_processing_tutorial.html#example-data",
     "title": "Data processing tutorial",
     "section": "Example data",
-    "text": "Example data\nWe show all the basic data processing in chapters Turboveg to R, Basic analyses, Data format conversions using an example of forest understory data from the Czech Vegetation Database. If you want to train in the same way as is described in the tutorials you can use this link to our GitHub folder, where you can download the example R project tutorial_forest_data or alternatively just the data data_forests.\nFor Data resampling tutorial see the details in another chapter. Again you can download the example R project with data and script here.\nFor the GBIF data preparation see the tutorial in the Export to GBIF chapter and download the example R project here.",
+    "text": "Example data\nWe show all the basic data processing in chapters Turboveg to R, Basic analyses, Data format conversions using an example of forest understory data from the Czech Vegetation Database. If you want to train in the same way as is described in the tutorials you can use this link to our GitHub folder, where you can download the example R project tutorial_forest_data or, alternatively just the data data_forests.\nFor Data resampling tutorial see the details in another chapter. Again you can download the example R project with data and script here.\nFor the GBIF data preparation see the tutorial in the Export to GBIF chapter and download the example R project here.",
     "crumbs": [
       "Data processing tutorial"
     ]
