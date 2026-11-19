@@ -47,10 +47,16 @@ This online database contains the full bibliographic references to the sources o
 
 ## 4 Recommended citation
 
-Chytrý, M., Axmanová, I., Divíšek, J., Friesová, K., Palpurina, S., Řezníčková, M., Večeřa, M. & Knollová, I. (2026) Czech Vegetation Database. https://czechveg.github.io
+Chytrý M., Axmanová I., Divíšek J., Friesová K., Palpurina S., Řezníčková M., Večeřa M. & Knollová I. (2026) Czech Vegetation Database: an open source of vegetation-plot data for research and applications. *Preslia* 98: 187–207. <https://doi.org/10.23855/preslia.2026.187>
+
+**Legacy citations**
+
+Chytrý M. & Michalcová D. (2012) Czech National Phytosociological Database. *Biodiversity and Ecology* 4: 345. <https://doi.org/10.7809/b-e.00136>
+
+Chytrý M. & Rafajová M. (2003) Czech National Phytosociological Database: basic statistics of the available vegetation-plot data. *Preslia* 75: 1–15. <https://www.preslia.cz/article/387>
 
 ## 5 Funding
 
-This website was launched in March 2026. Its development was supported through the Open Science Clusters' Action for Research and Society ([OSCARS](https://oscars-project.eu/)) Horizon Europe project under grant agreement No. 101129751, subproject "[EVA-FAIR](https://oscars-project.eu/projects/eva-fair-implementing-fair-principles-european-vegetation-archive-data) - Implementing FAIR principles in the European Vegetation Archive data".
+This website was launched in March 2026. Its development was supported through the Open Science Clusters' Action for Research and Society ([OSCARS](https://oscars-project.eu/)) Horizon Europe project under grant agreement No. 101129751, subproject "[EVA-FAIR](https://oscars-project.eu/projects/eva-fair-implementing-fair-principles-european-vegetation-archive-data) – Implementing FAIR principles in the European Vegetation Archive data".
 
 ![](images/clipboard-4264386568.jpeg)
